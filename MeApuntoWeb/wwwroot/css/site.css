@@ -1,0 +1,106 @@
+html {
+    font-size: 14px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 0px;
+    margin: 0px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+header {
+    margin: 0px;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 2%
+}
+
+img {
+    padding:0px;
+    margin:0px;
+    zoom: 0.05;
+    filter: drop-shadow(8px 8px 10px gray);
+}
+
+div {
+    margin: 0px;
+    padding: 0px;
+}
+
+.perfil {
+    position:static;
+    border: groove;
+    height:150px;
+    width:150px;
+    text-align: center;
+    margin:0%;
+}
+
+#perfil {
+    border: solid;
+    border-radius: 50%;
+}
+
+.iniciarSesion {
+    margin: 0px;
+    text-align: center;
+    position:static;
+}
+
+.container {
+    
+    background-color: rgb(5, 88, 212);
+    margin-right: 25%;
+    margin-left: 0.2%;
+    border-style: groove;
+    overflow: auto;
+    width: 75%;
+    height: 420px;
+}
+
+.evento {
+    border-radius: 20%;
+    background-color: white;
+    border-style: outset;
+    margin: 0.8%;
+    width: 160px;
+    text-align: center;
+    padding: 0.5%;
+    display: inline-block;
+}
+
+.detalles {
+    background-color: rgb(53, 116, 211);
+    color: white;
+    height: 30px;
+    border-radius: 20%;
+    border: 0px;
+}
+
+    .detalles :hover {
+        background-color: white;
+        color: black;
+    }
+
+.order {
+    text-align: start;
+    width: 100px;
+}
+
+.filter {
+    text-align: left;
+    width: 100px;
+    margin-left: 0.2%;
+}
