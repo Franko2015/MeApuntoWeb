@@ -2,12 +2,30 @@
     ViewData["Titulo"] = "Me Apunto";
 }
 
+    <div class="notifications">
+        <h4 class="titulo">Notificaciones</h4>
+        <div class="notification-01">
+            Hola <span class="who">Administrador</span>
+        </div>
+        <div class="notification-01">
+            Hola
+        </div>
+        <div class="notification-01">
+            Hola
+        </div>
+        <div class="notification-01">
+            Hola
+        </div>
+        <div class="notification-01">
+            Hola
+        </div>
+    </div>
     <div class="perfil">
         <img id="perfil" src="~/blank-profile-picture-973460_1280.png" alt="200px">
-        <a asp-action="Privacy" asp-controller="Home"><h4 class="iniciarSesion">Iniciar sesión</h4></a>
-        <a asp-action="Privacy" asp-controller="Home"><h4 class="iniciarSesion">Crear cuenta</h4></a>
+        <a asp-action="Privacy" asp-controller="Home"><h4 class="iniciarSesion cuentaCreada">Iniciar sesión</h4></a>
+        <a asp-action="Privacy" asp-controller="Home"><h4 class="iniciarSesion crearCuenta">Crear cuenta</h4></a>
     </div>
-   
+   <br>
     <select id="filtrar">
         <option selected disabled>Filtrar</option>
         <option name="">Todo</option>
@@ -15,14 +33,13 @@
         <option name="Familiar">Familiar</option>
         <option name="Comunitario">Comunitario</option>
     </select>
-    
     <button class="order">Ordenar por..</button>
     <div id="imagenes" class="container">
         <div class="evento Deporte">
             Deporte <br>
             13/06/2022 <br>
             <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
+            <a asp-action=""><button type="submit" class="detalles">+&nbsp;Detalles</button></a>
         </div>
         <div class="evento Familiar">
             Familiar <br>
