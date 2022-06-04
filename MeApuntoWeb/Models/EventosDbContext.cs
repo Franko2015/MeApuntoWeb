@@ -16,11 +16,11 @@ namespace MeApuntoWeb.Models
         }
 
         //Instancia de tablas para la BD
-        public DbSet<Categoria> tblCategoria { get; set; }
-        public DbSet<Estado> tblEstado { get; set; }
-        public DbSet<Evento> tblEvento { get; set; }
-        public DbSet<Lugar> tblLugar { get; set; }
-        public DbSet<TipoUsuario> tblTipo_usuario { get; set; }
-        public DbSet<Usuario> tblUsuario { get; set; }
+        public DbSet<Categoria>? tblCategoria { get; set; }
+        public DbSet<Estado>? tblEstado { get; set; }
+        public DbSet<Evento>? tblEvento { get; set; }
+        public DbSet<Lugar>? tblLugar { get; set; }
+        public DbSet<TipoUsuario>? tblTipo_usuario { get; set; }
+        public DbSet<Usuario>? tblUsuario { get; set; }
     }
 }
