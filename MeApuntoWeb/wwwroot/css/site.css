@@ -32,7 +32,7 @@ img {
     padding: 0px;
     margin: 0px;
     zoom: 0.05;
-    position: static;
+    position: center;
     filter: drop-shadow(8px 8px 10px gray);
 }
 
@@ -67,6 +67,7 @@ div {
 }
 
 .evento {
+    box-shadow: 10px 5px 10px 2px rgb(77, 101, 180);
     border-radius: 20%;
     background-color: white;
     border-style: outset;
@@ -96,42 +97,75 @@ div {
 }
 
 .filter {
-    text-align: left;
-    width: 100px;
-    margin-left: 0.2%;
+    margin: 0px;
+    padding: 0px;
 }
 
 .cuentaCreada {
-    margin: 10px;
+    margin: 5px;
     padding: 5px;
+    display:inline-block;
 }
 
 .crearCuenta {
-    margin: 10px;
+    margin: 5px;
+    margin-bottom: 30px;
     padding: 5px;
 }
 
-.notifications {
-    border-radius: 5%;
+.notificaciones {
+    overflow: hidden scroll;
     float: right;
     display: inline-block;
+    box-shadow: 10px 5px 10px 2px rgb(77, 101, 180);
     border: groove;
-    height: auto;
+    height: 600px;
     width: 25%;
     text-align: center;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
+    background-color: #4169E1;
+    border-radius: 1% 15px 15px 1%;
+}
+.titulo-notificaciones {
+    position: -webkit-sticky;
+    position: inherit;
+    background-color: antiquewhite;
+    height:40px;
+    margin-top: 10px;
+    top: 0px;
+    bottom:0;
+    border-bottom-color: black;
+    border-bottom-style: groove;
+    border-bottom-width:1px;
+}
+.notificaciones::-webkit-scrollbar {
+    width: 20px; /* width of the entire scrollbar */
 }
 
+.notificaciones::-webkit-scrollbar-track {
+    background: blue; /* color of the tracking area */
+    margin-right: 5px;
+    border-radius: 10px;
+}
+
+.notificaciones::-webkit-scrollbar-thumb {
+    background-color: orange; /* color of the scroll thumb */
+    border-radius: 10px; /* roundness of the scroll thumb */
+    border: 3px solid black; /* creates padding around scroll thumb */
+}
+
+
 .notification-01 {
+    border-color: blue;
     margin: 10px;
     text-align: left;
     border-bottom: groove;
     border-right: groove;
     border-radius: 2%;
-    width:auto;
-    height:100%;
+    width: auto;
+    height: 10%;
 }
 
 .identification {
