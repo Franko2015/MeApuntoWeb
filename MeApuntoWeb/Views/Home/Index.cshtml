@@ -1,82 +1,15 @@
 ﻿@{
     ViewData["Titulo"] = "Me Apunto";
 }
-
-    <div class="notificaciones">
+<div class="dropdown">
+    <img onclick="notificaciones()" class="imgDropdown" src="~/alarm_alert_bell_internet_notice_notification_security_icon_127089.png" alt=""/>
+    <div id="notificaciones" class="notificaciones dropdown-content">
         <h3 class="titulo-notificaciones">Notificaciones</h3>
-        <div class="notification-01">
-            ¡Su evento <span>n° 1</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 3</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 2</span> ha sido bloqueado!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 1</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 3</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 2</span> ha sido bloqueado!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 1</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 3</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 2</span> ha sido bloqueado!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 1</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 3</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 2</span> ha sido bloqueado!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 1</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 3</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 2</span> ha sido bloqueado!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 1</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 3</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 2</span> ha sido bloqueado!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 1</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 3</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 2</span> ha sido bloqueado!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 1</span> ha sido creado con éxito!
-        </div>
-        <div class="notification-01">
-            ¡Su evento <span>n° 3</span> ha sido creado con éxito!
-        </div>
         <div class="notification-01">
             ¡Su evento <span>n° 2</span> ha sido bloqueado!
         </div>
     </div>
+</div>
     <div class="perfil">
         <img id="perfil" src="~/blank-profile-picture-973460_1280.png" alt="200px">
         <a asp-action="Index" asp-controller="Categoria"><h4 class="iniciarSesion cuentaCreada">Iniciar sesión</h4></a>
@@ -90,7 +23,12 @@
         <option name="Familiar">Familiar</option>
         <option name="Comunitario">Comunitario</option>
     </select>
-    <button class="order">Ordenar por..</button>
+    <select id="ordenar">
+        <option selected disabled>Ordenar por</option>
+        <option name="Fecha">Fecha</option>
+        <option name="Nombre">Nombre</option>
+        <option name="Categoria">Categoria</option>
+    </select>
     <div id="imagenes" class="container">
         <div class="evento Deporte">
             Deporte <br>

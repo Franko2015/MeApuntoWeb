@@ -100,45 +100,27 @@ div {
     margin: 0px;
     padding: 0px;
 }
-
+span{
+    margin:0px;
+    padding:0px;
+}
 .cuentaCreada {
-    margin: 5px;
+    margin: 0px;
     padding: 5px;
-    display:inline-block;
+}
+#filtrar{
+    border:0;
+    font-size: 15px;
+}
+#ordenar {
+    border: 0;
+    font-size: 15px;
 }
 
 .crearCuenta {
-    margin: 5px;
+    margin: 0px;
     margin-bottom: 30px;
     padding: 5px;
-}
-
-.notificaciones {
-    overflow: hidden scroll;
-    float: right;
-    display: inline-block;
-    box-shadow: 10px 5px 10px 2px rgb(77, 101, 180);
-    border: groove;
-    height: 600px;
-    width: 25%;
-    text-align: center;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    background-color: #4169E1;
-    border-radius: 1% 15px 15px 1%;
-}
-.titulo-notificaciones {
-    position: -webkit-sticky;
-    position: inherit;
-    background-color: antiquewhite;
-    height:40px;
-    margin-top: 10px;
-    top: 0px;
-    bottom:0;
-    border-bottom-color: black;
-    border-bottom-style: groove;
-    border-bottom-width:1px;
 }
 .notificaciones::-webkit-scrollbar {
     width: 20px; /* width of the entire scrollbar */
@@ -151,9 +133,9 @@ div {
 }
 
 .notificaciones::-webkit-scrollbar-thumb {
-    background-color: orange; /* color of the scroll thumb */
-    border-radius: 10px; /* roundness of the scroll thumb */
-    border: 3px solid black; /* creates padding around scroll thumb */
+    background-color: orange;
+    border-radius: 10px;
+    border: 3px solid black;
 }
 
 
@@ -219,4 +201,48 @@ a {
 
 a .hovers:hover ~ td {
     border-bottom: 5px dotted rgb(73, 80, 190);
+}
+form {
+    width: 100%;
+    text-align: center;
+    height: 100%;
+}
+form input{
+    width:30%;
+    height:40px;
+    margin:5%;
+    display:inline-block;
+}
+form input .form-button {
+    background-color: black;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px 16px 12px;
+    z-index: 1;
+    margin: 0px;
+    padding: 0;
+}
+.titulo-notificaciones{
+    text-align:center;
+}
+.show {
+    display: block;
+}
+.notificaciones {
+    animation-name: aparecer;
+    animation-duration: 5s;
+}
+@keyframes aparecer{
+    0% {zoom:0%;}
+    100% {zoom:100%;}
 }

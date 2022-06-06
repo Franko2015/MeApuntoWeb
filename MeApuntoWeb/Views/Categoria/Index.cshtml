@@ -1,46 +1,24 @@
-﻿@*
-    model View.
-*@
-@{
-}
+﻿
+@model List<Categoria>
+
     <a asp-action="Index" asp-controller="Home"><img class="btnVolver" src="~/return_icon_154912.png" alt="100px"></a>
     <center><h2 class="titulo-principal">Categorías de eventos</h2></center>
+    <a asp-action="Add"><label>Crear nueva categoría</label></a>
     <br>
+    <hr>
     <table class="table categoria">
         <tr class="t-categoria">
             <th>Id</th>
             <th>Nombre</th>
             <th colspan="2"></th>
         </tr>
+        @foreach (var item in Model)
+    {
         <tr>
-            <td class="elementos">1</td>
-            <td class="elementos">Adultos</td>
+            <td class="elementos">@item.Id</td>
+            <td class="elementos">@item.categoria</td>
             <td><a asp-action="" asp-controller=""><img src="~/edit_icon_128873.png" alt="200px"></a></td>
             <td><a asp-action="" asp-controller=""><img src="~/seo-social-web-network-internet_322_icon-icons.com_61532.png" alt="200px"></a></td>
-        </tr>
-        <tr>
-            <td class="elementos">2</td>
-            <td class="elementos">Niños</td>
-            <td><a asp-action="" asp-controller=""><img src="~/edit_icon_128873.png" alt="200px"></a></td>
-            <td><a asp-action="" asp-controller=""><img src="~/seo-social-web-network-internet_322_icon-icons.com_61532.png" alt="200px"></a></td>
-        </tr>
-        <tr>
-            <td class="elementos">3</td>
-            <td class="elementos">Adolescentes</td>
-            <td><a asp-action="" asp-controller=""><img src="~/edit_icon_128873.png" alt="200px"></a></td>
-            <td><a asp-action="" asp-controller=""><img src="~/seo-social-web-network-internet_322_icon-icons.com_61532.png" alt="200px"></a></td>
-        </tr>
-        <tr>
-            <td class="elementos">4</td>
-            <td class="elementos">Entrenimiento</td>
-            <td><a asp-action="" asp-controller=""><img src="~/edit_icon_128873.png" alt="200px"></a></td>
-            <td><a asp-action="" asp-controller=""><img src="~/seo-social-web-network-internet_322_icon-icons.com_61532.png" alt="200px"></a></td>
-        </tr>
-        <tr>
-            <td class="elementos">5</td>
-            <td class="elementos">Todo público</td>
-            <td><a asp-action="" asp-controller=""><img src="~/edit_icon_128873.png" alt="200px"></a></td>
-            <td><a asp-action="" asp-controller=""><img src="~/seo-social-web-network-internet_322_icon-icons.com_61532.png" alt="200px"></a></td>
-        </tr>
-        
+        </tr>   
+    }
     </table>
