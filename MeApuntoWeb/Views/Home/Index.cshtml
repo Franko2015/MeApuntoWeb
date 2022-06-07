@@ -2,20 +2,22 @@
     ViewData["Titulo"] = "Me Apunto";
 }
 <div class="dropdown">
-    <img onclick="notificaciones()" class="imgDropdown" src="~/alarm_alert_bell_internet_notice_notification_security_icon_127089.png" alt=""/>
+        <img onclick="notificaciones()" class="imgDropdown" src="~/alarm_alert_bell_internet_notice_notification_security_icon_127089.png" alt=""/>
     <div id="notificaciones" class="notificaciones dropdown-content">
-        <h3 class="titulo-notificaciones">Notificaciones</h3>
+            <h3 class="titulo-notificaciones">Notificaciones</h3>
         <div class="notification-01">
             ¡Su evento <span>n° 2</span> ha sido bloqueado!
         </div>
     </div>
 </div>
-    <div class="perfil">
-        <img id="perfil" src="~/blank-profile-picture-973460_1280.png" alt="200px">
-        <a asp-action="Index" asp-controller="Categoria"><h4 class="iniciarSesion cuentaCreada">Iniciar sesión</h4></a>
-        <a asp-action="Privacy" asp-controller="Home"><h4 class="iniciarSesion crearCuenta">Crear cuenta</h4></a>
-    </div>
+<div class="perfil">
+    <img class="img-perfil" src="~/blank-profile-picture-973460_1280.png" alt="200px">
+    <br/>
+    <h3><a asp-action="Login" asp-controller="Home">Iniciar Sesión</a></h3>
+    <h3><a asp-action="Admin" asp-controller="Home">Admin</a></h3>
+</div>
    <br>
+<div class="filtros">
     <select id="filtrar">
         <option selected disabled>Filtrar</option>
         <option name="">Todo</option>
@@ -29,149 +31,59 @@
         <option name="Nombre">Nombre</option>
         <option name="Categoria">Categoria</option>
     </select>
-    <div id="imagenes" class="container">
-        <div class="evento Deporte">
-            Deporte <br>
-            13/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <a asp-action=""><button type="submit" class="detalles">+&nbsp;Detalles</button></a>
+</div>
+<br>
+    <div class="cards-events">
+        <div class="card">
+            <div class="card-header">
+                <h2>Título del evento</h2>
+                <h4>Descripcion</h4>
+            </div>
+            <div class="card-body">
+                <center><img style="zoom:10%;" src="~/pexels-pixabay-302083.jpg" alt="200px"/></center>
+            </div>
+            <div class="card-footer">
+                <a asp-action="">Descripción</a>
+                <a asp-action="">Me apunto</a>
+            </div>
         </div>
-        <div class="evento Familiar">
-            Familiar <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
+        <div class="card">
+            <div class="card-header">
+                <h2>Título del evento</h2>
+                <h4>Descripcion</h4>
+            </div>
+            <div class="card-body">
+                <center><img style="zoom:10%;" src="~/pexels-pixabay-302083.jpg" alt="200px"/></center>
+            </div>
+            <div class="card-footer">
+                <a asp-action="">Descripción</a>
+                <a asp-action="">Me apunto</a>
+            </div>
         </div>
-        <div class="evento Comunitario">
-            Comunitario <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
+        <div class="card">
+            <div class="card-header">
+                <h2>Título del evento</h2>
+                <h4>Descripcion</h4>
+            </div>
+            <div class="card-body">
+                <center><img style="zoom:10%;" src="~/pexels-pixabay-302083.jpg" alt="200px"/></center>
+            </div>
+            <div class="card-footer">
+                <a asp-action="">Descripción</a>
+                <a asp-action="">Me apunto</a>
+            </div>
         </div>
-        <div class="evento Deporte">
-            Deporte <br>
-            13/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Familiar">
-            Familiar <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Comunitario">
-            Comunitario <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Deporte">
-            Deporte <br>
-            13/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Familiar">
-            Familiar <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Comunitario">
-            Comunitario <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Deporte">
-            Deporte <br>
-            13/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Familiar">
-            Familiar <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Comunitario">
-            Comunitario <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Deporte">
-            Deporte <br>
-            13/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Familiar">
-            Familiar <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Comunitario">
-            Comunitario <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Deporte">
-            Deporte <br>
-            13/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Familiar">
-            Familiar <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Comunitario">
-            Comunitario <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Deporte">
-            Deporte <br>
-            13/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Familiar">
-            Familiar <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Comunitario">
-            Comunitario <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Deporte">
-            Deporte <br>
-            13/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Familiar">
-            Familiar <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
-        </div>
-        <div class="evento Comunitario">
-            Comunitario <br>
-            23/06/2022 <br>
-            <img src="~/pexels-pixabay-302083.jpg" alt="100px">
-            <button class="detalles">+&nbsp;Detalles</button>
+        <div class="card">
+            <div class="card-header">
+                <h2>Título del evento</h2>
+                <h4>Descripcion</h4>
+            </div>
+            <div class="card-body">
+                <center><img style="zoom:10%;" src="~/pexels-pixabay-302083.jpg" alt="200px"/></center>
+            </div>
+            <div class="card-footer">
+                <a asp-action="">Descripción</a>
+                <a asp-action="">Me apunto</a>
+            </div>
         </div>
     </div>

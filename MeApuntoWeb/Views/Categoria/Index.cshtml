@@ -9,7 +9,7 @@
     <table class="table categoria">
         <tr class="t-categoria">
             <th>Id</th>
-            <th>Nombre</th>
+            <th>Nombre de la categoría</th>
             <th colspan="2"></th>
         </tr>
         @foreach (var item in Model)
@@ -17,8 +17,8 @@
         <tr>
             <td class="elementos">@item.Id</td>
             <td class="elementos">@item.categoria</td>
-            <td><a asp-action="" asp-controller=""><img src="~/edit_icon_128873.png" alt="200px"></a></td>
-            <td><a asp-action="" asp-controller=""><img src="~/seo-social-web-network-internet_322_icon-icons.com_61532.png" alt="200px"></a></td>
-        </tr>   
+            <td><a asp-action="Edit" asp-route-idCategoria="@item.Id"><img src="~/edit_icon_128873.png" alt="200px"></a></td>
+            <td><a asp-action="Delete" asp-route-idCategoria="@item.Id"><img src="~/seo-social-web-network-internet_322_icon-icons.com_61532.png" alt="200px"></a></td>
+        </tr>
     }
     </table>

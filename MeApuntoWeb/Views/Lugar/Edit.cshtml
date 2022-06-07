@@ -1,0 +1,17 @@
+﻿@model MeApuntoWeb.Models.Lugar
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form">
+        <a asp-action="Index"><img class="btnVolver" src="~/return_icon_154912.png" alt="100px"></a>
+        <form asp-action="Edit" method="post">
+            <input asp-for="Id" value="@Model.Id" hidden />
+            <div class="table form">
+                <input class="form-text" value="@Model.Direccion" asp-for="Direccion" placeholder="Nombre del lugar"/>
+                <input class="form-button" type="submit" value="Editar lugar"/>
+            </div>
+        </form>
+    </div>

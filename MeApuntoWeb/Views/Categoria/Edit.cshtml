@@ -1,5 +1,12 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Categoria
+
+<div class="form">
+        <a asp-action="Index"><img class="btnVolver" src="~/return_icon_154912.png" alt="100px"></a>
+        <form asp-action="Edit" method="post">
+            <input asp-for="Id" value="@Model.Id" hidden />
+            <div class="table form">
+                <input class="form-text" value="@Model.categoria" asp-for="categoria" placeholder="Nombre de la categoría"/>
+                <input class="form-button" type="submit" value="Editar categoría"/>
+            </div>
+        </form>
+    </div>

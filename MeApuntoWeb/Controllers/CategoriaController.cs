@@ -13,13 +13,14 @@ namespace MeApuntoWeb.Controllers
 
         public IActionResult Index()
         {
-            var Categorias = _context.tblCategoria.ToList();
+            var Categorias = _context.tblCategoria?.ToList();
             return View(Categorias);
         }
         public IActionResult Add()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Add(Categoria c)
         {
@@ -29,6 +30,49 @@ namespace MeApuntoWeb.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
 
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int idCategoria)
+        {
+            var Categoria = _context.tblCategoria?.FirstOrDefault(c => c.Id == idCategoria);
+            if(Categoria == null) return NotFound();
+            else
+            {
+                return View(Categoria);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Categoria c)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Update(c);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(c);
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete(int idCategoria)
+        {
+            var Categoria = _context.tblCategoria?.FirstOrDefault(c => c.Id == idCategoria);
+            if (Categoria == null) return NotFound();
+            else
+            {
+                return View(Categoria);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Categoria c)
+        {
+                _context.Remove(c);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
         }
     }
 }

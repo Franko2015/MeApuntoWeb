@@ -1,0 +1,26 @@
+﻿@model Lugar
+
+@{
+    ViewData["Title"] = "Borrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Eliminación de lugar</h1>
+
+<h3>¿Estás seguro de eliminar la categoría de: @Model.Direccion?</h3>
+<div>
+    <dl class="">
+        <dt class = "">
+            Dirección del lugar
+        </dt>
+        <dd class = "">
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Borrar" class="" /> |
+        <a asp-action="Index">Volver</a>
+    </form>
+</div>

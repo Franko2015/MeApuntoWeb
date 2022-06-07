@@ -1,21 +1,12 @@
+/* Elementos de cada página */
 html {
     font-size: 14px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     padding: 0px;
     margin: 0px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-html {
     position: relative;
     min-height: 100%;
 }
-
 body {
     margin-bottom: 60px;
     background-image: url('assets/fondo.jpg');
@@ -31,79 +22,56 @@ header {
 img {
     padding: 0px;
     margin: 0px;
-    zoom: 0.05;
+    zoom: 0.08;
     position: center;
     filter: drop-shadow(8px 8px 10px gray);
 }
-
 div {
     margin: 0px;
     padding: 0px;
 }
 
-.perfil {
-    position: static;
-    height: 150px;
-    width: 15%;
-    text-align: center;
-    margin: 0%;
-}
-
-#perfil {
-    border: solid;
-    border-radius: 50%;
-}
-
-.iniciarSesion {
-    margin: 0px;
-    text-align: center;
-    position: static;
-}
-
-.container {
-    margin-right: 25%;
-    margin-left: 0.2%;
-    width: 75%;
-}
-
-.evento {
-    box-shadow: 10px 5px 10px 2px rgb(77, 101, 180);
-    border-radius: 20%;
-    background-color: white;
-    border-style: outset;
-    margin: 0.8%;
-    width: 160px;
-    text-align: center;
-    padding: 0.5%;
-    display: inline-block;
-}
-
-.detalles {
-    background-color: rgb(53, 116, 211);
-    color: white;
-    height: 30px;
-    border-radius: 20%;
-    border: 0px;
-}
-
-    .detalles :hover {
-        background-color: white;
-        color: black;
-    }
-
-.order {
-    text-align: start;
-    width: 100px;
-}
-
-.filter {
+span {
     margin: 0px;
     padding: 0px;
 }
-span{
-    margin:0px;
-    padding:0px;
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
 }
+form {
+    width: 100%;
+    text-align: center;
+    height: 100%;
+}
+
+    form input {
+        width: 30%;
+        height: 40px;
+        margin: 5%;
+        display: inline-block;
+    }
+
+
+
+/* Index de la carpeta HOME (clases e IDs)*/
+.perfil {
+    height:150px;
+    text-align: center;
+    display: block;
+    left: 20px;
+    width:15%;
+}
+.img-perfil{
+    margin:50px;
+    margin-left: 1%;
+    border-radius:25%;
+}
+form input .form-button {
+    background-color: black;
+}
+
 .cuentaCreada {
     margin: 0px;
     padding: 5px;
@@ -116,7 +84,6 @@ span{
     border: 0;
     font-size: 15px;
 }
-
 .crearCuenta {
     margin: 0px;
     margin-bottom: 30px;
@@ -125,20 +92,16 @@ span{
 .notificaciones::-webkit-scrollbar {
     width: 20px; /* width of the entire scrollbar */
 }
-
 .notificaciones::-webkit-scrollbar-track {
     background: blue; /* color of the tracking area */
     margin-right: 5px;
     border-radius: 10px;
 }
-
 .notificaciones::-webkit-scrollbar-thumb {
     background-color: orange;
     border-radius: 10px;
     border: 3px solid black;
 }
-
-
 .notification-01 {
     border-color: blue;
     margin: 10px;
@@ -149,28 +112,23 @@ span{
     width: auto;
     height: 10%;
 }
-
 .identification {
     margin-left: 20px;
     text-align: right;
 }
-
 .detalles {
     margin: 10px;
 }
-
 a {
     list-style: none;
     color: black;
     text-decoration: none;
 }
-
     a :hover {
         list-style: none;
         text-decoration: solid;
         color: blue;
     }
-
 .table {
     margin: auto;
     position: relative;
@@ -180,7 +138,6 @@ a {
     border-style: inset;
     box-shadow: 10px 5px 10px 2px rgb(77, 101, 180);
 }
-
 .btnVolver {
     width: 800px;
     position: relative;
@@ -189,38 +146,16 @@ a {
     background: transparent;
 }
 
-.titulo-principal {
-    position: relative;
-    display: inline-block;
-}
-
-.elementos {
-    margin: 0.1%;
-    border-bottom: 1px inset rgb(73, 80, 190);
-}
-
 a .hovers:hover ~ td {
     border-bottom: 5px dotted rgb(73, 80, 190);
 }
-form {
-    width: 100%;
-    text-align: center;
-    height: 100%;
-}
-form input{
-    width:30%;
-    height:40px;
-    margin:5%;
-    display:inline-block;
-}
-form input .form-button {
-    background-color: black;
-}
+
 .dropdown {
     position: relative;
     display: inline-block;
+    bottom:80px;
+    zoom:80%;
 }
-
 .dropdown-content {
     display: none;
     position: absolute;
@@ -246,3 +181,77 @@ form input .form-button {
     0% {zoom:0%;}
     100% {zoom:100%;}
 }
+.cuadro-tabla {
+    font-size: 18px;
+    text-align:center;
+    height: 150px;
+    width: 300px;
+    margin-bottom: 200px;
+    display: inline-block;
+    margin:40px;
+}
+footer {
+    color: white;
+    min-height: 70px;
+    background-color: #23AA95;
+    border-top: 1px solid #23AA95;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+:root {
+    --card-color: rgba(54, 0, 204, 0.555);
+    --card-header-color: #23AA95;
+    --card-body-color: #2FDFC4;
+    --card-footer-color: #23AA95;
+}
+.card {
+    margin: 30px;
+    background: var(--card-color);
+    color: rgb(255, 255, 255);
+    width: 300px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
+    border-radius: 20px;
+    display: inline-block;
+    text-align:center;
+}
+.cards-events {
+    zoom:80%;
+    width: 80%;
+    height:500px;
+    overflow:hidden scroll;
+    text-align: left;
+}
+.card-header {
+    background: var(--card-header-color);
+    margin: -20px;
+    padding: 20px;
+    border-radius: 20px 20px 0px 0px;
+}
+.card-body {
+    background: var(--card-body-color);
+    margin: -20px;
+    padding: 20px;
+    border-radius: 00px 00px 20px 20px;
+}
+.card-footer {
+    background: var(--card-footer-color);
+    margin: -20px;
+    padding: 20px;
+    border-radius: 00px 00px 20px 20px;
+    display: flex;
+}
+a {
+    padding: 8px;
+    margin: 2px;
+    border-radius: 5px;
+    border: 1px solid white;
+    width: 100%;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+    a:hover {
+        color: var(--card-body-color);
+        background: white;
+    }
