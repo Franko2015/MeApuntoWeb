@@ -1,0 +1,26 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Borrar";
+}
+<link rel="stylesheet" href="~/css/iniciarSesion.css" />
+<div id="main-container-sesion">
+        <div id="form-container">
+            <form method="post" asp-action="Login">
+                <h1>Iniciar sesion</h1>
+                <label>Usuario</label>
+                <input name="txtUsuario" asp-for="Username" class="form-control" placeholder="Usuario">
+                <label>Contraseña</label>
+                <input name="txtTitulo" asp-for="Password" class="form-control" placeholder="Contraseña">
+                <br>
+                <button type="submit" class="btn btn-primary boton-form">Ingresar</button>
+                <br>
+                <button type="submit" class="btn btn-outline-primary boton-form">Registrarse</button>
+                <br>
+                <h5>Olvidaste tu contraseña? haz click <a href="*">aquí</a></h5>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>

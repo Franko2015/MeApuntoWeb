@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#main-header {
+    z-index: 10;
+    position:relative;
+    background-image: linear-gradient(to right, rgb(238, 83, 0), rgb(145, 62, 197), rgb(19, 128, 108));
+    padding: 0.5em;
+    text-align: center;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 2em;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    color: white;
+}
+#main-header-buttons{
+    display: inline;
+    float: right;
+}
+
+#main-header button{
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    border-style: none;
+    background-color: rgba(49, 47, 61, 0.396);
+    color: white;
+}
+#main-header button:active{
+    background-color: rgba(228, 226, 243, 0.6);
+}
+#main-container{  
+    display: flex;
+    flex-direction: row-reverse;
+}
+#main-content{
+    background-color: white;
+    flex: 1;
+    /* flex-wrap: wrap;
+    justify-content:space-around; */
+}
+#main-organizar{
+    display: flex;
+    padding:0.5em;
+    justify-content: space-between;   
+}
+#main-filtrar{
+    display:flex;
+}
+#main-filtrar div{
+    padding-right:0.5em;
+}
+#main-filtrar button{
+
+}
+.grid{
+    display:grid;
+    grid-template-columns: 1fr;
+}
+@media screen and (min-width: 641px) {
+    .grid{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.grid .columna{
+    /* flex-direction: column;
+    flex-basis: 33,3%;     */
+    padding:0.5em;
+    
+
+}
+#main-menu{
+    z-index: 5;
+    background-color: white;
+    min-width: 250px;   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: -2px 0px 2px 1px lightgrey ;
+}
+#main-menu-wrapper  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; 
+    height: 100vh;
+}
+@media screen and (max-width: 640px){
+    #main-menu{
+        display:none
+    }
+}
+#ver-eventos-button{
+    /* background-image: linear-gradient(to right, rgb(238, 83, 0), rgb(145, 62, 197), rgb(19, 128, 108)); */
+    background-color: rgb(116, 0, 107);
+    color: white; 
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1.3em;
+    padding:0.5em 0.8em;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+#ver-eventos-button:hover{
+    /* background-image: linear-gradient(to right, rgb(245, 93, 10), rgb(155, 72, 207), rgb(29, 138, 118)); */
+    background-color: rgb(126, 10, 117);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.708);
+    transition: background-image 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+#ver-eventos-button:active{
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5) inset;
+}
+
+#crear-evento-button{
+    background-color: white;
+    color: rgb(71, 70, 70);
+    padding: 0.7em;
+    padding-bottom: 0.3em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    border: 3px dashed rgb(71, 70, 70) ;
+    border-radius: 7px;
+}
+#crear-evento-button i{
+    font-size: 2em;
+}
+#crear-evento-button:hover {
+    background-color: #f2f0f2;
+  
+}
+.div-card {
+    border: 1px solid lightgray;
+    border-radius: 0.5em;
+    overflow: hidden;
+    position: relative;
+}
+
+.div-card-image2{
+    height: 150px;
+}
+.div-card2:hover .div-card-image2{
+    height: 0px;
+    transition: height 0.3s ease-in-out;
+}
+.div-card2 {
+    border-radius: 0.5em;
+    background-image: url("https://tvline.com/wp-content/uploads/2022/04/halo-1x03-makee.jpg?w=300");
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+/*.div-card-image{
+    background-image: url("https://tvline.com/wp-content/uploads/2022/04/halo-1x03-makee.jpg?w=300");
+    height: 150px;
+
+.div-card-content {
+    padding:0.5em;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.div-card-titulo{
+    text-align: center;
+}
+.div-card-description{
+    
+}
+.div-card .div-card-buttons {
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+}
+.div-card:hover .div-card-buttons {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+.div-card .div-card-buttons button{
+    border:2px solid white;
+    border-radius: 5px;
+    color:white;
+    background-color: rgba(0,0, 0, 0);
+    font-size: 1.1em ;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0.4em 0.6em;
+    margin: 0.4em;
+}
+.div-card .div-card-buttons button:hover{
+    background-color: white;
+    color:rgba(0, 0, 0, 0.9);
+}*/
+.div-card2 .div-card-buttons2 {
+    width: 100%;
+    height: 0px;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    overflow: hidden;
+}
+.div-card2:hover .div-card-buttons2 {
+    height: 150px;
+    transition: height 0.3s ease-in-out;
+}
+.div-card2 .div-card-buttons2 button {
+    border:2px solid white;
+    border-radius: 5px;
+    color:white;
+    background-color: rgba(0,0, 0, 0);
+    font-size: 1.1em ;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0.4em 0.6em;
+    margin: 0.4em;
+}
+.div-card2 .div-card-buttons2 button:hover {
+    background-color: white;
+    color:black;
+} 
+.div-card-content2 {
+    padding:1.2em;
+    color:white;
+    background-color: rgba(0, 0, 0, 0.604);   
+}
+.div-card-titulo2{
+    text-transform: uppercase;
+    padding:5px;   
+}
+.div-card-description2{
+    font-size: 1em;
+    padding:5px;
+}
+.div-card-description2 div{
+    padding-bottom: 5px;   
+}
+#main-footer {
+    background-color: rgb(67, 64, 82);
+    padding: 0.5em;
+    text-align: center;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 1.5em;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    color: white;
+}
+
+
+.main-container2{
+    background-image: linear-gradient(to right, rgb(238, 83, 0), rgba(145, 62, 197,0.7), rgba(19, 128, 108,0.7));
+    background-color: rgba(43, 46, 66, 0.556);
+    height: 100%;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
+
+.main-container2 .main-content{
+    margin: 40px;
+    height: 700px;
+    width: 33,3%;
+    background-color: rgba(51, 45, 68, 0.437);
+    box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.425);
+} 
+
+.main-container2 .main-content .titulo{
+    padding: 0.5em;
+    text-align: center;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 2em;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    color: white;
+}
+
+/* Mis Eventos */
+
+.my-event{
+    display:grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid lightgray;
+}
+@media screen and (min-width: 641px) {
+    .my-event{
+        display:grid;
+        grid-template-columns: 1fr 2fr 1fr 1fr;
+    }
+}
+.my-event:first {
+    border-top: none;
+}
+
+.my-event-imagen{
+}
+
+.my-event-content{
+    padding: 20px;
+}
+.my-event-estado{
+    display: flex;
+    align-items: center;
+}
+
+.my-event-boton{
+    display: flex;
+    align-items: center;
+}
+
+.my-btn-action {
+    border-radius: 50%;
+    border: none;
+}
+
+.my-btn-action:hover {
+    border: none;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.my-btn-action:action {
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s ease;
+}
+
+#main-menu2{
+    z-index: 5;
+    background-color: white;
+    min-width: 250px;   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: -2px 0px 2px 1px lightgrey ;
+}
+

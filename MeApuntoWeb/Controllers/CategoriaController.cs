@@ -1,8 +1,10 @@
 ﻿using MeApuntoWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MeApuntoWeb.Controllers
 {
+    [Authorize(Roles = "soporte, administrador")]
     public class CategoriaController : Controller
     {
         private readonly EventosDbContext _context;

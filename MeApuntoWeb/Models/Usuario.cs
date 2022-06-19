@@ -11,7 +11,10 @@ namespace MeApuntoWeb.Models
         public string? Edad { get; set; }
         public string? Organizacion { get; set; }
         public string? EstadoCuenta { get; set; }
+        public string? NombreUsuario { get; set; }
         public int Tipo_usuarioId { get; set; }
+        public byte[]? PasswordHash { get; set; }
+        public byte[]? PasswordSalt { get; set; }
         public TipoUsuario? Tipo_usuario { get; set; }
     }
 }
