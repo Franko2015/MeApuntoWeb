@@ -2,9 +2,9 @@
 {
     public class Evento
     {
-        public int EventoId { get; set; }
-        public string? Titulo { get; set; }
-        public string? Descripcion { get; set; }
+        public int Id { get; set; }
+        public string Titulo { get; set; }
+        public string Descripcion { get; set; }
         public DateTime Fecha_evento { get; set; }
         public DateTime Hora_inicio { get; set; }
         public DateTime Hora_termino { get; set; }

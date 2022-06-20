@@ -1,0 +1,28 @@
+﻿@model Evento
+
+<link rel="stylesheet" href="~/css/crearEvento.css" />
+<div id="main-container-evento">
+        <div id="form-container">
+            <form action="Create" method="post">
+                <h1>Crear Evento</h1>
+                <label>Titulo del Evento</label>
+                <input asp-for="Titulo" class="form-control" placeholder="Titulo">
+                <label>Fecha a realizarse</label>
+                <input asp-for="Fecha_evento" type="date" class="form-control" placeholder="Fecha">
+                <label>Hora de Inicio</label>
+                <input asp-for="Hora_inicio" name="txtHoraInicio" type="time" class="form-control">
+                <label>Hora de Termino</label>
+                <input asp-for="Hora_termino"name="txtHoraTermino" type="time" class="form-control">
+                <label for="txtDireccion">Direccion</label>
+                <input name="txtDireccion" type="text" class="form-control" placeholder="Direccion">
+                <label>Categoria</label>
+                <select asp-for="CategoriaId" class="form-select" asp-items="ViewBag.CategoriaId"></select>
+                    <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                <label for="txtDescripcion">Descripcion</label>
+                <textarea asp-for="Descripcion" name="txtDescripcion" class="form-control" rows="3"></textarea>
+                <button type="submit" class="btn btn-primary boton-form">Crear</button>
+            </form>
+        </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    

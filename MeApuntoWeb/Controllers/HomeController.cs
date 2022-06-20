@@ -6,23 +6,46 @@ namespace MeApuntoWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly EventosDbContext _context;
+        public HomeController(EventosDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var tipo = _context.tblTipo.ToList();
+            Tipo_Usuario? TA = new Tipo_Usuario();
+            if (tipo.Count == 0)
+            {
+                TA.Tipo = "Administrador";
+                _context.Add(TA);
+                await _context.SaveChangesAsync();
+            }
+            Tipo_Usuario? TS = new Tipo_Usuario();
+            if (tipo.Count == 1)
+            {
+                TS.Tipo = "Soporte";
+                _context.Add(TS);
+                await _context.SaveChangesAsync();
+            }
+            Tipo_Usuario? TF = new Tipo_Usuario();
+            if (tipo.Count == 2)
+            {
+                TF.Tipo = "Free";
+                _context.Add(TF);
+                await _context.SaveChangesAsync();
+            }
+            Tipo_Usuario? TP = new Tipo_Usuario();
+            if (tipo.Count == 3)
+            {
+                TP.Tipo = "Premium";
+                _context.Add(TP);
+                await _context.SaveChangesAsync();
+            }
             return View();
         }
         public IActionResult Admin()
-        {
-            return View();
-        }
-
-        public IActionResult Login()
         {
             return View();
         }

@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeApuntoWeb.Migrations
 {
     [DbContext(typeof(EventosDbContext))]
-    [Migration("20220601211425_DBCompleta")]
-    partial class DBCompleta
+    [Migration("20220620062414_PRIMERA")]
+    partial class PRIMERA
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("ProductVersion", "6.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -33,6 +33,10 @@ namespace MeApuntoWeb.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("categoria")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("imagen")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -60,11 +64,11 @@ namespace MeApuntoWeb.Migrations
 
             modelBuilder.Entity("MeApuntoWeb.Models.Evento", b =>
                 {
-                    b.Property<int>("EventoId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventoId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CategoriaId")
                         .HasColumnType("int");
@@ -95,7 +99,7 @@ namespace MeApuntoWeb.Migrations
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
-                    b.HasKey("EventoId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoriaId");
 
@@ -125,7 +129,7 @@ namespace MeApuntoWeb.Migrations
                     b.ToTable("tblLugar");
                 });
 
-            modelBuilder.Entity("MeApuntoWeb.Models.TipoUsuario", b =>
+            modelBuilder.Entity("MeApuntoWeb.Models.Tipo_Usuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -139,7 +143,7 @@ namespace MeApuntoWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tblTipo_usuario");
+                    b.ToTable("tblTipo");
                 });
 
             modelBuilder.Entity("MeApuntoWeb.Models.Usuario", b =>
@@ -151,10 +155,6 @@ namespace MeApuntoWeb.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Apellidos")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Contraseña")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -170,14 +170,31 @@ namespace MeApuntoWeb.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("NombreUsuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nombres")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Organizacion")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("Rut")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -228,13 +245,13 @@ namespace MeApuntoWeb.Migrations
 
             modelBuilder.Entity("MeApuntoWeb.Models.Usuario", b =>
                 {
-                    b.HasOne("MeApuntoWeb.Models.TipoUsuario", "Tipo_usuario")
+                    b.HasOne("MeApuntoWeb.Models.Tipo_Usuario", "Tipo_Usuario")
                         .WithMany()
                         .HasForeignKey("Tipo_usuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Tipo_usuario");
+                    b.Navigation("Tipo_Usuario");
                 });
 #pragma warning restore 612, 618
         }

@@ -5,8 +5,8 @@
 <header id="main-header">
         Me Apunto!
         <div id="main-header-buttons">
-            <button><a asp-action="Login" asp-controller="Auth"><i class="material-icons">person</i></a></button>
-            <button><i class="material-icons">notifications</i></button>
+            <a asp-action="Login" asp-controller="Auth"><button><i class="material-icons">person</i></button></a>
+            <a asp-action="Admin"><button><i class="material-icons">notifications</i></button></a>
         </div>
     </header>
     <div id="main-container">
@@ -20,7 +20,7 @@
                 </div>
     
                 <div>
-                    <button id="crear-evento-button">Crear nuevo <br> evento <br><i class="material-icons">add</i></button>
+                    <a asp-action="Create" asp-controller="Eventos"><button id="crear-evento-button">Crear nuevo <br> evento <br><i class="material-icons">add</i></button></a>
                 </div>
             </div>
         </aside>

@@ -1,10 +1,31 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using MeApuntoWeb.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = builder.Configuration
+    .GetConnectionString("DefaultConnection");
+
+//DbContext
+builder.Services.AddDbContext<EventosDbContext>();
+
+//Login
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie("Cookies", options =>
+    {
+        options.LoginPath = "/Auth/Login";
+        options.LogoutPath = "/Auth/Logout";
+        options.AccessDeniedPath = "/Auth/AccessDenied";
+    });
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<EventosDbContext>();
+
+
+builder.Services.AddSession();
+builder.Services.AddMemoryCache();
+builder.Services.AddHttpContextAccessor();
+
 
 var app = builder.Build();
 
@@ -21,7 +42,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

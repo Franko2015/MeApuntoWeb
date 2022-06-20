@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MeApuntoWeb.Migrations
 {
-    public partial class DBCompleta : Migration
+    public partial class PRIMERA : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace MeApuntoWeb.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    categoria = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    categoria = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    imagen = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,7 +50,7 @@ namespace MeApuntoWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tblTipo_usuario",
+                name: "tblTipo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -58,7 +59,7 @@ namespace MeApuntoWeb.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tblTipo_usuario", x => x.Id);
+                    table.PrimaryKey("PK_tblTipo", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -70,20 +71,23 @@ namespace MeApuntoWeb.Migrations
                     Nombres = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Apellidos = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rut = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Edad = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Organizacion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Organizacion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EstadoCuenta = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Tipo_usuarioId = table.Column<int>(type: "int", nullable: false)
+                    NombreUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Tipo_usuarioId = table.Column<int>(type: "int", nullable: false),
+                    PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tblUsuario", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_tblUsuario_tblTipo_usuario_Tipo_usuarioId",
+                        name: "FK_tblUsuario_tblTipo_Tipo_usuarioId",
                         column: x => x.Tipo_usuarioId,
-                        principalTable: "tblTipo_usuario",
+                        principalTable: "tblTipo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -92,7 +96,7 @@ namespace MeApuntoWeb.Migrations
                 name: "tblEvento",
                 columns: table => new
                 {
-                    EventoId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -106,7 +110,7 @@ namespace MeApuntoWeb.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tblEvento", x => x.EventoId);
+                    table.PrimaryKey("PK_tblEvento", x => x.Id);
                     table.ForeignKey(
                         name: "FK_tblEvento_tblCategoria_CategoriaId",
                         column: x => x.CategoriaId,
@@ -177,7 +181,7 @@ namespace MeApuntoWeb.Migrations
                 name: "tblUsuario");
 
             migrationBuilder.DropTable(
-                name: "tblTipo_usuario");
+                name: "tblTipo");
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿namespace MeApuntoWeb.Models
 {
-    public class TipoUsuario
+    public class Tipo_Usuario
     {
         public int Id { get; set; }
-        public string? Tipo { get; set; }
+
+        public string Tipo { get; set; }
+
     }
 }

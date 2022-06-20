@@ -1,6 +1,8 @@
-namespace MeApuntoWeb.Models
+﻿using MeApuntoWeb.Models;
+
+namespace MeApuntoWeb.ViewModels
 {
-    public class Usuario
+    public class UsuarioRegistroViewModel
     {
         public int Id { get; set; }
         public string Nombres { get; set; }
@@ -14,7 +16,6 @@ namespace MeApuntoWeb.Models
         public string NombreUsuario { get; set; }
         public int Tipo_usuarioId { get; set; }
         public Tipo_Usuario? Tipo_Usuario { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
+        public string Contrasena { get; set; }
     }
 }

@@ -1,0 +1,35 @@
+﻿@using System.Security.Claims
+@model PerfilViewModel
+@{
+    ViewData["Title"] = "Perfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3 class="mt-3 text-center">Mi Informacion</h3>
+<hr />
+<div class="row m-3 justify-content-center">
+    <div class="col-md-4">
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <i class="fa-solid fa-image-portrait me-5"></i>
+            @Model.Usuario.Nombres
+            <hr />
+            <i class="fa-solid fa-user-large me-5"></i>
+            @Model.Usuario.Edad
+            <hr />
+            <i class="fa-solid fa-at me-5"></i>
+            @Model.Usuario.Correo
+        </li>
+        <li class="list-group-item">
+            <a class="btn btn-outline-danger d-block">Cambiar Password</a>
+        </li>
+        @foreach(var claim in User.Claims)
+            {
+                if(claim.Type == ClaimTypes.Role)
+                {
+                    <li>@claim.Value</li>
+                }
+                
+            }
+        </ul>
+    </div>
+</div>

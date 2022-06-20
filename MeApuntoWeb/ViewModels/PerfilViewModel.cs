@@ -4,6 +4,6 @@ namespace MeApuntoWeb.ViewModels
 {
     public class PerfilViewModel
     {
-        public Usuario? Usuario { get; set; }
+        public Usuario Usuario { get; set; }
     }
 }

@@ -4,7 +4,7 @@ namespace MeApuntoWeb.ViewModels
 {
     public class RegistroViewModel
     {
-        public Usuario? Usuario { get; set; }
-        public string? Password { get; set; }
+        public Usuario Usuario { get; set; }
+        public string Password { get; set; }
     }
 }

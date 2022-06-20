@@ -19,15 +19,7 @@ namespace MeApuntoWeb.Controllers
             _context = context;
         }
 
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-
-
-        public async Task<IActionResult> Login()
+        public  IActionResult Login()
         {
             return View();
         }
@@ -37,47 +29,6 @@ namespace MeApuntoWeb.Controllers
         public async Task<IActionResult> Login(LoginViewModel lvm)
         {
 
-            //Admin
-            var tipo = _context.tblTipo_usuario.ToList();
-            TipoUsuario? T = new TipoUsuario();
-            if (tipo.Count == 0)
-            {
-                T.Tipo = "Administrador";
-                _context.Add(T);
-                await _context.SaveChangesAsync();
-            }
-
-            //Soporte
-            var tipoSoporte = _context.tblTipo_usuario.ToList();
-            TipoUsuario? TS = new TipoUsuario();
-            if (tipoSoporte.Count == 0)
-            {
-                TS.Tipo = "Soporte";
-                _context.Add(TS);
-                await _context.SaveChangesAsync();
-            }
-
-            //Cliente FREE
-            var tipoClienteFree = _context.tblTipo_usuario.ToList();
-            TipoUsuario? TCF = new TipoUsuario();
-            if (tipoClienteFree.Count == 0)
-            {
-                TCF.Tipo = "FREE";
-                _context.Add(TCF);
-                await _context.SaveChangesAsync();
-            }
-
-            //Cliente PREMIUM
-            var tipoClientePremium = _context.tblTipo_usuario.ToList();
-            TipoUsuario? TCP = new TipoUsuario();
-            if (tipoClientePremium.Count == 0)
-            {
-                TCP.Tipo = "PREMIUM";
-                _context.Add(TCP);
-                await _context.SaveChangesAsync();
-            }
-
-
             var ADMIN = _context.tblUsuario.ToList();
             Usuario? UA = new Usuario();
             if (ADMIN.Count == 0)
@@ -85,11 +36,13 @@ namespace MeApuntoWeb.Controllers
                 //Creando usuario Administrador
                 UA.Nombres = "Franco Alberto";
                 UA.Apellidos = "Millanes Araya";
+                UA.Rut = "";
                 UA.Correo = "Administrador@gmail.com";
                 UA.Edad = "20";
+                UA.Telefono = "";
                 UA.NombreUsuario = "admin";
                 UA.Organizacion = "Me Apunto";
-                UA.EstadoCuenta = "Activa";
+                UA.EstadoCuenta = "ACTIVA";
                 UA.Tipo_usuarioId = 1;
                 CreatePasswordHash("admin", out byte[] passwordHash, out byte[] passworSalt);
                 UA.PasswordHash = passwordHash;
@@ -104,9 +57,11 @@ namespace MeApuntoWeb.Controllers
             {
                 //Creando usuario Soporte
                 US.Nombres = "SOPORTE";
+                US.Rut = "";
                 US.Apellidos = "SOPORTE";
                 US.Correo = "soporte@gmail.com";
                 US.Edad = "20";
+                US.Telefono = "";
                 US.NombreUsuario = "soporte";
                 US.Organizacion = "Me Apunto";
                 US.EstadoCuenta = "Activa";
@@ -121,7 +76,7 @@ namespace MeApuntoWeb.Controllers
 
             //Login
             UA = null;
-            UA = _context.tblUsuario.FirstOrDefault(u => (u.NombreUsuario) == lvm.Username); //admin
+            UA = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username); //admin
             if (UA == null)
             {
                 ModelState.AddModelError(String.Empty, "Usuario NO Encontrado");
@@ -148,7 +103,7 @@ namespace MeApuntoWeb.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                             principal,
                             new AuthenticationProperties { IsPersistent = true });
-                    return RedirectToAction(nameof(Perfil));
+                    return RedirectToAction("Index","Home");
                 }
             }
         }
@@ -157,16 +112,16 @@ namespace MeApuntoWeb.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var Usuario = _context.tblUsuario.FirstOrDefault(u => (u.NombreUsuario).Trim() == User.Identity.Name);
+                var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
                 PerfilViewModel pvm = new PerfilViewModel()
                 {
-                    Usuario = Usuario
+                    Usuario = user
                 };
 
                 return View(pvm);
             }
             //return View();
-            return RedirectToAction(nameof(Login));
+            return RedirectToAction("Index","Home");
         }
 
 
