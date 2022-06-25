@@ -15,7 +15,7 @@ namespace MeApuntoWeb.Controllers
         public async Task<IActionResult> Index()
         {
             var tipo = _context.tblTipo.ToList();
-            Tipo_Usuario? TA = new Tipo_Usuario();
+            Tipo_Usuario? TA = new Tipo_Usuario(); 
             if (tipo.Count == 0)
             {
                 TA.Tipo = "Administrador";
