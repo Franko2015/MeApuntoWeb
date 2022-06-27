@@ -43,7 +43,7 @@ namespace MeApuntoWeb.Controllers
                 UA.NombreUsuario = "admin";
                 UA.Organizacion = "Me Apunto";
                 UA.EstadoCuenta = "ACTIVA";
-                UA.Tipo_usuarioId = 1;
+                UA.Tipo_usuarioId = 2;
                 CreatePasswordHash("admin", out byte[] passwordHash, out byte[] passworSalt);
                 UA.PasswordHash = passwordHash;
                 UA.PasswordSalt = passworSalt;
@@ -53,7 +53,7 @@ namespace MeApuntoWeb.Controllers
 
             var SOPORTE = _context.tblUsuario.ToList();
             Usuario? US = new Usuario();
-            if (SOPORTE.Count == 0)
+            if (SOPORTE.Count == 1)
             {
                 //Creando usuario Soporte
                 US.Nombres = "SOPORTE";
@@ -103,7 +103,7 @@ namespace MeApuntoWeb.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                             principal,
                             new AuthenticationProperties { IsPersistent = true });
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Admin, Home");
                 }
             }
         }

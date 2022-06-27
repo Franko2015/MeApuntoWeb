@@ -8,6 +8,7 @@ using MeApuntoWeb.ViewModels;
 
 namespace MeApuntoWeb.Controllers
 {
+    [Authorize(Roles = "1,2,3,4")]
     public class UsuariosController : Controller
     {
         private readonly EventosDbContext _context;
@@ -24,13 +25,15 @@ namespace MeApuntoWeb.Controllers
             return View(users);
         }
 
-        public async Task<IActionResult> CreateAdmin()
+        public async Task<IActionResult> Create()
         {
+            ViewData["Tipo"] = new SelectList(_context.tblTipo.ToList(), "Id", "Tipo");
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAdmin(UsuarioRegistroViewModel Uvm)
+        [Authorize(Roles = "1,2,3,4")]
+        public async Task<IActionResult> Create(UsuarioRegistroViewModel Uvm)
         {
             if (ModelState.IsValid)
             {
@@ -47,7 +50,7 @@ namespace MeApuntoWeb.Controllers
                     Us.Edad = Uvm.Edad;
                     Us.EstadoCuenta = "ACTIVA";
                     Us.Organizacion = Uvm.Organizacion;
-                    Us.Tipo_usuarioId = 1;
+                    Us.Tipo_usuarioId = Uvm.Tipo_usuarioId;
                     Us.Correo = Uvm.Correo;
 
 
@@ -76,6 +79,7 @@ namespace MeApuntoWeb.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "2")]
         public async Task<IActionResult> CreateSoporte(UsuarioRegistroViewModel Uvm)
         {
             if (ModelState.IsValid)
@@ -119,6 +123,7 @@ namespace MeApuntoWeb.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "1, 2")]
         public async Task<IActionResult> CreateFree(UsuarioRegistroViewModel Uvm)
         {
             if (ModelState.IsValid)

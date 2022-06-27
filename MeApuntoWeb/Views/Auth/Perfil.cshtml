@@ -10,26 +10,22 @@
     <div class="col-md-4">
         <ul class="list-group list-group-flush">
         <li class="list-group-item">
-            <i class="fa-solid fa-image-portrait me-5"></i>
-            @Model.Usuario.Nombres
+            <i class="fa-solid fa-image-portrait me-5">Nombres:</i>
+            @Model.Usuario.Nombres @Model.Usuario.Apellidos
             <hr />
-            <i class="fa-solid fa-user-large me-5"></i>
+            <i class="fa-solid fa-user-large me-5">Edad:</i>
             @Model.Usuario.Edad
             <hr />
-            <i class="fa-solid fa-at me-5"></i>
+            <i class="fa-solid fa-at me-5">Correo</i>
             @Model.Usuario.Correo
+            <hr />
+            <i class="fa-solid fa-at me-5">Tipo de permiso</i>
+            @Model.Usuario.Tipo_usuarioId
         </li>
         <li class="list-group-item">
             <a class="btn btn-outline-danger d-block">Cambiar Password</a>
         </li>
-        @foreach(var claim in User.Claims)
-            {
-                if(claim.Type == ClaimTypes.Role)
-                {
-                    <li>@claim.Value</li>
-                }
-                
-            }
+        
         </ul>
     </div>
 </div>

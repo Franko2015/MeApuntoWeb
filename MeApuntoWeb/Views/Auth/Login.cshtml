@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="~/css/iniciarSesion.css" />
 <div id="main-container-sesion">
         <div id="form-container">
-            <form method="post" asp-action="Login">
+            <form method="post" asp-action="Admin" asp-controller="Home">
                 <h1>Iniciar sesion</h1>
                 <label>Usuario</label>
                 <input asp-for="Username" autocomplete="off" class="form-control" placeholder="Usuario">
@@ -15,7 +15,7 @@
                 <button type="submit" class="btn btn-primary boton-form">Ingresar</button>
                 <br>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <button type="submit" class="btn btn-outline-primary boton-form">Registrarse</button>
+                <button type="button" class="btn btn-outline-primary boton-form"><a asp-action="Create" asp-controller="Usuarios">Registrarse</a></button>
                 <br>
                 <h5>Olvidaste tu contraseña? haz click <a href="*">aquí</a></h5>
             </form>
