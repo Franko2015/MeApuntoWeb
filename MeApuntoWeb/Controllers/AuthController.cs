@@ -76,7 +76,7 @@ namespace MeApuntoWeb.Controllers
 
             //Login
             UA = null;
-            UA = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username)); //admin
+            UA = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username); //admin
             if (UA == null)
             {
                 ModelState.AddModelError(String.Empty, "Usuario NO Encontrado");
