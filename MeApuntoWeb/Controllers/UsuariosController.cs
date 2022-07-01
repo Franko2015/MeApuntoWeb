@@ -33,7 +33,7 @@ namespace MeApuntoWeb.Controllers
 
         [HttpPost]
         //[Authorize(Roles = "1,2,3,4")]
-        public async Task<IActionResult> CreateAdmin(UsuarioRegistroViewModel Uvm)
+        public async Task<IActionResult> Create(UsuarioRegistroViewModel Uvm)
         {
             if (ModelState.IsValid)
             {
@@ -43,112 +43,26 @@ namespace MeApuntoWeb.Controllers
                     Usuario? UA = new Usuario();
                     
                         //Creando usuario Administrador
-                        UA.Nombres = Uvm.Nombres;
-                        UA.Apellidos = Uvm.Apellidos;
-                        UA.Rut = Uvm.Rut;
-                        UA.Correo = Uvm.Correo;
-                        UA.Edad = Uvm.Edad;
-                        UA.Telefono = Uvm.Telefono;
-                        UA.NombreUsuario = Uvm.NombreUsuario;
-                        UA.Organizacion = Uvm.Organizacion;
+                        UA.Nombres = "";
+                        UA.Apellidos = "";
+                        UA.Rut = "";
+                        UA.Correo = "";
+                        UA.Edad = "";
+                        UA.Telefono = "";
+                        UA.NombreUsuario = "user";
+                    if (Uvm.Organizacion.Equals(""))
+                    {
+                        UA.Organizacion = "No existe";
+                    }
                         UA.EstadoCuenta = "ACTIVA";
-                        UA.Tipo_usuarioId = 2;
-                        CreatePasswordHash(Uvm.Contrasena, out byte[] passwordHash, out byte[] passworSalt);
+                        UA.Tipo_usuarioId = 3;
+                        CreatePasswordHash("user", out byte[] passwordHash, out byte[] passworSalt);
                         UA.PasswordHash = passwordHash;
                         UA.PasswordSalt = passworSalt;
                         _context.Add(UA);
                         await _context.SaveChangesAsync();
                     
-                    return RedirectToAction("Admin", "Home");
-                }
-                else
-                {
-                    //Ya existe el mismo Username o Email
-                    ModelState.AddModelError(String.Empty, "Username o Correo ya Existen!");
-                    return View(Uvm);
-                }
-
-            }
-            else
-            {
-                return View(Uvm);
-            }
-        }
-
-
-        [HttpPost]
-        //[Authorize(Roles = "2")]
-        public async Task<IActionResult> CreateSoporte(UsuarioRegistroViewModel Uvm)
-        {
-            if (ModelState.IsValid)
-            {
-                var U = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == Uvm.NombreUsuario);
-                if (U == null)
-                {
-                    Usuario? UA = new Usuario();
-
-                    //Creando usuario Administrador
-                    UA.Nombres = Uvm.Nombres;
-                    UA.Apellidos = Uvm.Apellidos;
-                    UA.Rut = Uvm.Rut;
-                    UA.Correo = Uvm.Correo;
-                    UA.Edad = Uvm.Edad;
-                    UA.Telefono = Uvm.Telefono;
-                    UA.NombreUsuario = Uvm.NombreUsuario;
-                    UA.Organizacion = Uvm.Organizacion;
-                    UA.EstadoCuenta = "ACTIVA";
-                    UA.Tipo_usuarioId = 1;
-                    CreatePasswordHash(Uvm.Contrasena, out byte[] passwordHash, out byte[] passworSalt);
-                    UA.PasswordHash = passwordHash;
-                    UA.PasswordSalt = passworSalt;
-                    _context.Add(UA);
-                    await _context.SaveChangesAsync();
-
-                    return RedirectToAction("Admin", "Home");
-                }
-                else
-                {
-                    //Ya existe el mismo Username o Email
-                    ModelState.AddModelError(String.Empty, "Username o Correo ya Existen!");
-                    return View(Uvm);
-                }
-
-            }
-            else
-            {
-                return View(Uvm);
-            }
-        }
-
-        [HttpPost]
-        //[Authorize(Roles = "1, 2")]
-        public async Task<IActionResult> NuevoUsuario(UsuarioRegistroViewModel Uvm)
-        {
-            if (ModelState.IsValid)
-            {
-                var U = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == Uvm.NombreUsuario);
-                if (U == null)
-                {
-                    Usuario? UA = new Usuario();
-
-                    //Creando usuario Administrador
-                    UA.Nombres = Uvm.Nombres;
-                    UA.Apellidos = Uvm.Apellidos;
-                    UA.Rut = Uvm.Rut;
-                    UA.Correo = Uvm.Correo;
-                    UA.Edad = Uvm.Edad;
-                    UA.Telefono = Uvm.Telefono;
-                    UA.NombreUsuario = Uvm.NombreUsuario;
-                    UA.Organizacion = Uvm.Organizacion;
-                    UA.EstadoCuenta = "ACTIVA";
-                    UA.Tipo_usuarioId = 3;
-                    CreatePasswordHash(Uvm.Contrasena, out byte[] passwordHash, out byte[] passworSalt);
-                    UA.PasswordHash = passwordHash;
-                    UA.PasswordSalt = passworSalt;
-                    _context.Add(UA);
-                    await _context.SaveChangesAsync();
-
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
