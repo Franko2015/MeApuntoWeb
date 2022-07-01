@@ -84,7 +84,7 @@ namespace MeApuntoWeb.Controllers
             }
             else
             {
-                if (!VerifyPasswordHash(lvm.Password, UA.PasswordHash, UA.PasswordSalt)) //admin
+                if (!VerifyPasswordHash(lvm.Password, UA.PasswordHash, UA.PasswordSalt); //admin
                 {
                     ModelState.AddModelError(String.Empty, "Password Incorrecta");
                     return View(lvm);
