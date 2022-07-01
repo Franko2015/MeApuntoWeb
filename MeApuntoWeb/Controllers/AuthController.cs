@@ -76,7 +76,7 @@ namespace MeApuntoWeb.Controllers
 
             //Login
             UA = null;
-            UA = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username); //admin
+            UA = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username)); //admin
             if (UA == null)
             {
                 ModelState.AddModelError(String.Empty, "Usuario NO Encontrado");
@@ -84,7 +84,7 @@ namespace MeApuntoWeb.Controllers
             }
             else
             {
-                if (!VerifyPasswordHash(lvm.Password, UA.PasswordHash, UA.PasswordSalt)) //123456
+                if (!VerifyPasswordHash(lvm.Password, UA.PasswordHash, UA.PasswordSalt)) //admin
                 {
                     ModelState.AddModelError(String.Empty, "Password Incorrecta");
                     return View(lvm);
@@ -99,11 +99,11 @@ namespace MeApuntoWeb.Controllers
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var principal = new ClaimsPrincipal(identity);
-
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                             principal,
                             new AuthenticationProperties { IsPersistent = true });
-                    return RedirectToAction("Admin, Home");
+                        return RedirectToAction("Admin", "Home");
                 }
             }
         }
