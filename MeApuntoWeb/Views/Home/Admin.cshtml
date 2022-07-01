@@ -10,49 +10,58 @@
             <a asp-action="Admin"><button><i class="material-icons">notifications</i></button></a>
         </div>
     </header>
-     <div class="container-card">
-                <div class="card">
-                    <div class="contenido-card">
-                        <i class="bi bi-person-fill m-1"></i>
-                        <h5>Usuarios</h5>
-                        <p>Puedes ver Usuarios del sistema.</p>
-                        <a asp-action="Index" asp-controller="Usuarios" class="btn btn-outline-primary col-12">Ir</a>
-                    </div>
-                </div>
-                <div class="card">
+<div class="container-card">
+    <div class="card">
+        <div class="contenido-card">
+            <i class="bi bi-person-fill m-1"></i>
+            <h5>Usuarios</h5>
+            <p>Puedes ver Usuarios del sistema.</p>
+            <a asp-action="Index" asp-controller="Usuarios" class="btn btn-outline-primary col-12">Ir</a>
+        </div>
+    </div>
+    <div class="card">
 
-                    <div class="contenido-card">
-                        <i class="bi bi-people-fill m-1"></i>
-                        <h5>Administradores</h5>
-                       <p>Gestor de Administradores del sistema.</p>
-                        <a asp-action="Index" asp-controller="Usuarios" class="btn btn-outline-primary col-12">ir</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="contenido-card">
-                        <i class="bi bi-clock-fill m-1"></i>
-                        <h5>Pendientes</h5>
-                       <p>Puedes Rechazar o Aceptar Eventos.</p>
-                        <a asp-action="EventosPendientes" asp-controller="Eventos" class="btn btn-outline-primary col-12">ir</a>
-                    </div>
-                </div>
-                <div class="card">
+        <div class="contenido-card">
+            <i class="bi bi-people-fill m-1"></i>
+            <h5>Administradores</h5>
+            <p>Gestor de Administradores del sistema.</p>
+            <a asp-action="Index" asp-controller="Usuarios" class="btn btn-outline-primary col-12">ir</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="contenido-card">
+            <i class="bi bi-clock-fill m-1"></i>
+            <h5>Pendientes</h5>
+            <p>Puedes Rechazar o Aceptar Eventos.</p>
+            <a asp-action="EventosPendientes" asp-controller="Eventos" class="btn btn-outline-primary col-12">ir</a>
+        </div>
+    </div>
+    <div class="card">
 
-                    <div class="contenido-card">
-                        <i class="bi bi-bookmark-check-fill m-1"></i>
-                        <h5>Aceptados</h5>
-                        <p>Puedes ver los eventos Aceptados.</p>
-                        <a asp-action="EventosAceptados" asp-controller="Eventos" class="btn btn-outline-primary col-12">ir</a>
-                    </div>
-                </div>
+        <div class="contenido-card">
+            <i class="bi bi-bookmark-check-fill m-1"></i>
+            <h5>Aceptados</h5>
+            <p>Puedes ver los eventos Aceptados.</p>
+            <a asp-action="EventosAceptados" asp-controller="Eventos" class="btn btn-outline-primary col-12">ir</a>
+        </div>
+    </div>
 
-                <div class="card">
+    <div class="card">
 
-                    <div class="contenido-card">
-                        <i class="bi bi-bookmark-x-fill m-1"></i>
-                        <h5>Rechazados</h5>
-                        <p>Puedes ver eventos rechazados.</p>
-                        <a asp-action="EventosRechazados" asp-controller="Eventos" class="btn btn-outline-primary col-12">ir</a>
-                    </div>
-                </div>
-       </div>
+        <div class="contenido-card">
+            <i class="bi bi-bookmark-x-fill m-1"></i>
+            <h5>Rechazados</h5>
+            <p>Puedes ver eventos rechazados.</p>
+            <a asp-action="EventosRechazados" asp-controller="Eventos" class="btn btn-outline-primary col-12">ir</a>
+        </div>
+    </div>
+    <div class="card">
+
+        <div class="contenido-card">
+            <i class="bi bi-bookmark-x-fill m-1"></i>
+            <h5>Categorias</h5>
+            <p>Puedes ver las categorías.</p>
+            <a asp-action="Index" asp-controller="Categoria" class="btn btn-outline-primary col-12">ir</a>
+        </div>
+    </div>
+</div>
