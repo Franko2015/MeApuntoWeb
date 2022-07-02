@@ -1,14 +1,15 @@
 ﻿@model UsuarioRegistroViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "CREAR USUARIO";
+    ViewData["Nav"] = "NUEVO USUARIO";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" href="~/css/datosRegistro.css" />
 
         <div id="main-container-registro">
             <div id="form-container">
-                <form asp-action="Index" method="POST">
+                <form asp-action="Create" method="POST">
                     <h1>MeApunto</h1>
                     <label for="txtNombre">Nombre</label>
                     <input asp-for="Nombres" name="txtNombre" type="text" class="form-control" placeholder="Nombre">
@@ -30,6 +31,8 @@
 
                     <label for="txtTelefono">Telefono</label>
                     <input asp-for="Telefono" name="txtTelefono" type="text" class="form-control" placeholder="Telefono">
+
+                    <input asp-for="Tipo_usuarioId" type="hidden" class="form-select" asp-items="ViewBag.Tipo"/>
 
                     <label for="txtNombreUsuario">Nombre de Usuario</label>
                     <input asp-for="NombreUsuario" name="txtNombreUsuario" type="text" class="form-control" placeholder="Nombre de Usuario">

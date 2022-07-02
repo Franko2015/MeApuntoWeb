@@ -50,12 +50,8 @@ namespace MeApuntoWeb.Controllers
                         UA.Edad = "";
                         UA.Telefono = "";
                         UA.NombreUsuario = "user";
-                    if (Uvm.Organizacion.Equals(""))
-                    {
-                        UA.Organizacion = "No existe";
-                    }
+                        UA.Organizacion = "";
                         UA.EstadoCuenta = "ACTIVA";
-                        UA.Tipo_usuarioId = 3;
                         CreatePasswordHash("user", out byte[] passwordHash, out byte[] passworSalt);
                         UA.PasswordHash = passwordHash;
                         UA.PasswordSalt = passworSalt;

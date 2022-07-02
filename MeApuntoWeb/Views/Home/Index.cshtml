@@ -1,14 +1,9 @@
 ﻿@{
-    ViewData["Titulo"] = "Me Apunto";
+    ViewData["Title"] = "INICIO";
+    ViewData["Nav"] = "ME APUNTO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" href="~/css/style.css" />
-<header id="main-header">
-        Me Apunto!
-        <div id="main-header-buttons">
-            <button><a asp-action="Login" asp-controller="Auth"><i class="material-icons">person</i></a></button>
-            <button><a asp-action="Admin"><i class="material-icons">notifications</i></a></button>
-        </div>
-    </header>
     <div id="main-container">
         <aside id="main-menu">
             <div id="main-menu-wrapper">
