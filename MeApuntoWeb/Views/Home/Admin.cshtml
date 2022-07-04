@@ -3,57 +3,55 @@
     ViewData["Nav"] = "ADMINISTRACIÓN";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-     <div class="container-card row mb-2">
-                <div class="card col-12 col-md-3">
-                    <div class="contenido-card">
-                        <i class="bi bi-person-fill m-1" style="font-size: 5rem; color: black"></i>
-                        <h5>Usuarios</h5>
-                        <p>Puedes ver Usuarios del sistema.</p>
-                        <a asp-action="Index" asp-controller="Usuarios" class="btn btn-outline-primary col-12">Ir</a>
-                    </div>
-                </div>
-                <div class="card col-12 col-md-3">
-                    <div class="contenido-card">
-                        <i class="bi bi-people-fill m-1" style="font-size: 5rem; color: black"></i>
-                        <h5>Administradores</h5>
-                       <p>Gestor de Administradores del sistema.</p>
-                        <a asp-action="Index" asp-controller="Usuarios" class="btn btn-outline-primary col-12">ir</a>
-                    </div>
-                </div>
-                <div class="card col-12 col-md-3">
-
-                    <div class="contenido-card">
-                        <i class="bi bi-clock-fill m-1" style="font-size: 5rem; color: black"></i>
-                        <h5>Pendientes</h5>
-                       <p>Puedes Rechazar o Aceptar Eventos.</p>
-                        <a asp-action="Pendientes" asp-controller="Eventos" class="btn btn-outline-primary col-12">ir</a>
-                    </div>
-                </div>
-                <div class="card col-12 col-md-3">
-
-                    <div class="contenido-card">
-                        <i class="bi bi-bookmark-check-fill m-1" style="font-size: 5rem; color: black"></i>
-                        <h5>Aceptados</h5>
-                        <p>Puedes ver los eventos Aceptados.</p>
-                        <a asp-action="Aceptados" asp-controller="Eventos" class="btn btn-outline-primary col-12">ir</a>
-                    </div>
-                </div>
-
-                <div class="card col-12 col-md-3">
-
-                    <div class="contenido-card">
-                        <i class="bi bi-bookmarks-fill m-1" style="font-size: 5rem; color: black"></i>
-                        <h5>Eventos</h5>
-                        <p>Puedes ver los eventos Aceptados/Rechazados.</p>
-                        <a asp-action="Index" asp-controller="Eventos" class="btn btn-outline-primary col-12">ir</a>
-                    </div>
-                </div>
-                <div class="card col-12 col-md-3">
-                    <div class="contenido-card">
-                        <i class="bi bi-geo-alt-fill m-1" style="font-size: 5rem; color: black"></i>
-                        <h5>Lugares</h5>
-                        <p>Puedes Agregar y Gestionar Lugares.</p>
-                        <a asp-action="Index" asp-controller="Lugar" class="btn btn-outline-primary col-12">ir</a>
-                    </div>
-                </div>
-       </div>
+<div class="super-conteiner" style="width:100vw; display:flex; justify-content:center;">
+<div class="container-card" style="width:85%">
+    <div class="card col-12 col-md-3">
+        <div class="contenido-card">
+            <i class="bi bi-person-fill m-1" style="font-size: 5rem; color: black"></i>
+            <h5>Usuarios</h5>
+            <p>Puedes ver Usuarios del sistema.</p>
+            <a asp-action="Index" asp-controller="Usuarios" class="btn btn-outline-primary col-12">Ir</a>
+        </div>
+    </div>
+    <div class="card col-12 col-md-3">
+        <div class="contenido-card">
+            <i class="bi bi-people-fill m-1" style="font-size: 5rem; color: black"></i>
+            <h5>Administradores</h5>
+            <p>Gestor de Administradores del sistema.</p>
+            <a asp-action="Index" asp-controller="Usuarios" class="btn btn-outline-primary col-12">ir</a>
+        </div>
+    </div>
+    <div class="card col-12 col-md-3">
+        <div class="contenido-card">
+            <i class="bi bi-clock-fill m-1" style="font-size: 5rem; color: black"></i>
+            <h5>Pendientes</h5>
+            <p>Puedes Rechazar o Aceptar Eventos.</p>
+            <a asp-action="EventosPendientes" asp-controller="Eventos" class="btn btn-outline-primary col-12">ir</a>
+        </div>
+    </div>
+    <div class="card col-12 col-md-3">
+        <div class="contenido-card">
+            <i class="bi bi-bookmarks-fill m-1" style="font-size: 5rem; color: black"></i>
+            <h5>Eventos</h5>
+            <p>Puedes ver los eventos Aceptados/Rechazados.</p>
+            <a asp-action="EventosAceptados" asp-controller="Eventos" class="btn btn-outline-primary col-12">ir</a>
+        </div>
+    </div>
+    <div class="card col-12 col-md-3">
+            <div class="contenido-card">
+                <i class="bi bi-geo-alt-fill m-1" style="font-size: 5rem; color: black"></i>
+                <h5>Lugares</h5>
+                <p>Puedes Agregar y Gestionar Lugares.</p>
+                <a asp-action="Index" asp-controller="Lugares" class="btn btn-outline-primary col-12">ir</a>
+            </div>
+        </div>        
+<div class="card col-12 col-md-3">
+    <div class="contenido-card">
+        <i class="bi bi-tags-fill m-1" style="font-size: 5rem; color: black"></i>
+        <h5>Categorías</h5>
+        <p>Puedes Agregar y Gestionar Categorías.</p>
+         <a asp-action="Index" asp-controller="Lugar" class="btn btn-outline-primary col-12">ir</a>
+    </div>
+</div>
+ </div>                      
+                 

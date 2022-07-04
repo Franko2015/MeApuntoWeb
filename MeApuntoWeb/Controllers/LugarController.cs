@@ -25,7 +25,6 @@ namespace MeApuntoWeb.Controllers
                           View(await _context.tblLugar.ToListAsync()) :
                           Problem("Entity set 'EventosDbContext.tblLugar'  is null.");
         }
-
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.tblLugar == null)

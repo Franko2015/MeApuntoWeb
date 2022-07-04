@@ -345,9 +345,7 @@
 .container-card {
     width: 100%;
 }
-
 .card {
-    width: 20%;
     margin: 20px;
     border-radius: 6px;
     display: inline-block;
