@@ -6,33 +6,61 @@
 }
 <link rel="stylesheet" href="~/css/crearEvento.css" />
 <div id="main-container-evento">
-        <div id="form-container">
-            <form action="Create" method="post">
-                <label>Título del Evento</label>
-                <input asp-for="Titulo" class="form-control" placeholder="Titulo">
-                <label>Fecha a realizarse</label>
-                <input asp-for="Fecha_evento" type="date" class="form-control" placeholder="Fecha">
-                <div class="row">
-                  <div class="col-12 col-md-6">
-                        <label>Hora de Inicio</label>
-                        <input asp-for="Hora_inicio" name="txtHoraInicio" type="time" class="form-control">
-                  </div>
-                  <div class="col-12 col-md-6">
-                        <label>Hora de Término</label>
-                        <input asp-for="Hora_termino"name="txtHoraTermino" type="time" class="form-control">
-                  </div>
-                </div>
+    <div id="form-container">
+      <form asp-action="Create" method="POST">
 
-                <label for="txtDireccion">Dirección</label>
-                <input name="txtDireccion" type="text" class="form-control" placeholder="Direccion">
-                <label>Categoría</label>
-                <select asp-for="CategoriaId" class="form-select" asp-items="ViewBag.CategoriaId"></select>
-                    <span asp-validation-for="CategoriaId" class="text-danger"></span>
-                <label for="txtDescripcion">Descripción</label>
-                <textarea asp-for="Descripcion" name="txtDescripcion" class="form-control" rows="3"></textarea>
-                <button type="submit" class="btn btn-primary boton-form">Crear</button>
-            </form>
+        <label for="txtTitulo">Titulo del Evento</label>
+        <input name="txtTitulo" asp-for="Titulo" type="text" class="form-control" placeholder="Titulo">
+        <label for="txtFecha">Fecha a realizarse</label>
+        <input name="txtFecha" asp-for="Fecha_evento" type="date" class="form-control" placeholder="Fecha">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <label for="txtHoraInicio">Hora de Inicio</label>
+            <input name="txtHoraInicio" asp-for="Hora_inicio" type="time" class="form-control">
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label for="txtHoraTermino">Hora de Término</label>
+            <input name="txtHoraTermino" asp-for="Hora_termino" type="time" class="form-control">
+          </div>
         </div>
-</div>
+        <label for="txtDireccion">Direccion</label>
+        <input type="image" asp-img=""/>
+        <select asp-for="LugarId" class="form-select" asp-items="ViewBag.LugarId"></select>
+        <label>Categoria</label>
+        <select asp-for="CategoriaId" class="form-select" asp-items="ViewBag.CategoriaId"></select>
+        <label for="txtDescripcion">Descripcion</label>
+        <textarea asp-for="Descripcion" name="txtDescripcion" class="form-control" rows="3"></textarea>
+        <button type="submit" class="btn btn-primary boton-form">Crear</button>
+      </form>
+    </div>
+
+    <div id="image-container">
+
+      <!-- Upload  -->
+      <form id="file-upload-form" class="uploader">
+        <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
+
+        <label for="file-upload" id="file-drag">
+          <img id="file-image" src="#" alt="Preview" class="hidden">
+          <div id="start">
+            <i class="fa fa-download" aria-hidden="true"></i>
+            <div>Select a file or drag here</div>
+            <div id="notimage" class="hidden">Please select an image</div>
+            <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+          </div>
+          <div id="response" class="hidden">
+            <div id="messages"></div>
+            <progress class="progress" id="file-progress" value="0">
+              <span>0</span>%
+            </progress>
+          </div>
+        </label>
+      </form>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
    
     

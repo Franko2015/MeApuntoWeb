@@ -50,16 +50,13 @@ namespace MeApuntoWeb.Controllers
         // GET: Eventos/Create
         public IActionResult Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.tblCategoria, "Id", "Id");
-            ViewData["EstadoId"] = new SelectList(_context.tblEstado, "Id", "Id");
-            ViewData["LugarId"] = new SelectList(_context.tblLugar, "Id", "Id");
-            ViewData["UsuarioId"] = new SelectList(_context.tblUsuario, "Id", "Id");
+            ViewData["CategoriaId"] = new SelectList(_context.tblCategoria, "Id", "categoria");
+            ViewData["EstadoId"] = new SelectList(_context.tblEstado, "Id", "estado");
+            ViewData["LugarId"] = new SelectList(_context.tblLugar, "Id", "Direccion");
+            ViewData["UsuarioId"] = new SelectList(_context.tblUsuario, "Id", "Nombres", "Apellidos");
             return View();
         }
 
-        // POST: Eventos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EventoId,Titulo,Descripcion,Fecha_evento,Hora_inicio,Hora_termino,EstadoId,CategoriaId,UsuarioId,LugarId")] Evento evento)
@@ -78,7 +75,6 @@ namespace MeApuntoWeb.Controllers
             return View(evento);
         }
 
-        // GET: Eventos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.tblEvento == null)
@@ -98,9 +94,6 @@ namespace MeApuntoWeb.Controllers
             return View(evento);
         }
 
-        // POST: Eventos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EventoId,Titulo,Descripcion,Fecha_evento,Hora_inicio,Hora_termino,EstadoId,CategoriaId,UsuarioId,LugarId")] Evento evento)
@@ -137,7 +130,6 @@ namespace MeApuntoWeb.Controllers
             return View(evento);
         }
 
-        // GET: Eventos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.tblEvento == null)
@@ -159,7 +151,6 @@ namespace MeApuntoWeb.Controllers
             return View(evento);
         }
 
-        // POST: Eventos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

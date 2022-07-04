@@ -1,0 +1,85 @@
+﻿@model MeApuntoWeb.ViewModels.LugarViewModel
+
+@{
+    ViewData["Title"] = "Lugares";
+    ViewData["Nav"] = "Crear nuevos lugares";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="d-flex justify-content-center align-items-center">
+        <div class="card shadow col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4">
+            <div class="mb-4 d-flex justify-content-start align-items-center">
+                <h2><strong>Nuevo Lugar</strong></h2>
+            </div>
+            <div class="mb-2 row">
+                <form asp-action="Create">
+                    <div class="mb-2 row">
+                        <div class="col col-md-2">
+                            <label>Comuna:</label>
+                        </div>
+                        <div class="col col-md-10">
+                            <select class="form-select" asp-for="Comuna" class="form-select">
+                                <option value="CAUQUENES">1. Cauquenes</option>
+                                <option value="CHANCO">2. Chanco</option>
+                                <option value="COLBÚN">3. Colbún</option>
+                                <option value="CONSTITUCIÓN">4. Constitución</option>
+                                <option value="CUREPTO">5. Curepto</option>
+                                <option value="CURICÓ">6. Curicó</option>
+                                <option value="EMPEDRADO">7. Empedrado</option>
+                                <option value="HUALAÑÉ">8. Hualañé</option>
+                                <option value="LICANTÉN">9. Licanten</option>
+                                <option value="LINARES">10. Linares</option>
+                                <option value="LONGAVÍ">11. Longaví</option>
+                                <option value="MAULE">12. Maule</option>
+                                <option value="MOLINA">13. Molina</option>
+                                <option value="PARRAL">14. Parral</option>
+                                <option value="PELARCO">15. Pelarco</option>
+                                <option value="PELLUHUE">16. Pelluhue</option>
+                                <option value="PENCAHUE">17. Pencahue</option>
+                                <option value="RAUCO">18. Rauco</option>
+                                <option value="RETIRO">19. Retiro</option>
+                                <option value="RÍO CLARO">20. Río Claro</option>
+                                <option value="ROMERAL">21. Romeral</option>
+                                <option value="SAGRADA FAMILIA">22. Sagrada Familia</option>
+                                <option value="SAN CLEMENTE">23. San Clemente</option>
+                                <option value="SAN JAVIER">24. San Javier</option>
+                                <option value="SAN RAFAEL">25. San Rafael</option>
+                                <option value="TALCA">26. Talca</option>
+                                <option value="TENO">27. Teno</option>
+                                <option value="VICHUQUÉN">28. Vichuquén</option>
+                                <option value="VILLA ALEGRE">29. Villa Alegre</option>
+                                <option value="YERBAS BUENAS">30. Yerbas Buenas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <div class="col col-md-2">
+                            <label for="Direccion">Direccion:</label>
+                        </div>
+                        <div class="col col-md-10">
+                            <input type="text" asp-action="lugar" class="form-control" name="Direccion">
+                        </div> 
+                    </div>
+                    <div class="mb-2 row">
+                            <div class="col col-md-2">
+                                <label for="Numero">Numero:</label>
+                            </div>
+                            <div class="col col-md-10">
+                                <input type="number" asp-for="numero" class="form-control" name="Numero">
+                            </div>
+                    </div>
+                    <div class="buttonagregar row">
+                            <div class="col col-md-10">
+                                <a class="center-content">
+                                    <input type="submit" class="btn btn-outline-primary " value="Agregar"/>
+                                </a>
+                            </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

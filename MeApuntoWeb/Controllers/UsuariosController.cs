@@ -25,9 +25,8 @@ namespace MeApuntoWeb.Controllers
             return View(users);
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
-            ViewData["Tipo"] = new SelectList(_context.tblTipo.ToList(), "Id", "Tipo");
             return View();
         }
 
@@ -42,17 +41,18 @@ namespace MeApuntoWeb.Controllers
                 {
                     Usuario? UA = new Usuario();
                     
-                        //Creando usuario Administrador
-                        UA.Nombres = "";
-                        UA.Apellidos = "";
-                        UA.Rut = "";
-                        UA.Correo = "";
-                        UA.Edad = "";
-                        UA.Telefono = "";
-                        UA.NombreUsuario = "user";
-                        UA.Organizacion = "";
+                        //Creando usuario NUEVO
+                        UA.Nombres = Uvm.Nombres;
+                        UA.Apellidos = Uvm.Apellidos;
+                        UA.Rut = Uvm.Rut;
+                        UA.Correo = Uvm.Correo;
+                        UA.Edad = Uvm.Edad;
+                        UA.Telefono = Uvm.Telefono;
+                        UA.NombreUsuario = Uvm.NombreUsuario;
+                        UA.Organizacion = Uvm.Organizacion;
                         UA.EstadoCuenta = "ACTIVA";
-                        CreatePasswordHash("user", out byte[] passwordHash, out byte[] passworSalt);
+                        UA.Tipo_usuarioId = 3;
+                        CreatePasswordHash(Uvm.Contrasena, out byte[] passwordHash, out byte[] passworSalt);
                         UA.PasswordHash = passwordHash;
                         UA.PasswordSalt = passworSalt;
                         _context.Add(UA);
@@ -63,7 +63,7 @@ namespace MeApuntoWeb.Controllers
                 else
                 {
                     //Ya existe el mismo Username o Email
-                    ModelState.AddModelError(String.Empty, "Username o Correo ya Existen!");
+                    ModelState.AddModelError(String.Empty, "Nombre de usuario ya existe!");
                     return View(Uvm);
                 }
 
@@ -72,71 +72,6 @@ namespace MeApuntoWeb.Controllers
             {
                 return View(Uvm);
             }
-        }
-
-        public async Task<IActionResult> Edit(int Id)
-        {
-            var U = _context.tblUsuario.FirstOrDefault(u => u.Id == Id);
-            if (U == null) return NotFound();
-            UsuarioRegistroViewModel Uvm = new UsuarioRegistroViewModel()
-            {
-            Id = U.Id,
-            NombreUsuario = U.NombreUsuario,
-            Rut = U.Rut,
-            Apellidos = U.Apellidos,
-            Nombres = U.Nombres,
-            Telefono = U.Telefono,
-            EstadoCuenta = "ACTIVA",
-            Organizacion = U.Organizacion,
-            Tipo_usuarioId = U.Tipo_usuarioId,
-            Correo = U.Correo
-            };
-            return View(Uvm);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(UsuarioRegistroViewModel Uvm)
-        {
-            if (ModelState.IsValid)
-            {
-                var Usuarios = _context.tblUsuario.Where(u => u.NombreUsuario == Uvm.NombreUsuario).ToList();
-                if (Usuarios.Count >= 1)
-                {
-                    var U = _context.tblUsuario.FirstOrDefault(u => u.Id == Uvm.Id);
-                    U.Nombres = Uvm.Nombres;
-                    U.Apellidos = Uvm.Apellidos;
-                    U.EstadoCuenta = Uvm.EstadoCuenta;
-                    U.Correo = Uvm.Correo;
-                    U.Rut = Uvm.Rut;
-                    U.Organizacion = Uvm.Organizacion;
-                    U.NombreUsuario = Uvm.NombreUsuario;
-                    U.Telefono = Uvm.Telefono;
-                    U.Edad = Uvm.Edad;
-                    U.Tipo_usuarioId = Uvm.Tipo_usuarioId;
-                    U.Id = Uvm.Id;
-
-                    CreatePasswordHash(Uvm.Contrasena, out byte[] Hash, out byte[] Salt);
-
-                    U.PasswordSalt = Salt;
-                    U.PasswordHash = Hash;
-
-                    _context.Update(U);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-                else
-                {
-                    //Ya existe el mismo Username o Email
-                    ModelState.AddModelError(String.Empty, "Username o Correo ya Existen!");
-                    return View(Uvm);
-                }
-
-            }
-            else
-            {
-                return View(Uvm);
-            }
-
         }
 
         public async Task<IActionResult> Delete(int Id)

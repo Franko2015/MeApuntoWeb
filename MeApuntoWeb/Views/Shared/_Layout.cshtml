@@ -25,8 +25,8 @@
         <header id="main-header">
             @ViewData["Nav"]
         <div id="main-header-buttons">
-            <button><a asp-action="Login" asp-controller="Auth"><i class="material-icons">person</i></a></button>
-            <button><a asp-action="Admin"><i class="material-icons">notifications</i></a></button>
+            <a asp-action="Login" asp-controller="Auth"><button><i class="material-icons">person</i></button></a>
+            <a asp-action="Admin"><button><i class="material-icons">notifications</i></button></a>
         </div>
     </header>
             @RenderBody()
