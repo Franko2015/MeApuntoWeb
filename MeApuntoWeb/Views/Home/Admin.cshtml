@@ -2,6 +2,7 @@
     ViewData["Title"] = "INCIO - ";
     ViewData["Nav"] = "ADMINISTRACIÓN";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
      <div class="container-card row mb-2">
                 <div class="card col-12 col-md-3">
@@ -9,7 +10,7 @@
                         <i class="bi bi-person-fill m-1" style="font-size: 5rem; color: black"></i>
                         <h5>Usuarios</h5>
                         <p>Puedes ver Usuarios del sistema.</p>
-                        <a asp-action="Index" asp-controller="Usuarios" class="btn btn-outline-primary col-12">Ir</a>
+                        <a asp-action="FreeAndPremium" asp-controller="Usuarios" class="btn btn-outline-primary col-12">Ir</a>
                     </div>
                 </div>
                 <div class="card col-12 col-md-3">
@@ -17,7 +18,15 @@
                         <i class="bi bi-people-fill m-1" style="font-size: 5rem; color: black"></i>
                         <h5>Administradores</h5>
                        <p>Gestor de Administradores del sistema.</p>
-                        <a asp-action="Index" asp-controller="Usuarios" class="btn btn-outline-primary col-12">ir</a>
+                        <a asp-action="Administración" asp-controller="Usuarios" class="btn btn-outline-primary col-12">ir</a>
+                    </div>
+                </div>
+                <div class="card col-12 col-md-3">
+                    <div class="contenido-card">
+                        <i class="bi bi-people-fill m-1" style="font-size: 5rem; color: black"></i>
+                        <h5>Administradores</h5>
+                       <p>Gestor de Administradores del sistema.</p>
+                        <a asp-action="Soporte" asp-controller="Usuarios" class="btn btn-outline-primary col-12">ir</a>
                     </div>
                 </div>
                 <div class="card col-12 col-md-3">
