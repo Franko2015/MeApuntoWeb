@@ -51,6 +51,7 @@ namespace MeApuntoWeb.Controllers
                 await _context.SaveChangesAsync();
             }
 
+
             var SOPORTE = _context.tblUsuario.ToList();
             Usuario? US = new Usuario();
             if (SOPORTE.Count == 1)

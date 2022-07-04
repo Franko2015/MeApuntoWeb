@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-
+//holamundo
 namespace MeApuntoWeb.Migrations
 {
     public partial class PRIMERA : Migration
