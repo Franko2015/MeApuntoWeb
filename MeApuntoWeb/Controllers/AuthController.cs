@@ -19,7 +19,8 @@ namespace MeApuntoWeb.Controllers
             _context = context;
         }
 
-        public  IActionResult Login()
+
+        public IActionResult Login()
         {
             return View();
         }
@@ -29,15 +30,16 @@ namespace MeApuntoWeb.Controllers
         public async Task<IActionResult> Login(LoginViewModel lvm)
         {
 
-            var ADMIN = _context.tblUsuario.ToList();
+
+            var usuario = _context.tblUsuario.ToList();
             Usuario? UA = new Usuario();
-            if (ADMIN.Count == 0)
+            if (usuario.Count == 0)
             {
                 //Creando usuario Administrador
-                UA.Nombres = "Franco Alberto";
-                UA.Apellidos = "Millanes Araya";
+                UA.Nombres = "admin";
+                UA.Apellidos = "";
                 UA.Rut = "";
-                UA.Correo = "Administrador@gmail.com";
+                UA.Correo = "admin@gmail.com";
                 UA.Edad = "20";
                 UA.Telefono = "";
                 UA.NombreUsuario = "admin";
@@ -51,10 +53,8 @@ namespace MeApuntoWeb.Controllers
                 await _context.SaveChangesAsync();
             }
 
-
-            var SOPORTE = _context.tblUsuario.ToList();
             Usuario? US = new Usuario();
-            if (SOPORTE.Count == 1)
+            if (usuario.Count == 1)
             {
                 //Creando usuario Soporte
                 US.Nombres = "SOPORTE";
@@ -65,7 +65,7 @@ namespace MeApuntoWeb.Controllers
                 US.Telefono = "";
                 US.NombreUsuario = "soporte";
                 US.Organizacion = "Me Apunto";
-                US.EstadoCuenta = "Activa";
+                US.EstadoCuenta = "ACTIVA";
                 US.Tipo_usuarioId = 1;
                 CreatePasswordHash("soporte", out byte[] passwordHash, out byte[] passworSalt);
                 US.PasswordHash = passwordHash;
@@ -74,37 +74,98 @@ namespace MeApuntoWeb.Controllers
                 await _context.SaveChangesAsync();
             }
 
-
-            //Login
-            UA = null;
-            UA = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username); //admin
-            if (UA == null)
+            Usuario? u = new Usuario();
+            if (usuario.Count == 2)
             {
-                ModelState.AddModelError(String.Empty, "Usuario NO Encontrado");
-                return View(lvm);
+                //Creando usuario normal
+                u.Nombres = "user";
+                u.Apellidos = "";
+                u.Rut = "";
+                u.Correo = "user@gmail.com";
+                u.Edad = "20";
+                u.Telefono = "";
+                u.NombreUsuario = "user";
+                u.Organizacion = "Me Apunto";
+                u.EstadoCuenta = "ACTIVA";
+                u.Tipo_usuarioId = 2;
+                CreatePasswordHash("user", out byte[] passwordHash, out byte[] passworSalt);
+                u.PasswordHash = passwordHash;
+                u.PasswordSalt = passworSalt;
+                _context.Add(UA);
+                await _context.SaveChangesAsync();
             }
-            else
+
+            //Login usuario Administrador o Soporte
+            if (lvm.Tipo.Equals("1") || lvm.Tipo.Equals("2"))
             {
-                if (!VerifyPasswordHash(lvm.Password, UA.PasswordHash, UA.PasswordSalt)) //admin
+                var userAdmin = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username && u.Tipo_usuarioId == Convert.ToInt32(lvm.Tipo));// admin/soporte
+                if (userAdmin == null)
                 {
-                    ModelState.AddModelError(String.Empty, "Password Incorrecta");
+                    ModelState.AddModelError(String.Empty, "Nombre de usuario Administrador/Soporte incorrecto");
                     return View(lvm);
                 }
                 else
                 {
-                    var claims = new List<Claim>{
-                        new Claim(ClaimTypes.NameIdentifier, UA.Id.ToString()),
-                        new Claim(ClaimTypes.Name, UA.NombreUsuario),
-                        new Claim(ClaimTypes.Role , UA.Tipo_usuarioId.ToString())
-                    };
+                    if (!VerifyPasswordHash(lvm.Password, userAdmin.PasswordHash, userAdmin.PasswordSalt)) //admin
+                    {
+                        ModelState.AddModelError(String.Empty, "Contraseña de usuario Administrador/Soporte incorrecta");
+                        return View(lvm);
+                    }
+                    else
+                    {
 
-                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var principal = new ClaimsPrincipal(identity);
-                    
+                        var claims = new List<Claim>{
+                        new Claim(ClaimTypes.NameIdentifier, userAdmin.Id.ToString()),
+                        new Claim(ClaimTypes.Name, userAdmin.NombreUsuario),
+                        new Claim(ClaimTypes.Role , userAdmin.Tipo_usuarioId.ToString())
+                        };
+
+                        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new ClaimsPrincipal(identity);
+
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                             principal,
                             new AuthenticationProperties { IsPersistent = true });
                         return RedirectToAction("Admin", "Home");
+
+                    }
+                }
+            }
+            else
+            {
+                var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username && lvm.Tipo.Equals("3")); // PRUEBA
+
+                //Login usuario normal sin privilegios
+                if (user == null)
+                {
+                    ModelState.AddModelError(String.Empty, "Nombre de usuario incorrecto");
+                    return View(lvm);
+                }
+                else
+                {
+                    if (!VerifyPasswordHash(lvm.Password, user.PasswordHash, user.PasswordSalt)) //user
+                    {
+                        ModelState.AddModelError(String.Empty, "Contraseña de usuario incorrecta");
+                        return View(lvm);
+                    }
+                    else
+                    {
+
+                        var claims = new List<Claim>{
+                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                        new Claim(ClaimTypes.Name, user.NombreUsuario),
+                        new Claim(ClaimTypes.Role , user.Tipo_usuarioId.ToString())
+                        };
+
+                        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new ClaimsPrincipal(identity);
+
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                            principal,
+                            new AuthenticationProperties { IsPersistent = true });
+                        return RedirectToAction("Index", "Home");
+
+                    }
                 }
             }
         }
@@ -125,7 +186,16 @@ namespace MeApuntoWeb.Controllers
             return RedirectToAction("Index","Home");
         }
 
+        public async Task<IActionResult> AccesoDenegado()
+        {
+            return View();
+        }
 
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index","Home");
+        }
 
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

@@ -14,7 +14,6 @@ namespace MeApuntoWeb.ViewModels
         public string Organizacion { get; set; }
         public string EstadoCuenta { get; set; }
         public string NombreUsuario { get; set; }
-        public Tipo_Usuario Tipo_Usuario { get; set; }
         public int Tipo_usuarioId { get; set; }
         public string Contrasena { get; set; }
     }

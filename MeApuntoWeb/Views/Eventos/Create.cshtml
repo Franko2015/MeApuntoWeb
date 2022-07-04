@@ -10,7 +10,7 @@
       <form asp-action="Create" method="POST">
 
         <label for="txtTitulo">Titulo del Evento</label>
-        <input name="txtTitulo" asp-for="Titulo" type="text" class="form-control" placeholder="Titulo">
+        <input name="txtTitulo" asp-for="Titulo" type="text" class="form-control" placeholder="Titulo" autocomplete="off">
         <label for="txtFecha">Fecha a realizarse</label>
         <input name="txtFecha" asp-for="Fecha_evento" type="date" class="form-control" placeholder="Fecha">
         <div class="row">
@@ -25,13 +25,12 @@
           </div>
         </div>
         <label for="txtDireccion">Direccion</label>
-        <input type="image" asp-img=""/>
         <select asp-for="LugarId" class="form-select" asp-items="ViewBag.LugarId"></select>
         <label>Categoria</label>
         <select asp-for="CategoriaId" class="form-select" asp-items="ViewBag.CategoriaId"></select>
         <label for="txtDescripcion">Descripcion</label>
-        <textarea asp-for="Descripcion" name="txtDescripcion" class="form-control" rows="3"></textarea>
-        <button type="submit" class="btn btn-primary boton-form">Crear</button>
+        <textarea asp-for="Descripcion" class="form-control" rows="3" autocomplete="off"></textarea>
+        <input type="submit" class="btn btn-primary boton-form" value="Crear"/>
       </form>
     </div>
 
@@ -45,9 +44,9 @@
           <img id="file-image" src="#" alt="Preview" class="hidden">
           <div id="start">
             <i class="fa fa-download" aria-hidden="true"></i>
-            <div>Select a file or drag here</div>
-            <div id="notimage" class="hidden">Please select an image</div>
-            <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+            <div>Selecciona una imagen</div>
+            <div id="notimage" class="hidden">Por favor selecciona una imagen</div>
+            <span id="file-upload-btn" class="btn btn-primary">Selecciona un archivo</span>
           </div>
           <div id="response" class="hidden">
             <div id="messages"></div>

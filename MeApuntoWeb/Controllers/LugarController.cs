@@ -55,7 +55,7 @@ namespace MeApuntoWeb.Controllers
             if (ModelState.IsValid)
             {
                 Lugar lugar = new Lugar();
-                lugar.Direccion = (lvm.Comuna + " - " + lvm.lugar.ToString() + " #"+ lvm.numero).ToUpper();
+                lugar.Direccion = (lvm.Comuna + " - " + lvm.lugar.ToString()).ToUpper() + " #"+ lvm.numero;
                 _context.Add(lugar);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

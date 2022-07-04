@@ -4,6 +4,8 @@
     ViewData["Nav"] = "LISTADO DE EVENTOS";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/css/style2.css">
+<br>
 <div class="container">
 
 <a asp-action="Create" class="btn btn-outline-primary col-2"><i class="bi bi-person-plus-fill"> Crear evento</i></a>
@@ -26,8 +28,8 @@
         <td>@Html.DisplayNameFor(model => model.Titulo)</td>
         <td>@Html.DisplayNameFor(model => model.Descripcion)</td>
         <td>@Html.DisplayNameFor(model => model.Estado)</td>
-        <td><a asp-action="Details"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a>
-            <a asp-action="Delete"><i href="#" class="bi bi-trash2-fill btn"> Eliminar</i></a></td>
+        <td><a asp-action="Details" asp-route-LugarId="@item.Id"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a>
+            <a asp-action="Delete" asp-route-LugarId="@item.Id"><i href="#" class="bi bi-trash2-fill btn"> Eliminar</i></a></td>
       </tr>
         }
     </tbody>

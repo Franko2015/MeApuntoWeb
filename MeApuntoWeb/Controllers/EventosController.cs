@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MeApuntoWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MeApuntoWeb.Controllers
 {
@@ -25,7 +26,7 @@ namespace MeApuntoWeb.Controllers
             return View(await eventosDbContext.ToListAsync());
         }
 
-        // GET: Eventos/Details/5
+        [Authorize(Roles = "1,2,3,4")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.tblEvento == null)
@@ -47,7 +48,7 @@ namespace MeApuntoWeb.Controllers
             return View(evento);
         }
 
-        // GET: Eventos/Create
+        [Authorize(Roles = "1,2,3,4")]
         public IActionResult Create()
         {
             ViewData["CategoriaId"] = new SelectList(_context.tblCategoria, "Id", "categoria");
@@ -59,6 +60,7 @@ namespace MeApuntoWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "1,2,3,4")]
         public async Task<IActionResult> Create([Bind("EventoId,Titulo,Descripcion,Fecha_evento,Hora_inicio,Hora_termino,EstadoId,CategoriaId,UsuarioId,LugarId")] Evento evento)
         {
             if (ModelState.IsValid)
@@ -75,6 +77,7 @@ namespace MeApuntoWeb.Controllers
             return View(evento);
         }
 
+        [Authorize(Roles = "1,2,3,4")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.tblEvento == null)
@@ -93,85 +96,6 @@ namespace MeApuntoWeb.Controllers
             ViewData["UsuarioId"] = new SelectList(_context.tblUsuario, "Id", "Id", evento.UsuarioId);
             return View(evento);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventoId,Titulo,Descripcion,Fecha_evento,Hora_inicio,Hora_termino,EstadoId,CategoriaId,UsuarioId,LugarId")] Evento evento)
-        {
-            if (id != evento.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(evento);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EventoExists(evento.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoriaId"] = new SelectList(_context.tblCategoria, "Id", "Id", evento.CategoriaId);
-            ViewData["EstadoId"] = new SelectList(_context.tblEstado, "Id", "Id", evento.EstadoId);
-            ViewData["LugarId"] = new SelectList(_context.tblLugar, "Id", "Id", evento.LugarId);
-            ViewData["UsuarioId"] = new SelectList(_context.tblUsuario, "Id", "Id", evento.UsuarioId);
-            return View(evento);
-        }
-
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.tblEvento == null)
-            {
-                return NotFound();
-            }
-
-            var evento = await _context.tblEvento
-                .Include(e => e.Categoria)
-                .Include(e => e.Estado)
-                .Include(e => e.Lugar)
-                .Include(e => e.Usuario)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (evento == null)
-            {
-                return NotFound();
-            }
-
-            return View(evento);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.tblEvento == null)
-            {
-                return Problem("Entity set 'EventosDbContext.tblEvento'  is null.");
-            }
-            var evento = await _context.tblEvento.FindAsync(id);
-            if (evento != null)
-            {
-                _context.tblEvento.Remove(evento);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool EventoExists(int id)
-        {
-          return (_context.tblEvento?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+        
     }
 }

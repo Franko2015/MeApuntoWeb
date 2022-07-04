@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Usuario>
 
 @{
-    ViewData["Title"] = "Index";
-    ViewData["Nav"] = "USUARIOS";
+    ViewData["Title"] = "ADMINISTRADORES";
+    ViewData["Nav"] = "USUARIOS ADMINISTRADORES";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <br>
 <div class="container">
 
-<a asp-action="Create" class="btn btn-primary col-2 "><i class="bi bi-person-plus-fill">Crear Administrador</i></a>
+<a asp-action="CreateAdmin" class="btn btn-primary col-2 "><i class="bi bi-person-plus-fill">&nbsp; Crear usuario administrador</i></a>
 <br>
 <br>
   <table class="table">
@@ -23,32 +23,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.Correo)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tipo_Usuario)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+                    if (item.Tipo_usuarioId == 1)
+                    {
+                        <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nombres)
+                    @item.Nombres @item.Apellidos
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NombreUsuario)
+                    @item.NombreUsuario
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Correo)
+                    @item.Correo
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Tipo_Usuario.Tipo)
-                </td>
-                <td>
+                    <a asp-action="Bloquear" asp-route-Id="@item.Id"><i href="#" class="bi bi-trash2-fill btn"> Bloquear</i></a>
                 </td>
             </tr>
-        }
+                    }
+                }
     </tbody>
 </table>
 </div>

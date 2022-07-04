@@ -36,11 +36,18 @@ body {
     justify-content: center;
     padding-top: 30px;
     padding-bottom: 30px;
+    border-radius: 0.5em;
+    -webkit-box-shadow: -10px 0px 13px -7px #222225, 10px 0px 13px -7px #222225, 0px -1px 15px 5px rgba(0,0,0,0); 
+    box-shadow: -10px 0px 13px -7px #222225, 10px 0px 13px -7px #222225, 0px -1px 15px 5px rgba(0,0,0,0); ;
 }
 #form-container form{
     display: flex;
     flex-direction: column;
     min-width: 80%;
+}
+.sesionselect{
+    display: flex;
+    justify-content: flex-end;
 }
 
 #form-container form h1{
@@ -53,9 +60,6 @@ body {
 }
 #form-container form input {
     margin-bottom: 0.5em;
-}
-a{
-    width: 100%;
 }
 
 button.btn.btn-primary {
@@ -78,4 +82,3 @@ button.btn.btn-outline-primary:hover {
     border-color: rgb(116, 0, 107);
     color: #eee;
 }
-

@@ -1,11 +1,16 @@
 ﻿using MeApuntoWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace MeApuntoWeb.Controllers
 {
+    
     public class HomeController : Controller
     {
+        
         private readonly EventosDbContext _context;
         public HomeController(EventosDbContext context)
         {
@@ -14,6 +19,8 @@ namespace MeApuntoWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
+            //Carga los tipos de usuario
+
             var tipo = _context.tblTipo.ToList();
             Tipo_Usuario? TA = new Tipo_Usuario();
             if (tipo.Count == 0)
@@ -43,17 +50,23 @@ namespace MeApuntoWeb.Controllers
                 _context.Add(TP);
                 await _context.SaveChangesAsync();
             }
-            return View();
+
+            //Carga de eventos
+            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Estado).Include(e => e.Lugar).Include(e => e.Usuario);
+            return View(await eventosDbContext.ToListAsync());
         }
+
+        [Authorize(Roles = "1, 2")]
         public IActionResult Admin()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(Duration = 10, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }
