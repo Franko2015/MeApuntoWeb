@@ -8,6 +8,12 @@
 <h1>Edit</h1>
 
 <h4>Lugar</h4>
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-action="Admin" asp-controller="Home">Volver</a>
+}else{
+            
+}
 <hr />
 <div class="row">
     <div class="col-md-4">

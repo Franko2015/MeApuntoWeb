@@ -3,7 +3,7 @@ body::before {
     z-index: -1; /* Important */
     position: inherit;
     left: inherit;
-    top: inherit;
+    top: 0;
     width: inherit;
     height: inherit;
     background-image: inherit;
@@ -12,11 +12,12 @@ body::before {
 }
 
 body {
-  background-image: url("fondo-login.png");
-  background-size: 0 0;  /* Image should not be drawn here */
-  width: 100%;
-  height: 107%;
-  position: absolute; /* Or absolute for scrollable backgrounds */
+    background-image: url("fondo-login.png");
+    background-size: 0 0; /* Image should not be drawn here */
+    width: 100%;
+    /*height: 107%;*/
+    margin: 0;
+    position: absolute; /* Or absolute for scrollable backgrounds */
 }
 
 #main-container-sesion{
@@ -56,7 +57,7 @@ body {
 }
 
 .boton-form{
-    min-width: 80%;
+    min-width: 100%;
 }
 #form-container form input {
     margin-bottom: 0.5em;

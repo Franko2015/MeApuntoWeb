@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" href="~/css/crearEvento.css" />
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-action="Admin" asp-controller="Home">Volver</a>
+}else{
+            
+}
 <div id="main-container-evento">
     <div id="form-container">
       <form asp-action="Create" method="POST">

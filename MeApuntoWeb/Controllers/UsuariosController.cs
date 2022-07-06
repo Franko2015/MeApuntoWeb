@@ -66,11 +66,11 @@ namespace MeApuntoWeb.Controllers
                 Usuario? User = new Usuario();
 
                 //Creando usuario nuevo
-                User.Nombres = Uvm.Nombres;
+                User.Nombres = Uvm.Nombres.ToUpper();
                 User.Rut = Uvm.Rut;
-                User.Apellidos = Uvm.Apellidos;
-                User.Correo = Uvm.Correo;
-                User.Edad = Uvm.Edad;
+                User.Apellidos = Uvm.Apellidos.ToUpper();
+                User.Correo = Uvm.Correo.ToUpper();
+                User.Edad = Uvm.Edad.ToUpper();
                 User.Telefono = Uvm.Telefono;
                 User.NombreUsuario = Uvm.NombreUsuario;
                 User.Organizacion = "Me Apunto";
@@ -99,11 +99,11 @@ namespace MeApuntoWeb.Controllers
                 Usuario? User = new Usuario();
 
                 //Creando usuario nuevo
-                User.Nombres = Uvm.Nombres;
+                User.Nombres = Uvm.Nombres.ToUpper();
                 User.Rut = Uvm.Rut;
-                User.Apellidos = Uvm.Apellidos;
-                User.Correo = Uvm.Correo;
-                User.Edad = Uvm.Edad;
+                User.Apellidos = Uvm.Apellidos.ToUpper();
+                User.Correo = Uvm.Correo.ToUpper();
+                User.Edad = Uvm.Edad.ToUpper();
                 User.Telefono = Uvm.Telefono;
                 User.NombreUsuario = Uvm.NombreUsuario;
                 User.Organizacion = "Me Apunto";
@@ -132,14 +132,14 @@ namespace MeApuntoWeb.Controllers
             Usuario? User = new Usuario();
 
                 //Creando usuario nuevo
-                User.Nombres = Uvm.Nombres;
+                User.Nombres = Uvm.Nombres.ToUpper();
                 User.Rut = Uvm.Rut;
-                User.Apellidos = Uvm.Apellidos;
-                User.Correo = Uvm.Correo;
+                User.Apellidos = Uvm.Apellidos.ToUpper();
+                User.Correo = Uvm.Correo.ToUpper();
                 User.Edad = Uvm.Edad;
                 User.Telefono = Uvm.Telefono;
                 User.NombreUsuario = Uvm.NombreUsuario;
-                User.Organizacion = Uvm.Organizacion;
+                User.Organizacion = Uvm.Organizacion.ToUpper();
                 User.EstadoCuenta = "ACTIVA";
                 User.Tipo_usuarioId = 3;
                 CreatePasswordHash(Uvm.Contrasena, out byte[] passwordHash, out byte[] passworSalt);

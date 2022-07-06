@@ -18,18 +18,19 @@
     <div id="main-container-sesion">
         <div id="form-container">
             <form asp-action="Login">
-                <h1>Iniciar sesion</h1>
+                <h1>Iniciar sesión</h1>
                 <div class="sesionselect">
-                    <select asp-for="Tipo" class="select-control col col-md-3">
+                    <select asp-for="Tipo" class="form-select col col-md-3">
                         <option value="3">Usuario</option>
-                        <option value="2">Administrador</option>
-                        <option value="1">Soporte</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Soporte</option>
                     </select>
                 </div>
-                <label>Usuario</label>
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+                <br>
                 <input asp-for="Username" type="text" class="form-control" placeholder="Usuario" autocomplete="off">
                 <span asp-validation-for="Username" class="text-danger"></span>
-                <label>Contraseña</label>
+                <br>
                 <input asp-for="Password" type="password" class="form-control" placeholder="Contraseña" autocomplete="off">
                 <span asp-validation-for="Password" class="text-danger"></span>
                 <br>

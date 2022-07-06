@@ -2,8 +2,21 @@
     ViewData["Title"] = "INCIO - ";
     ViewData["Nav"] = "ADMINISTRACIÓN";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    bool soporte = false;
+    foreach(var claim in User.Claims)
+    {
+        if(claim.Value == "2")
+        {
+            soporte = true;
+        }
+    }
 }
+@if (User.Identity.IsAuthenticated)
+        {
+            <a asp-action="Admin" asp-controller="Home">Volver</a>
+        }else{
+            
+        }
      <div class="container-card row mb-2">
                 <div class="card col-12 col-md-3">
                     <div class="contenido-card">
@@ -21,14 +34,17 @@
                         <a asp-action="Administración" asp-controller="Usuarios" class="btn btn-outline-primary col-12">ir</a>
                     </div>
                 </div>
-                <div class="card col-12 col-md-3">
-                    <div class="contenido-card">
-                        <i class="bi bi-people-fill m-1" style="font-size: 5rem; color: black"></i>
-                        <h5>Administradores</h5>
-                       <p>Gestor de Administradores del sistema.</p>
-                        <a asp-action="Soporte" asp-controller="Usuarios" class="btn btn-outline-primary col-12">ir</a>
+                @if (soporte==true)
+                {
+                    <div class="card col-12 col-md-3">
+                        <div class="contenido-card">
+                            <i class="bi bi-people-fill m-1" style="font-size: 5rem; color: black"></i>
+                            <h5>Soporte</h5>
+                            <p>Gestor de usuarios Soporte del sistema.</p>
+                            <a asp-action="Soporte" asp-controller="Usuarios" class="btn btn-outline-primary col-12">ir</a>
+                        </div>
                     </div>
-                </div>
+                }
                 <div class="card col-12 col-md-3">
 
                     <div class="contenido-card">

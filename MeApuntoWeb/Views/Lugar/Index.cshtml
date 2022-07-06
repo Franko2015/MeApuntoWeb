@@ -7,12 +7,12 @@
 }
 
 <br>
-  <br>
-  <br>
-
-  <div class="Text text-center">
-    <h2><strong>Lugares</strong></h2>
-  </div>
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-action="Admin" asp-controller="Home">Volver</a>
+}else{
+            
+}
   <br>
   <br>
 

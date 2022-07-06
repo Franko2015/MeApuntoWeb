@@ -18,7 +18,6 @@
     <link href="~/css/style2.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Me apunto - @ViewData["Title"]</title>
-   
 </head>
     <body>
         <header id="main-header">
@@ -29,7 +28,6 @@
             @ViewData["Nav"] 
         }
         <div id="main-header-buttons">
-            
                 <a asp-action="Login" asp-controller="Auth"><button><i class="material-icons">person</i></button></a>
             @if (User.Identity.IsAuthenticated)
             {
@@ -39,7 +37,6 @@
             }
         </div>
     </header>
-            
             @RenderBody()
     @await RenderSectionAsync("Scripts", required: false)
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

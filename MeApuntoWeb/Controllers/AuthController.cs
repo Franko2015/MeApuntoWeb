@@ -37,7 +37,7 @@ namespace MeApuntoWeb.Controllers
             {
                 //Creando usuario Administrador
                 UA.Nombres = "admin";
-                UA.Apellidos = "";
+                UA.Apellidos = "admin";
                 UA.Rut = "";
                 UA.Correo = "admin@gmail.com";
                 UA.Edad = "20";
@@ -45,7 +45,7 @@ namespace MeApuntoWeb.Controllers
                 UA.NombreUsuario = "admin";
                 UA.Organizacion = "Me Apunto";
                 UA.EstadoCuenta = "ACTIVA";
-                UA.Tipo_usuarioId = 2;
+                UA.Tipo_usuarioId = 1;
                 CreatePasswordHash("admin", out byte[] passwordHash, out byte[] passworSalt);
                 UA.PasswordHash = passwordHash;
                 UA.PasswordSalt = passworSalt;
@@ -57,16 +57,16 @@ namespace MeApuntoWeb.Controllers
             if (usuario.Count == 1)
             {
                 //Creando usuario Soporte
-                US.Nombres = "SOPORTE";
+                US.Nombres = "soporte";
+                US.Apellidos = "soporte";
                 US.Rut = "";
-                US.Apellidos = "SOPORTE";
                 US.Correo = "soporte@gmail.com";
                 US.Edad = "20";
                 US.Telefono = "";
                 US.NombreUsuario = "soporte";
                 US.Organizacion = "Me Apunto";
                 US.EstadoCuenta = "ACTIVA";
-                US.Tipo_usuarioId = 1;
+                US.Tipo_usuarioId = 2;
                 CreatePasswordHash("soporte", out byte[] passwordHash, out byte[] passworSalt);
                 US.PasswordHash = passwordHash;
                 US.PasswordSalt = passworSalt;
@@ -79,7 +79,7 @@ namespace MeApuntoWeb.Controllers
             {
                 //Creando usuario normal
                 u.Nombres = "user";
-                u.Apellidos = "";
+                u.Apellidos = "user";
                 u.Rut = "";
                 u.Correo = "user@gmail.com";
                 u.Edad = "20";
@@ -87,11 +87,11 @@ namespace MeApuntoWeb.Controllers
                 u.NombreUsuario = "user";
                 u.Organizacion = "Me Apunto";
                 u.EstadoCuenta = "ACTIVA";
-                u.Tipo_usuarioId = 2;
+                u.Tipo_usuarioId = 3;
                 CreatePasswordHash("user", out byte[] passwordHash, out byte[] passworSalt);
                 u.PasswordHash = passwordHash;
                 u.PasswordSalt = passworSalt;
-                _context.Add(UA);
+                _context.Add(u);
                 await _context.SaveChangesAsync();
             }
 

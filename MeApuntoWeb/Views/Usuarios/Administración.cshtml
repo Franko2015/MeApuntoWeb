@@ -7,7 +7,12 @@
 }
 <br>
 <div class="container">
-
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-action="Admin" asp-controller="Home">Volver</a>
+}else{
+            
+}
 <a asp-action="CreateAdmin" class="btn btn-primary col-2 "><i class="bi bi-person-plus-fill">&nbsp; Crear usuario administrador</i></a>
 <br>
 <br>
