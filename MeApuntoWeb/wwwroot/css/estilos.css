@@ -5,16 +5,16 @@
 }
 
 #main-header {
-    z-index: 10;
-    position:relative;
-    background: linear-gradient(to right, rgb(238, 83, 0), rgb(145, 62, 197), rgb(19, 128, 108));
-    padding: 0.5em;
-    text-align: center;
-    font-family: "Trebuchet MS", sans-serif;
-    font-size: 2em;
-    letter-spacing: -2px;
-    text-transform: uppercase;
-    color: white;
+	z-index: 10;
+	position: relative;
+	background: linear-gradient(to right, rgb(238, 83, 0), rgb(145, 62, 197), rgb(19, 128, 108));
+	padding: 0.5em;
+	text-align: center;
+	font-family: "Trebuchet MS", sans-serif;
+	font-size: 2em;
+	letter-spacing: -2px;
+	text-transform: uppercase;
+	color: white;
 }
 #main-header-buttons{
     display: inline;

@@ -6,6 +6,9 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
+.table-lugar{
+    height: 100px;
+}
 
 #main-header {
     z-index: 10;
