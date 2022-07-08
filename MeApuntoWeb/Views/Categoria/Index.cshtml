@@ -2,23 +2,50 @@
 @model List<Categoria>
 
     <a asp-action="Index" asp-controller="Home"><img class="btnVolver" src="~/return_icon_154912.png" alt="100px"></a>
-    <center><h2 class="titulo-principal">Categorías de eventos</h2></center>
-    <a asp-action="Add"><label>Crear nueva categoría</label></a>
-    <br>
-    <hr>
-    <table class="table categoria">
-        <tr class="t-categoria">
-            <th>Id</th>
-            <th>Nombre de la categoría</th>
-            <th colspan="2"></th>
-        </tr>
-        @foreach (var item in Model)
-    {
-        <tr>
-            <td class="elementos">@item.Id</td>
-            <td class="elementos">@item.categoria</td>
-            <td><a asp-action="Edit" asp-route-idCategoria="@item.Id"><img src="~/edit_icon_128873.png" alt="200px"></a></td>
-            <td><a asp-action="Delete" asp-route-idCategoria="@item.Id"><img src="~/seo-social-web-network-internet_322_icon-icons.com_61532.png" alt="200px"></a></td>
-        </tr>
-    }
-    </table>
+   
+    <div class="container">
+
+  <a asp-action="Add" class="btn btn-outline-primary col-2"><i class="bi bi-person-plus-fill"> Crear Lugar</i></a>
+      <br>
+      
+<br>
+  <table class="table table-hover table-bordered" style="color: black;">
+  
+    <thead>
+      <tr>
+        <th scope="col">Categoria</th>
+        <th scope="col">Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Opera</td>
+        <td><a href="#"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a></td>
+      </tr>
+      <tr>
+        <td>Taller de Danza</td>
+        <td><a href="#"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a></td>
+      </tr>
+      <tr>
+        <td>Piano</td>
+        <td><a href="#"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a></td>
+      </tr>
+      <tr>
+        <td>Cueca</td>
+        <td><a href="#"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a></td>
+      </tr>
+      <tr>
+        <td>Clases de Canto</td>
+        <td><a href="#"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a></td>
+      </tr>
+      <tr>
+        <td>Ajedrez</td>
+        <td><a href="#"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+      
+<br>
+<br>
+<br>

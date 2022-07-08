@@ -137,7 +137,7 @@ namespace MeApuntoWeb.Controllers
                 User.Apellidos = Uvm.Apellidos.ToUpper();
                 User.Correo = Uvm.Correo.ToUpper();
                 User.Edad = Uvm.Edad;
-                User.Telefono = Uvm.Telefono;
+                User.Telefono = "9 "+Uvm.Telefono;
                 User.NombreUsuario = Uvm.NombreUsuario;
                 User.Organizacion = Uvm.Organizacion.ToUpper();
                 User.EstadoCuenta = "ACTIVA";

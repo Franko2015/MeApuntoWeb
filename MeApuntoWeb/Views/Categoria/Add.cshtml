@@ -1,2 +1,28 @@
 ﻿@model Categoria
+<link href="~/css/estilos.css" rel="stylesheet"/>
+<section class="d-flex justify-content-center align-items-center">
+    <div class="card shadow col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4"> 
+        <div class="mb-4 d-flex justify-content-start align-items-center">
+          
+            <h2><strong>Nueva Categoria</strong></h2>
+        </div>
+        <form asp-action="Create">
+            <div class="mb-4">
+                <label for="Nombre">Categoria:</label>
+                <input asp-for="categoria" class="form-control" id="Nombre">
+              </div>
 
+
+    
+        <a class="center-content">
+            <input type="submit" class="btn btn-outline-primary " value="Agregar">
+        </a>
+    
+    </form>
+    </div>
+</section>
+
+
+<br>
+<br>
+<br>

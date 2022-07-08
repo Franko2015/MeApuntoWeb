@@ -5,6 +5,7 @@
     ViewData["Nav"] = "NUEVO USUARIO";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/css/style2.css" rel="stylesheet"/>
 <link rel="stylesheet" href="~/css/datosRegistro.css" />
 @if (User.Identity.IsAuthenticated)
 {
@@ -16,23 +17,23 @@
             <div id="form-container">
                 <form asp-action="Create">
 
-                    <input asp-for="Nombres" type="text" class="form-control" placeholder="Nombre" autocomplete="off">
+                    <input asp-for="Nombres" type="text" class="form-control" placeholder="Nombre" autocomplete="off" required>
 
-                    <input asp-for="Apellidos" type="text" class="form-control" placeholder="Apellido" autocomplete="off">
+                    <input asp-for="Apellidos" type="text" class="form-control" placeholder="Apellido" autocomplete="off" required>
 
-                    <input asp-for="Rut" type="text" class="form-control" placeholder="Rut" autocomplete="off">
+                    <input asp-for="Rut" type="text" class="form-control" placeholder="Rut" autocomplete="off" required>
 
-                    <input asp-for="Edad"  type="text" class="form-control" placeholder="Edad" autocomplete="off">
+                    <input asp-for="Edad"  type="text" class="form-control" placeholder="Edad" autocomplete="off" required>
 
-                    <input asp-for="Correo" type="email" class="form-control" placeholder="Email" autocomplete="off">
+                    <input asp-for="Correo" type="email" class="form-control" placeholder="Email" autocomplete="off" required>
 
                     <input asp-for="Organizacion" type="text" class="form-control" placeholder="Organización" autocomplete="off">
 
-                    <input asp-for="Telefono" type="text" class="form-control" placeholder="Telefono" autocomplete="off">
+                    <input asp-for="Telefono" type="number" class="form-control" placeholder="Telefono: 12345678" autocomplete="off" required maxlength="8">
 
-                    <input asp-for="NombreUsuario" type="text" class="form-control" placeholder="Nombre de Usuario" autocomplete="off">
+                    <input asp-for="NombreUsuario" type="text" class="form-control" placeholder="Nombre de Usuario" autocomplete="off" required>
 
-                    <input asp-for="Contrasena" type="password" class="form-control" placeholder="Contraseña" autocomplete="off">
+                    <input asp-for="Contrasena" pattern="" type="password" class="form-control" placeholder="Contraseña" autocomplete="off" required>
 
                     <input type="submit" class="btn btn-outline-primary " value="Registrar usuario">
                 </form>
