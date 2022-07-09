@@ -1,22 +1,18 @@
 
 #main-container-evento{
-    width: 100vw;
-    
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row-reverse;
-
 }
 #form-container{
-    width: 40%;
-    min-width: 40%;
+    width: 50%;
+    min-width: 50%;
     background-color: white;
-    display:flex;
     align-items: center;
     justify-content: center;
     padding-top: 30px;
-    padding-bottom: 30px;
 }
 
 #form-container form{
@@ -39,8 +35,8 @@
     margin-bottom: 0.5em;
 }
 #image-container{
-    width: 40%;
-    min-width: 40%;
+    width: 10%;
+    min-width: 10%;
     background-color: white;
     display:flex;
     align-items: center;
@@ -84,8 +80,6 @@ p {
   display: block;
   clear: both;
   margin: 0 auto;
-  width: 100%;
-  max-width: 600px;
 }
 .uploader label {
   float: left;

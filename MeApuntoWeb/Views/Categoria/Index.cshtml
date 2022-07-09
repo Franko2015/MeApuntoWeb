@@ -5,7 +5,7 @@
    
     <div class="container">
 
-  <a asp-action="Add" class="btn btn-outline-primary col-2"><i class="bi bi-person-plus-fill"> Crear Lugar</i></a>
+  <a asp-action="Create" class="btn btn-outline-primary col-2"><i class="bi bi-person-plus-fill"> Crear Lugar</i></a>
       <br>
       
 <br>
@@ -14,34 +14,18 @@
     <thead>
       <tr>
         <th scope="col">Categoria</th>
-        <th scope="col">Accion</th>
+        <th scope="col">Acción</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Opera</td>
-        <td><a href="#"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a></td>
-      </tr>
-      <tr>
-        <td>Taller de Danza</td>
-        <td><a href="#"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a></td>
-      </tr>
-      <tr>
-        <td>Piano</td>
-        <td><a href="#"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a></td>
-      </tr>
-      <tr>
-        <td>Cueca</td>
-        <td><a href="#"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a></td>
-      </tr>
-      <tr>
-        <td>Clases de Canto</td>
-        <td><a href="#"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a></td>
-      </tr>
-      <tr>
-        <td>Ajedrez</td>
-        <td><a href="#"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a></td>
-      </tr>
+          @foreach (var item in Model)
+          {
+            <tr>
+            <td>@item.categoria</td>
+            </tr>
+          }
+      
     </tbody>
   </table>
 </div>

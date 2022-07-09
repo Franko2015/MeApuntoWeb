@@ -61,10 +61,20 @@ namespace MeApuntoWeb.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "1,2,3,4")]
-        public async Task<IActionResult> Create([Bind("EventoId,Titulo,Descripcion,Fecha_evento,Hora_inicio,Hora_termino,EstadoId,CategoriaId,UsuarioId,LugarId")] Evento evento)
+        public async Task<IActionResult> Create(Evento evento)
         {
             if (ModelState.IsValid)
             {
+                Evento evto = new Evento();
+
+                evto.CategoriaId = evento.CategoriaId;
+                evto.EstadoId = 1;
+                evto.UsuarioId = evento.UsuarioId;
+                evto.LugarId = evento.LugarId;
+                evto.Fecha_evento = evento.Fecha_evento;
+                evto.Hora_inicio = evento.Hora_inicio;
+                evto.Titulo = evento.Titulo;
+
 
                 _context.Add(evento);
                 await _context.SaveChangesAsync();

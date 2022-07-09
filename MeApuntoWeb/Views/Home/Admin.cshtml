@@ -11,7 +11,7 @@
         }
     }
 }
-<link rel="stylesheet" href="~/css/style2.css">
+<link rel="stylesheet" href="~/css/Administración/Cards.css">
 @if (User.Identity.IsAuthenticated)
         {
             <a asp-action="Admin" asp-controller="Home">Volver</a>
@@ -72,14 +72,6 @@
                         <h5>Eventos</h5>
                         <p>Puedes ver los eventos Aceptados/Rechazados.</p>
                         <a asp-action="Index" asp-controller="Eventos" class="btn btn-outline-primary col-12">ir</a>
-                    </div>
-                </div>
-                <div class="card col-12 col-md-3">
-                    <div class="contenido-card">
-                        <i class="bi bi-geo-alt-fill m-1" style="font-size: 5rem; color: black"></i>
-                        <h5>Lugares</h5>
-                        <p>Puedes Agregar y Gestionar Lugares.</p>
-                        <a asp-action="Index" asp-controller="Lugar" class="btn btn-outline-primary col-12">ir</a>
                     </div>
                 </div>
                 <div class="card col-12 col-md-3">

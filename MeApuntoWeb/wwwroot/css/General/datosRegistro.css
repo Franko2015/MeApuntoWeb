@@ -20,21 +20,19 @@ body {
 }
 #main-container-registro{
     width: 100vw;
-    
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
 #form-container{
-    width: 60vh;
-    min-width: 60vh;
+    width: 70vh;
+    min-width: 70vh;
     background-color: white;
     display:flex;
     align-items: center;
     justify-content: center;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
 }
 #form-container form{
     display: flex;

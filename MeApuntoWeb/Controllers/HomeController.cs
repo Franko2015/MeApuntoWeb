@@ -59,6 +59,26 @@ namespace MeApuntoWeb.Controllers
             }
 
 
+
+            Estado? Activo = new Estado();
+            var es = _context.tblTipo.ToList();
+            if (es.Count < 1)
+            {
+                Activo.estado = "Activo";
+                _context.Add(Activo);
+                await _context.SaveChangesAsync();
+            }
+
+            Estado? Bloqueado = new Estado();
+            if (es.Count < 2)
+            {
+                Bloqueado.estado = "Desactivado";
+                _context.Add(Bloqueado);
+                await _context.SaveChangesAsync();
+            }
+
+
+
             //Carga de eventos
             var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Estado).Include(e => e.Lugar).Include(e => e.Usuario);
             return View(await eventosDbContext.ToListAsync());

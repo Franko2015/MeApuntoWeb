@@ -18,13 +18,13 @@ namespace MeApuntoWeb.Controllers
             var Categorias = _context.tblCategoria?.ToList();
             return View(Categorias);
         }
-        public IActionResult Add()
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(Categoria c)
+        public async Task<IActionResult> Create(Categoria c)
         {
             if(c == null) return View();
 

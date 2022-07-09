@@ -5,8 +5,7 @@
     ViewData["Nav"] = "NUEVO USUARIO";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/css/style2.css" rel="stylesheet"/>
-<link rel="stylesheet" href="~/css/datosRegistro.css" />
+<link rel="stylesheet" href="~/css/General/datosRegistro.css" />
 @if (User.Identity.IsAuthenticated)
 {
     <a asp-action="Admin" asp-controller="Home">Volver</a>
@@ -15,7 +14,7 @@
 }
         <div id="main-container-registro">
             <div id="form-container">
-                <form asp-action="Create">
+                <form asp-action="Create" method="post">
 
                     <input asp-for="Nombres" type="text" class="form-control" placeholder="Nombre" autocomplete="off" required>
 
@@ -35,7 +34,7 @@
 
                     <input asp-for="Contrasena" pattern="" type="password" class="form-control" placeholder="Contraseña" autocomplete="off" required>
 
-                    <input type="submit" class="btn btn-outline-primary " value="Registrar usuario">
+                    <input type="submit" class="btn btn-outline-primary" value="Registrar usuario">
                 </form>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             </div>

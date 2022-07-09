@@ -1,19 +1,21 @@
 ﻿@model IEnumerable<Usuario>
 
 @{
-    ViewData["Title"] = "ADMINISTRADORES";
-    ViewData["Nav"] = "USUARIOS ADMINISTRADORES";
+    ViewData["Title"] = "Index";
+    ViewData["Nav"] = "USUARIOS";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/css/estilos.css" rel="stylesheet"/>
 <br>
-<div class="container">
 @if (User.Identity.IsAuthenticated)
 {
     <a asp-action="Admin" asp-controller="Home">Volver</a>
 }else{
             
 }
-<a asp-action="CreateSoporte" class="btn btn-primary col-2 "><i class="bi bi-person-plus-fill">&nbsp; Crear nuevo usuario soporte</i></a>
+<div class="container">
+
+<a asp-action="CreateSoporte" class="btn btn-primary col-2 "><i class="bi bi-person-plus-fill"> &nbsp; Crear usuario</i></a>
 <br>
 <br>
   <table class="table">
@@ -23,15 +25,21 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rut)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.NombreUsuario)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Correo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nombres)
+                @Html.DisplayNameFor(model => model.Telefono)
             </th>
-            <th></th>
+            <td></td>
         </tr>
     </thead>
     <tbody>
@@ -39,9 +47,15 @@
         {
                     if (item.Tipo_usuarioId == 2)
                     {
-                        <tr>
+            <tr>
                 <td>
                     @item.Id
+                </td>
+                <td>
+                    @item.Nombres @item.Apellidos
+                </td>
+                <td>
+                    @item.Rut
                 </td>
                 <td>
                     @item.NombreUsuario
@@ -50,7 +64,7 @@
                     @item.Correo
                 </td>
                 <td>
-                    @item.Nombres @item.Apellidos
+                    @item.Telefono
                 </td>
                 <td>
                     <a asp-action="Bloquear" asp-route-Id="@item.Id"><i href="#" class="bi bi-trash2-fill btn"> Bloquear</i></a>

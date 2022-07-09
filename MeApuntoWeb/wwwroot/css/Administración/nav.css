@@ -1,0 +1,40 @@
+﻿#main-header {
+    z-index: 10;
+    position: relative;
+    background-image: linear-gradient(to right, rgb(238, 83, 0), rgb(145, 62, 197), rgb(19, 128, 108));
+    padding: 0.5em;
+    text-align: center;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 2em;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    color: white;
+}
+#main-header-buttons {
+    display: inline;
+    float: right;
+}
+
+#main-header button {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    border-style: none;
+    background-color: rgba(49, 47, 61, 0.396);
+    color: white;
+}
+
+#main-header button:active {
+    background-color: rgba(228, 226, 243, 0.6);
+}
+
+#main-footer {
+    background-color: rgb(67, 64, 82);
+    padding: 0.5em;
+    text-align: center;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 1.5em;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    color: white;
+}

@@ -1,3 +1,4 @@
+﻿/*Gladys*/
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 * {
@@ -6,37 +7,6 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
-
-#main-header {
-    z-index: 10;
-    position: relative;
-    background-image: linear-gradient(to right, rgb(238, 83, 0), rgb(145, 62, 197), rgb(19, 128, 108));
-    padding: 0.5em;
-    text-align: center;
-    font-family: "Trebuchet MS", sans-serif;
-    font-size: 2em;
-    letter-spacing: -2px;
-    text-transform: uppercase;
-    color: white;
-}
-
-#main-header-buttons {
-    display: inline;
-    float: right;
-}
-
-#main-header button {
-    height: 45px;
-    width: 45px;
-    border-radius: 50%;
-    border-style: none;
-    background-color: rgba(49, 47, 61, 0.396);
-    color: white;
-}
-
-    #main-header button:active {
-        background-color: rgba(228, 226, 243, 0.6);
-    }
 
 #main-container {
     display: flex;
@@ -144,13 +114,13 @@
     border-radius: 7px;
 }
 
-    #crear-evento-button i {
-        font-size: 2em;
-    }
+#crear-evento-button i {
+    font-size: 2em;
+}
 
-    #crear-evento-button:hover {
-        background-color: #f2f0f2;
-    }
+#crear-evento-button:hover {
+    background-color: #f2f0f2;
+}
 
 .div-card {
     border: 1px solid lightgray;
@@ -174,6 +144,7 @@
     overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
 }
+
     /*.div-card-image{
     background-image: url("https://tvline.com/wp-content/uploads/2022/04/halo-1x03-makee.jpg?w=300");
     height: 150px;
@@ -219,35 +190,35 @@
     background-color: white;
     color:rgba(0, 0, 0, 0.9);
 }*/
-    .div-card2 .div-card-buttons2 {
-        width: 100%;
-        height: 0px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
+.div-card2 .div-card-buttons2 {
+    width: 100%;
+    height: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 
-    .div-card2:hover .div-card-buttons2 {
-        height: 150px;
-        transition: height 0.3s ease-in-out;
-    }
+.div-card2:hover .div-card-buttons2 {
+    height: 150px;
+    transition: height 0.3s ease-in-out;
+}
 
-    .div-card2 .div-card-buttons2 button {
-        border: 2px solid white;
-        border-radius: 5px;
-        color: white;
-        background-color: rgba(0,0, 0, 0);
-        font-size: 1.1em;
-        font-family: Arial, Helvetica, sans-serif;
-        padding: 0.4em 0.6em;
-        margin: 0.4em;
-    }
+.div-card2 .div-card-buttons2 button {
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    background-color: rgba(0,0, 0, 0);
+    font-size: 1.1em;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0.4em 0.6em;
+    margin: 0.4em;
+}
 
-        .div-card2 .div-card-buttons2 button:hover {
-            background-color: white;
-            color: black;
-        }
+    .div-card2 .div-card-buttons2 button:hover {
+        background-color: white;
+        color: black;
+    }
 
 .div-card-content2 {
     padding: 1.2em;
@@ -265,21 +236,9 @@
     padding: 5px;
 }
 
-    .div-card-description2 div {
-        padding-bottom: 5px;
-    }
-
-#main-footer {
-    background-color: rgb(67, 64, 82);
-    padding: 0.5em;
-    text-align: center;
-    font-family: "Trebuchet MS", sans-serif;
-    font-size: 1.5em;
-    letter-spacing: -2px;
-    text-transform: uppercase;
-    color: white;
+.div-card-description2 div {
+    padding-bottom: 5px;
 }
-
 
 .main-container2 {
     background-image: linear-gradient(to right, rgb(238, 83, 0), rgba(145, 62, 197,0.7), rgba(19, 128, 108,0.7));
@@ -308,58 +267,6 @@
             color: white;
         }
 
-/* Mis Eventos */
-
-.my-event {
-    display: grid;
-    grid-template-columns: 1fr;
-    border-top: 1px solid lightgray;
-}
-
-@media screen and (min-width: 641px) {
-    .my-event {
-        display: grid;
-        grid-template-columns: 1fr 2fr 1fr 1fr;
-    }
-}
-
-.my-event:first {
-    border-top: none;
-}
-
-.my-event-imagen {
-}
-
-.my-event-content {
-    padding: 20px;
-}
-
-.my-event-estado {
-    display: flex;
-    align-items: center;
-}
-
-.my-event-boton {
-    display: flex;
-    align-items: center;
-}
-
-.my-btn-action {
-    border-radius: 50%;
-    border: none;
-}
-
-    .my-btn-action:hover {
-        border: none;
-        background-color: rgba(0, 0, 0, 0.2);
-    }
-
-    .my-btn-action:action {
-        border: none;
-        background-color: rgba(0, 0, 0, 0.5);
-        transition: background-color 0.2s ease;
-    }
-
 #main-menu2 {
     z-index: 5;
     background-color: white;
@@ -370,102 +277,48 @@
     justify-content: space-around;
     box-shadow: -2px 0px 2px 1px lightgrey;
 }
-/*Contenido administrador*/
 
-/*Cards*/
-.container-card {
-    width: 100%;
-}
 
-.card {
-    width: 20%;
-    margin: 20px;
-    border-radius: 6px;
-    display: inline-block;
-    background: #fff;
-    box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
-    transition: all 400ms ease-out;
-    cursor: default;
-}
 
-.card-create {
-    width: 60%;
-    border-radius: 6px;
-    display: inline-block;
-    background: #fff;
-    box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
-    transition: all 400ms ease-out;
-    cursor: default;
-}
 
-.card:hover {
-    box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
-    transform: translateY(-3%);
-}
-
-.card img {
-    width: 100%;
-    height: 210px;
-}
-
-.card .contenido-card {
-    padding: 15px;
-    text-align: center;
-}
-
-    .card .contenido-card h3 {
-        margin-bottom: 15px;
-        color: #7a7a7a;
-    }
-
-    .card .contenido-card p {
-        line-height: 1.8;
-        color: #6a6a6a;
-        font-size: 14px;
-        margin-bottom: 5px;
-    }
-
-    .card .contenido-card a {
-        display: inline-block;
-        padding: 10px;
-        margin-top: 10px;
-        text-decoration: none;
-        color: #2fb4cc;
-        border: 1px solid #2fb4cc;
-        border-radius: 4px;
-        transition: all 400ms ease;
-        margin-bottom: 5px;
-    }
-
-        .card .contenido-card a:hover {
-            background: #2fb4cc;
-            color: #fff;
-        }
-
-a.btn.btn-primary,
-button.btn.btn-primary {
-    background-color: rgb(116, 0, 107);
-    border-color: rgb(116, 0, 107);
-    color: #eee;
-    margin-top: 10px;
-}
-
-    a.btn.btn-primary:hover,
-    button.btn.btn-primary:hover {
-        background-color: rgb(96, 0, 87);
-        border-color: rgb(96, 0, 87);
-        color: #eee;
-    }
-
-a.btn.btn-outline-primary,
-button.btn.btn-outline-primary {
+/*Sandro*/
+.btn.btn-outline-primary {
+    width: 30%;
     border-color: rgb(116, 0, 107);
     color: rgb(116, 0, 107);
 }
 
-    a.btn.btn-outline-primary:hover,
-    button.btn.btn-outline-primary:hover {
+    .btn.btn-outline-primary:hover {
         background-color: rgb(116, 0, 107);
         border-color: rgb(116, 0, 107);
         color: #eee;
     }
+
+.mb-2 {
+    display: flex;
+    justify-content: center;
+}
+
+.col-12 {
+    margin-bottom: 15px;
+}
+
+.a-boton {
+    min-width: 40vw;
+    display: flex;
+    justify-content: center;
+}
+
+.td-botons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+    .td-botons button {
+        width: 30vw;
+    }
+
+.buttonagregar {
+    display: flex;
+    justify-content: flex-end;
+}

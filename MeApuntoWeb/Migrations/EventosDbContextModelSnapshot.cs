@@ -33,9 +33,6 @@ namespace MeApuntoWeb.Migrations
                     b.Property<string>("categoria")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("imagen")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("tblCategoria");
