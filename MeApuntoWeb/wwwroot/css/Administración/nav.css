@@ -1,7 +1,7 @@
 ﻿#main-header {
     z-index: 10;
     position: relative;
-    background-image: linear-gradient(to right, rgb(238, 83, 0), rgb(145, 62, 197), rgb(19, 128, 108));
+    background: linear-gradient(to right, rgb(238, 83, 0), rgb(145, 62, 197), rgb(19, 128, 108));
     padding: 0.5em;
     text-align: center;
     font-family: "Trebuchet MS", sans-serif;
@@ -9,11 +9,29 @@
     letter-spacing: -2px;
     text-transform: uppercase;
     color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
+
+.header-img-titulo {
+    width: 5em;
+}
+
+
 #main-header-buttons {
     display: inline;
     float: right;
 }
+
+    #main-header-buttons #button-administracion {
+        display: inline;
+        height: 45px;
+        width: 250px;
+        font-size: 1em;
+        border-radius: 120px;
+    }
+
 
 #main-header button {
     height: 45px;
@@ -24,9 +42,9 @@
     color: white;
 }
 
-#main-header button:active {
-    background-color: rgba(228, 226, 243, 0.6);
-}
+    #main-header button:active {
+        background-color: rgba(228, 226, 243, 0.6);
+    }
 
 #main-footer {
     background-color: rgb(67, 64, 82);

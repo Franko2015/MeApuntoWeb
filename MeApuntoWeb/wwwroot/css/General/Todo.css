@@ -105,12 +105,12 @@
 
 #crear-evento-button {
     background-color: white;
-    color: rgb(71, 70, 70);
+    color: rgb(126, 10, 117);
     padding: 0.7em;
     padding-bottom: 0.3em;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.1em;
-    border: 3px dashed rgb(71, 70, 70);
+    border: 3px solid rgb(126, 10, 117);
     border-radius: 7px;
 }
 

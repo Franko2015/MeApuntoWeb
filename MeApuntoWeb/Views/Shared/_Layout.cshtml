@@ -17,10 +17,21 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/css/Administración/nav.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
     <title>Me apunto - @ViewData["Title"]</title>
 </head>
     <body>
         <header id="main-header">
+<!--
+
+    LOGO DEBE TENER UN ANCORD A INDEX EN TODAS LAS VISTAS
+-->
+            <div class="header-img-titulo">
+                <a><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
+            </div>
             @if (User.Identity.IsAuthenticated)
         {
             @User.Identity.Name
