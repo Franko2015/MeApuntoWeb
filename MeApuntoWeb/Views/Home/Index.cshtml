@@ -3,12 +3,12 @@
     ViewData["Title"] = "INICIO";
     ViewData["Nav"] = "ME APUNTO";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    bool administracion = false;
+    bool Registrado = false;
     foreach(var claim in User.Claims)
     {
-        if(claim.Value == "1" || claim.Value == "2")
+        if(claim.Value == "1" || claim.Value == "2" || claim.Value == "3" || claim.Value == "4")
         {
-            administracion = true;
+            Registrado = true;
         }
     }
 }
@@ -28,13 +28,7 @@
                     <i class="fa fa-calendar"></i>&nbsp;
                     <span></span> <i class="fa fa-caret-down"></i>
                 </div>
-                
-                if (administracion == true)
-                {
-                    <!-- Integrar boton para ir a administración -->
-                   <a asp-action="Admin">Ir a administración</a>
-                }
-
+            
                 <div>
                     <button id="ver-eventos-button">Mis Eventos</button>
                 </div>

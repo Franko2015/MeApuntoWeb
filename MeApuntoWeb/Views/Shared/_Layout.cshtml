@@ -38,6 +38,8 @@
             @ViewData["Nav"] 
         }
         <div id="main-header-buttons">
+
+                <a asp-action="Index" asp-controller="Home"><button id="button-administracion">Administración</button></a>
                 <a asp-action="Login" asp-controller="Auth"><button><i class="material-icons">person</i></button></a>
             @if (User.Identity.IsAuthenticated)
             {

@@ -121,6 +121,11 @@
 #crear-evento-button:hover {
     background-color: #f2f0f2;
 }
+#carouselExampleControlsNoTouching {
+    background-color: #222;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
 
 .div-card {
     border: 1px solid lightgray;
