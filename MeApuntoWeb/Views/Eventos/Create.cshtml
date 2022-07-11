@@ -13,8 +13,19 @@
             
 }
 <div id="main-container-evento">
-      <form asp-action="Create" method="POST">
-        <input type="hidden" value="@User.Identity.Name" asp-for="UsuarioId" />
+      <form asp-action="Create" method="post">
+        @{
+            public static string getUserId(this ClaimsPrincipal user)
+            {
+                if (!user.Identity.IsAuthenticated)
+                    return null;
+
+                ClaimsPrincipal currentUser = user;
+                return currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            }
+        }
+        <input type="text" asp-for="UsuarioId" value="@UserId"/>
+
         <label for="txtTitulo">Titulo del Evento</label>
         <input name="txtTitulo" asp-for="Titulo" type="text" class="form-control" placeholder="Titulo" autocomplete="off">
         <label for="txtFecha">Fecha a realizarse</label>
@@ -76,9 +87,9 @@
                 <input type="number" class="form-control" asp-for="Numero" autocomplete="off">
         </div>
         </div>
-        <label>Categoria</label>
+        <label>Categoria:</label>
         <select asp-for="CategoriaId" class="form-select" asp-items="ViewBag.CategoriaId"></select>
-        <label for="txtDescripcion">Descripcion</label>
+        <label for="txtDescripcion">Descripcion: </label>
         <textarea asp-for="Descripcion" class="form-control" rows="3" autocomplete="off"></textarea>
         <input type="submit" class="btn btn-primary boton-form" value="Crear"/>
     </form>

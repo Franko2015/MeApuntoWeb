@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MeApuntoWeb.Migrations
 {
-    public partial class Segunda : Migration
+    public partial class Primera : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,32 +20,6 @@ namespace MeApuntoWeb.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tblCategoria", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "tblEstado",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    estado = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblEstado", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "tblLugar",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblLugar", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -102,10 +76,10 @@ namespace MeApuntoWeb.Migrations
                     Fecha_evento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Hora_inicio = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Hora_termino = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EstadoId = table.Column<int>(type: "int", nullable: false),
+                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoriaId = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    LugarId = table.Column<int>(type: "int", nullable: false)
+                    UsuarioId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,18 +88,6 @@ namespace MeApuntoWeb.Migrations
                         name: "FK_tblEvento_tblCategoria_CategoriaId",
                         column: x => x.CategoriaId,
                         principalTable: "tblCategoria",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_tblEvento_tblEstado_EstadoId",
-                        column: x => x.EstadoId,
-                        principalTable: "tblEstado",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_tblEvento_tblLugar_LugarId",
-                        column: x => x.LugarId,
-                        principalTable: "tblLugar",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -140,16 +102,6 @@ namespace MeApuntoWeb.Migrations
                 name: "IX_tblEvento_CategoriaId",
                 table: "tblEvento",
                 column: "CategoriaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tblEvento_EstadoId",
-                table: "tblEvento",
-                column: "EstadoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tblEvento_LugarId",
-                table: "tblEvento",
-                column: "LugarId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_tblEvento_UsuarioId",
@@ -169,12 +121,6 @@ namespace MeApuntoWeb.Migrations
 
             migrationBuilder.DropTable(
                 name: "tblCategoria");
-
-            migrationBuilder.DropTable(
-                name: "tblEstado");
-
-            migrationBuilder.DropTable(
-                name: "tblLugar");
 
             migrationBuilder.DropTable(
                 name: "tblUsuario");

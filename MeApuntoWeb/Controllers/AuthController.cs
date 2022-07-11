@@ -95,20 +95,18 @@ namespace MeApuntoWeb.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            //Login usuario Administrador o Soporte
-            if (lvm.Tipo.Equals("1") || lvm.Tipo.Equals("2"))
-            {
-                var userAdmin = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username && u.Tipo_usuarioId == Convert.ToInt32(lvm.Tipo));// admin/soporte
+            //Login usuario Administrador, Soporte o User
+                var userAdmin = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username);// admin/soporte/user
                 if (userAdmin == null)
                 {
-                    ModelState.AddModelError(String.Empty, "Nombre de usuario Administrador/Soporte incorrecto");
+                    ModelState.AddModelError(String.Empty, "Nombre de usuario incorrecto");
                     return View(lvm);
                 }
                 else
                 {
-                    if (!VerifyPasswordHash(lvm.Password, userAdmin.PasswordHash, userAdmin.PasswordSalt)) //admin
+                    if (!VerifyPasswordHash(lvm.Password, userAdmin.PasswordHash, userAdmin.PasswordSalt)) //admin/soporte/user
                     {
-                        ModelState.AddModelError(String.Empty, "Contraseña de usuario Administrador/Soporte incorrecta");
+                        ModelState.AddModelError(String.Empty, "Contraseña de usuario incorrecta");
                         return View(lvm);
                     }
                     else
@@ -126,48 +124,11 @@ namespace MeApuntoWeb.Controllers
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                             principal,
                             new AuthenticationProperties { IsPersistent = true });
-                        return RedirectToAction("Admin", "Home");
-
-                    }
-                }
-            }
-            else
-            {
-                var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username && lvm.Tipo.Equals("3")); // PRUEBA
-
-                //Login usuario normal sin privilegios
-                if (user == null)
-                {
-                    ModelState.AddModelError(String.Empty, "Nombre de usuario incorrecto");
-                    return View(lvm);
-                }
-                else
-                {
-                    if (!VerifyPasswordHash(lvm.Password, user.PasswordHash, user.PasswordSalt)) //user
-                    {
-                        ModelState.AddModelError(String.Empty, "Contraseña de usuario incorrecta");
-                        return View(lvm);
-                    }
-                    else
-                    {
-
-                        var claims = new List<Claim>{
-                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                        new Claim(ClaimTypes.Name, user.NombreUsuario),
-                        new Claim(ClaimTypes.Role , user.Tipo_usuarioId.ToString())
-                        };
-
-                        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        var principal = new ClaimsPrincipal(identity);
-
-                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                            principal,
-                            new AuthenticationProperties { IsPersistent = true });
                         return RedirectToAction("Index", "Home");
 
                     }
                 }
-            }
+                
         }
 
         public IActionResult Perfil()

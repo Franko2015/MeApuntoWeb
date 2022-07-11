@@ -158,7 +158,7 @@ namespace MeApuntoWeb.Controllers
 
         public async Task<IActionResult> Delete(int Id)
         {
-            var u = _context.tblLugar.FirstOrDefault(u => u.Id == Id);
+            var u = _context.tblUsuario.FirstOrDefault(u => u.Id == Id);
             if (u == null) return NotFound();
             _context.Remove(u);
             await _context.SaveChangesAsync();

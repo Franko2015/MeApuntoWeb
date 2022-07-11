@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeApuntoWeb.Migrations
 {
     [DbContext(typeof(EventosDbContext))]
-    [Migration("20220709004817_Segunda")]
-    partial class Segunda
+    [Migration("20220711065638_Primera")]
+    partial class Primera
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,22 +40,6 @@ namespace MeApuntoWeb.Migrations
                     b.ToTable("tblCategoria");
                 });
 
-            modelBuilder.Entity("MeApuntoWeb.Models.Estado", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("estado")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("tblEstado");
-                });
-
             modelBuilder.Entity("MeApuntoWeb.Models.Evento", b =>
                 {
                     b.Property<int>("Id")
@@ -70,8 +54,11 @@ namespace MeApuntoWeb.Migrations
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EstadoId")
-                        .HasColumnType("int");
+                    b.Property<string>("Direccion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Fecha_evento")
                         .HasColumnType("datetime2");
@@ -81,9 +68,6 @@ namespace MeApuntoWeb.Migrations
 
                     b.Property<DateTime>("Hora_termino")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("LugarId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Titulo")
                         .HasColumnType("nvarchar(max)");
@@ -95,29 +79,9 @@ namespace MeApuntoWeb.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.HasIndex("EstadoId");
-
-                    b.HasIndex("LugarId");
-
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("tblEvento");
-                });
-
-            modelBuilder.Entity("MeApuntoWeb.Models.Lugar", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Direccion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("tblLugar");
                 });
 
             modelBuilder.Entity("MeApuntoWeb.Models.Tipo_Usuario", b =>
@@ -195,18 +159,6 @@ namespace MeApuntoWeb.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MeApuntoWeb.Models.Estado", "Estado")
-                        .WithMany()
-                        .HasForeignKey("EstadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MeApuntoWeb.Models.Lugar", "Lugar")
-                        .WithMany()
-                        .HasForeignKey("LugarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MeApuntoWeb.Models.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("UsuarioId")
@@ -214,10 +166,6 @@ namespace MeApuntoWeb.Migrations
                         .IsRequired();
 
                     b.Navigation("Categoria");
-
-                    b.Navigation("Estado");
-
-                    b.Navigation("Lugar");
 
                     b.Navigation("Usuario");
                 });

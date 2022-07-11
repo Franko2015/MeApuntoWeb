@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MeApuntoWeb.Models;
-using Microsoft.AspNetCore.Authorization;
+using MeApuntoWeb.ViewModels;
+using System.Security.Claims;
 
 namespace MeApuntoWeb.Controllers
 {
@@ -22,11 +23,11 @@ namespace MeApuntoWeb.Controllers
         // GET: Eventos
         public async Task<IActionResult> Index()
         {
-            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Estado).Include(e => e.Lugar).Include(e => e.Usuario);
+            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario);
             return View(await eventosDbContext.ToListAsync());
         }
 
-        [Authorize(Roles = "1,2,3,4")]
+        // GET: Eventos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.tblEvento == null)
@@ -36,8 +37,6 @@ namespace MeApuntoWeb.Controllers
 
             var evento = await _context.tblEvento
                 .Include(e => e.Categoria)
-                .Include(e => e.Estado)
-                .Include(e => e.Lugar)
                 .Include(e => e.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (evento == null)
@@ -48,46 +47,44 @@ namespace MeApuntoWeb.Controllers
             return View(evento);
         }
 
-        [Authorize(Roles = "1,2,3,4")]
         public IActionResult Create()
         {
             ViewData["CategoriaId"] = new SelectList(_context.tblCategoria, "Id", "categoria");
-            ViewData["EstadoId"] = new SelectList(_context.tblEstado, "Id", "estado");
-            ViewData["LugarId"] = new SelectList(_context.tblLugar, "Id", "Direccion");
             ViewData["UsuarioId"] = new SelectList(_context.tblUsuario, "Id", "Nombres", "Apellidos");
             return View();
         }
 
+        // POST: Eventos/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "1,2,3,4")]
-        public async Task<IActionResult> Create(Evento evento)
+        public async Task<IActionResult> Create(EventoViewModel evento)
         {
             if (ModelState.IsValid)
             {
-                Evento evto = new Evento();
+                Evento e = new Evento();
 
-                evto.CategoriaId = evento.CategoriaId;
-                evto.EstadoId = 1;
-                evto.UsuarioId = evento.UsuarioId;
-                evto.LugarId = evento.LugarId;
-                evto.Fecha_evento = evento.Fecha_evento;
-                evto.Hora_inicio = evento.Hora_inicio;
-                evto.Titulo = evento.Titulo;
+                e.Titulo = evento.Titulo;
+                e.Estado = "Pendiente";
+                e.Descripcion = evento.Descripcion;
+                e.CategoriaId = evento.CategoriaId;
+                e.Fecha_evento = evento.Fecha_evento;
+                e.Hora_inicio = evento.Hora_inicio;
+                e.Hora_termino = evento.Hora_termino;
+                e.Direccion = evento.Comuna +" - "+ evento.Direccion +" #"+ evento.Numero;
+                e.UsuarioId = evento.UsuarioId;
 
-
-                _context.Add(evento);
+                _context.Add(e);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.tblCategoria, "Id", "Id", evento.CategoriaId);
-            ViewData["EstadoId"] = new SelectList(_context.tblEstado, "Id", "Id", evento.EstadoId);
-            ViewData["LugarId"] = new SelectList(_context.tblLugar, "Id", "Id", evento.LugarId);
-            ViewData["UsuarioId"] = new SelectList(_context.tblUsuario, "Id", "Id", evento.UsuarioId);
+            ViewData["CategoriaId"] = new SelectList(_context.tblCategoria, "Id", "categoria");
+            ViewData["UsuarioId"] = new SelectList(_context.tblUsuario, "Id", "Nombres", "Apellidos");
             return View(evento);
         }
 
-        [Authorize(Roles = "1,2,3,4")]
+        // GET: Eventos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.tblEvento == null)
@@ -101,11 +98,89 @@ namespace MeApuntoWeb.Controllers
                 return NotFound();
             }
             ViewData["CategoriaId"] = new SelectList(_context.tblCategoria, "Id", "Id", evento.CategoriaId);
-            ViewData["EstadoId"] = new SelectList(_context.tblEstado, "Id", "Id", evento.EstadoId);
-            ViewData["LugarId"] = new SelectList(_context.tblLugar, "Id", "Id", evento.LugarId);
             ViewData["UsuarioId"] = new SelectList(_context.tblUsuario, "Id", "Id", evento.UsuarioId);
             return View(evento);
         }
-        
+
+        // POST: Eventos/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Descripcion,Fecha_evento,Hora_inicio,Hora_termino,Direccion,Estado,CategoriaId,UsuarioId")] Evento evento)
+        {
+            if (id != evento.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(evento);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EventoExists(evento.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["CategoriaId"] = new SelectList(_context.tblCategoria, "Id", "Id", evento.CategoriaId);
+            ViewData["UsuarioId"] = new SelectList(_context.tblUsuario, "Id", "Id", evento.UsuarioId);
+            return View(evento);
+        }
+
+        // GET: Eventos/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context.tblEvento == null)
+            {
+                return NotFound();
+            }
+
+            var evento = await _context.tblEvento
+                .Include(e => e.Categoria)
+                .Include(e => e.Usuario)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (evento == null)
+            {
+                return NotFound();
+            }
+
+            return View(evento);
+        }
+
+        // POST: Eventos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            if (_context.tblEvento == null)
+            {
+                return Problem("Entity set 'EventosDbContext.tblEvento'  is null.");
+            }
+            var evento = await _context.tblEvento.FindAsync(id);
+            if (evento != null)
+            {
+                _context.tblEvento.Remove(evento);
+            }
+            
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool EventoExists(int id)
+        {
+          return (_context.tblEvento?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
     }
 }

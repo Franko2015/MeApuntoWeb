@@ -32,9 +32,9 @@
         @foreach (var item in Model)
         {
       <tr>
-        <td>@Html.DisplayNameFor(model => model.Titulo)</td>
-        <td>@Html.DisplayNameFor(model => model.Descripcion)</td>
-        <td>@Html.DisplayNameFor(model => model.Estado)</td>
+        <td>@item.Titulo</td>
+        <td>@item.Descripcion</td>
+        <td>@item.Estado</td>
         <td><a asp-action="Details" asp-route-LugarId="@item.Id"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a>
             <a asp-action="Delete" asp-route-LugarId="@item.Id"><i href="#" class="bi bi-trash2-fill btn"> Eliminar</i></a></td>
       </tr>
