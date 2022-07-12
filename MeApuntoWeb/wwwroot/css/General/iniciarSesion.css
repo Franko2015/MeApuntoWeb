@@ -8,11 +8,11 @@ body::before {
     height: inherit;
     background-image: inherit;
     background-size: cover;
-    filter: blur(8px);
+    /*filter: blur(8px);*/
 }
 
-body {
-    background-image: url("fondo-login.png");
+#body-iniciar-sesion {
+    background: linear-gradient(to right, rgb(238, 83, 0), rgb(145, 62, 197), rgb(19, 128, 108)); Important
     background-size: 0 0; /* Image should not be drawn here */
     width: 100%;
     /*height: 107%;*/
@@ -28,18 +28,19 @@ body {
     align-items: center;
 
 }
-#form-container{
+#form-container {
     width: 60vh;
     min-width: 60vh;
     background-color: white;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 30px;
     padding-bottom: 30px;
     border-radius: 0.5em;
-    -webkit-box-shadow: -10px 0px 13px -7px #222225, 10px 0px 13px -7px #222225, 0px -1px 15px 5px rgba(0,0,0,0); 
-    box-shadow: -10px 0px 13px -7px #222225, 10px 0px 13px -7px #222225, 0px -1px 15px 5px rgba(0,0,0,0); ;
+    -webkit-box-shadow: -10px 0px 13px -7px #3d3d42, 10px 0px 13px -7px #3d3d42, 0px -1px 15px 5px rgba(0,0,0,0);
+    box-shadow: -10px 0px 13px -7px #3d3d42, 10px 0px 13px -7px #3d3d42, 0px -1px 15px 5px rgba(0,0,0,0);
+    ;
 }
 #form-container form{
     display: flex;
