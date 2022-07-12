@@ -4,82 +4,131 @@
     ViewData["Nav"] = "Crear Evento";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet" href="~/css/Usuario/crearEvento.css" />
 <link rel="stylesheet" href="~/css/nav.css">
+<link rel="stylesheet" href="/css/Usuario/crearEvento.css" />
 
-<div id="main-container-evento">
-      <form asp-action="Create" method="post">
 
-        <input type="text" asp-for="UsuarioId" value=""/>
 
-        <label for="txtTitulo">Titulo del Evento</label>
-        <input name="txtTitulo" asp-for="Titulo" type="text" class="form-control" placeholder="Titulo" autocomplete="off">
-        <label for="txtFecha">Fecha a realizarse</label>
-        <input name="txtFecha" asp-for="Fecha_evento" type="date" class="form-control" placeholder="Fecha">
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <label for="txtHoraInicio">Hora de Inicio</label>
-            <input name="txtHoraInicio" asp-for="Hora_inicio" type="time" class="form-control">
-          </div>
+<div id="main-container-evento" class="d-flex aling-items-center">
+    <div id="form-container">
+        <form asp-action="Create" method="post">
 
-          <div class="col-15 col-md-6">
-            <label for="txtHoraTermino">Hora de Término</label>
-            <input name="txtHoraTermino" asp-for="Hora_termino" type="time" class="form-control">
-          </div>
-        </div>
-        <div class="mb-2 row">
-            <div class="col col-md-5">
-                <label for="Direccion">Comuna:</label>
-            <select class="form-select" asp-for="Comuna" class="form-select">
-                <option value="CAUQUENES">1. Cauquenes</option>
-                <option value="CHANCO">2. Chanco</option>
-                <option value="COLBÚN">3. Colbún</option>
-                <option value="CONSTITUCIÓN">4. Constitución</option>
-                <option value="CUREPTO">5. Curepto</option>
-                <option value="CURICÓ">6. Curicó</option>
-                <option value="EMPEDRADO">7. Empedrado</option>
-                <option value="HUALAÑÉ">8. Hualañé</option>
-                <option value="LICANTÉN">9. Licanten</option>
-                <option value="LINARES">10. Linares</option>
-                <option value="LONGAVÍ">11. Longaví</option>
-                <option value="MAULE">12. Maule</option>
-                <option value="MOLINA">13. Molina</option>
-                <option value="PARRAL">14. Parral</option>
-                <option value="PELARCO">15. Pelarco</option>
-                <option value="PELLUHUE">16. Pelluhue</option>
-                <option value="PENCAHUE">17. Pencahue</option>
-                <option value="RAUCO">18. Rauco</option>
-                <option value="RETIRO">19. Retiro</option>
-                <option value="RÍO CLARO">20. Río Claro</option>
-                <option value="ROMERAL">21. Romeral</option>
-                <option value="SAGRADA FAMILIA">22. Sagrada Familia</option>
-                <option value="SAN CLEMENTE">23. San Clemente</option>
-                <option value="SAN JAVIER">24. San Javier</option>
-                <option value="SAN RAFAEL">25. San Rafael</option>
-                <option value="TALCA">26. Talca</option>
-                <option value="TENO">27. Teno</option>
-                <option value="VICHUQUÉN">28. Vichuquén</option>
-                <option value="VILLA ALEGRE">29. Villa Alegre</option>
-                <option value="YERBAS BUENAS">30. Yerbas Buenas</option>
-            </select>
+            <input type="text" asp-for="UsuarioId" value="" hidden/>
+
+            <label for="txtTitulo">Título del Evento</label>
+            <input name="txtTitulo" asp-for="Titulo" type="text" class="form-control" placeholder="Titulo" autocomplete="off">
+            <br />
+            <div class="row">
+                <div class="col col-md-6">
+                    <label for="txtFecha">Fecha a realizarse</label>
+                    <input name="txtFecha" asp-for="Fecha_evento" type="date" class="form-control" placeholder="Fecha">
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="txtHoraInicio">Hora de Inicio</label>
+                    <input name="txtHoraInicio" asp-for="Hora_inicio" type="time" class="form-control">
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="txtHoraTermino">Hora de Término</label>
+                    <input name="txtHoraTermino" asp-for="Hora_termino" type="time" class="form-control">
+                </div>
             </div>
+            <br />
+            <div class="row">
+                <div class="col col-md-4">
+                    <label for="Direccion">Comuna:</label>
+                    <select class="form-select" asp-for="Comuna" class="form-select">
+                        <option value="CAUQUENES">1. Cauquenes</option>
+                        <option value="CHANCO">2. Chanco</option>
+                        <option value="COLBÚN">3. Colbún</option>
+                        <option value="CONSTITUCIÓN">4. Constitución</option>
+                        <option value="CUREPTO">5. Curepto</option>
+                        <option value="CURICÓ">6. Curicó</option>
+                        <option value="EMPEDRADO">7. Empedrado</option>
+                        <option value="HUALAÑÉ">8. Hualañé</option>
+                        <option value="LICANTÉN">9. Licanten</option>
+                        <option value="LINARES">10. Linares</option>
+                        <option value="LONGAVÍ">11. Longaví</option>
+                        <option value="MAULE">12. Maule</option>
+                        <option value="MOLINA">13. Molina</option>
+                        <option value="PARRAL">14. Parral</option>
+                        <option value="PELARCO">15. Pelarco</option>
+                        <option value="PELLUHUE">16. Pelluhue</option>
+                        <option value="PENCAHUE">17. Pencahue</option>
+                        <option value="RAUCO">18. Rauco</option>
+                        <option value="RETIRO">19. Retiro</option>
+                        <option value="RÍO CLARO">20. Río Claro</option>
+                        <option value="ROMERAL">21. Romeral</option>
+                        <option value="SAGRADA FAMILIA">22. Sagrada Familia</option>
+                        <option value="SAN CLEMENTE">23. San Clemente</option>
+                        <option value="SAN JAVIER">24. San Javier</option>
+                        <option value="SAN RAFAEL">25. San Rafael</option>
+                        <option value="TALCA">26. Talca</option>
+                        <option value="TENO">27. Teno</option>
+                        <option value="VICHUQUÉN">28. Vichuquén</option>
+                        <option value="VILLA ALEGRE">29. Villa Alegre</option>
+                        <option value="YERBAS BUENAS">30. Yerbas Buenas</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-10">
+                        <label for="Direccion">Dirección:</label>
+                        <input type="text" class="form-control" asp-for="Direccion" autocomplete="off">
+                </div>
             
-            <div class="col col-md-5">
-                <label for="Direccion">Calle:</label>
-                <input type="text" class="form-control" asp-for="Direccion" autocomplete="off">
+            
+                <div class="col col-md-2">
+                    <label for="Numero">Número:</label>
+                    <input type="number" class="form-control" asp-for="Numero" autocomplete="off">
+                </div>
             </div>
-        <div class="col col-md-2">
-                <label for="Numero">Numero:</label>
-                <input type="number" class="form-control" asp-for="Numero" autocomplete="off">
-        </div>
-        </div>
-        <label>Categoria:</label>
-        <select asp-for="CategoriaId" class="form-select" asp-items="ViewBag.CategoriaId"></select>
-        <label for="txtDescripcion">Descripcion: </label>
-        <textarea asp-for="Descripcion" class="form-control" rows="3" autocomplete="off"></textarea>
-        <input type="submit" class="btn btn-primary boton-form" value="Crear"/>
-    </form>
+            <br />
+            <div class="row">
+                <div class="col col-4">
+                    <label>Categoría:</label>
+                    <select asp-for="CategoriaId" class="form-select" asp-items="ViewBag.CategoriaId"></select>
+                </div>
+            </div>
+            <label for="txtDescripcion">Descripción: </label>
+            <textarea asp-for="Descripcion" class="form-control" rows="3" autocomplete="off"></textarea>
+            
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Este evento es solo para mayores de 18 años 
+                </label>
+             
+               </div>
+               <br />
+                <div class="d-flex justify-content-center">
+            <input type="submit" id="btn-crear-evento" class="btn btn-primary boton-form" value="Crear"/>
+            </div>
+
+        </form>
     </div>
+   @* <div id="image-container">
+         <!-- Upload  -->
+        <form id="file-upload-form" class="uploader">
+            <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
+            <label for="file-upload" id="file-drag">
+            <img id="file-image" src="#" alt="Preview" class="hidden">
+            <div id="start">
+                <i class="fa fa-download" aria-hidden="true"></i>
+                <div>Select a file or drag here</div>
+                <div id="notimage" class="hidden">Please select an image</div>
+                <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+            </div>
+              <div id="response" class="hidden">
+                <div id="messages"></div>
+                <progress class="progress" id="file-progress" value="0">
+                  <span>0</span>%
+                </progress>
+              </div>
+            </label>
+         </form>
+    </div>*@
+
+</div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
     crossorigin="anonymous"></script>
