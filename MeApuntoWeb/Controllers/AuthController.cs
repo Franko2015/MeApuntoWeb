@@ -96,15 +96,15 @@ namespace MeApuntoWeb.Controllers
             }
 
             //Login usuario Administrador, Soporte o User
-                var userAdmin = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username);// admin/soporte/user
-                if (userAdmin == null)
+                var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username);// admin/soporte/user
+                if (user == null)
                 {
                     ModelState.AddModelError(String.Empty, "Nombre de usuario incorrecto");
                     return View(lvm);
                 }
                 else
                 {
-                    if (!VerifyPasswordHash(lvm.Password, userAdmin.PasswordHash, userAdmin.PasswordSalt)) //admin/soporte/user
+                    if (!VerifyPasswordHash(lvm.Password, user.PasswordHash, user.PasswordSalt)) //admin/soporte/user
                     {
                         ModelState.AddModelError(String.Empty, "Contraseña de usuario incorrecta");
                         return View(lvm);
@@ -113,9 +113,9 @@ namespace MeApuntoWeb.Controllers
                     {
 
                         var claims = new List<Claim>{
-                        new Claim(ClaimTypes.NameIdentifier, userAdmin.Id.ToString()),
-                        new Claim(ClaimTypes.Name, userAdmin.NombreUsuario),
-                        new Claim(ClaimTypes.Role , userAdmin.Tipo_usuarioId.ToString())
+                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                        new Claim(ClaimTypes.Name, user.NombreUsuario),
+                        new Claim(ClaimTypes.Role , user.Tipo_usuarioId.ToString())
                         };
 
                         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

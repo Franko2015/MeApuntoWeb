@@ -83,16 +83,10 @@ CARRUSEL PAARA eveNTOS PREMIUM
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row">
-<<<<<<< HEAD
                                 <!-- CARD DE EVENTOS -->
                                 @foreach (var item in Model)
                                 {
-=======
                                 <!--Card-->
-                                @{
-                                    var item = Model.ToArray()[i];
-                                }
->>>>>>> b45ccdc159a80248e320a7cdacf761904f2dce44
                                 <div class="col-12 col-md-6">
                                     <div class="div-card2">
                                         <div class="div-card-image2">
@@ -114,13 +108,10 @@ CARRUSEL PAARA eveNTOS PREMIUM
                                         </div>
                                     </div>
                                 </div>
-<<<<<<< HEAD
 
                                 <!-- MODAL DE EVENTOS -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-=======
-                                <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 style="color:black; width: 100%; text-transform: uppercase;" class="modal-title "
@@ -172,12 +163,6 @@ CARRUSEL PAARA eveNTOS PREMIUM
                                     </div>
                                 </div>
                                 <!--Card-->
-                                @{
-                                    i++;
-                                }
-                                @if (i<Model.Count())
-                                {
-                                    item = Model.ToArray()[i];
                                 <div class="col-12 col-md-6">
                                     <div class="div-card2">
                                         <div class="div-card-image2">
@@ -200,7 +185,6 @@ CARRUSEL PAARA eveNTOS PREMIUM
                                     </div>
                                 </div>
                                 <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
->>>>>>> b45ccdc159a80248e320a7cdacf761904f2dce44
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">

@@ -26,6 +26,18 @@ namespace MeApuntoWeb.Controllers
             var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario);
             return View(await eventosDbContext.ToListAsync());
         }
+        // GET: Eventos
+        public async Task<IActionResult> Pendientes()
+        {
+            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario);
+            return View(await eventosDbContext.ToListAsync());
+        }
+        // GET: Eventos
+        public async Task<IActionResult> Activos()
+        {
+            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario);
+            return View(await eventosDbContext.ToListAsync());
+        }
 
         // GET: Eventos/Details/5
         public async Task<IActionResult> Details(int? id)
