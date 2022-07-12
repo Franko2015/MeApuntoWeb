@@ -8,14 +8,15 @@
 <link rel="stylesheet" href="~/css/nav.css">
 
 <div id="main-container-evento">
-      <form asp-action="Create" method="post">
 
-        <input type="text" asp-for="UsuarioId" value=""/>
+      <form asp-action="Create" method="post">
+          
+        <input type="text" asp-for="UsuarioId" value="@User.Identity.Name"/>
 
         <label for="txtTitulo">Titulo del Evento</label>
-        <input name="txtTitulo" asp-for="Titulo" type="text" class="form-control" placeholder="Titulo" autocomplete="off">
+        <input asp-for="Titulo" class="form-control" placeholder="Titulo" autocomplete="off">
         <label for="txtFecha">Fecha a realizarse</label>
-        <input name="txtFecha" asp-for="Fecha_evento" type="date" class="form-control" placeholder="Fecha">
+        <input asp-for="Fecha_evento" type="date" class="form-control" placeholder="Fecha" asp-format="">
         <div class="row">
           <div class="col-12 col-md-6">
             <label for="txtHoraInicio">Hora de Inicio</label>

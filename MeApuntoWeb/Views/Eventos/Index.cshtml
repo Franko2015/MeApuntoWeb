@@ -15,8 +15,9 @@
     <thead>
       <tr>
         <th scope="col">Titulo</th>
+        <th scope="col">Nombre de usuario</th>
         <th scope="col">Descripción</th>
-        <th scope="col">Estado</th>
+        <th scope="col">Categoría</th>
       </tr>
     </thead>
     <tbody>
@@ -26,8 +27,9 @@
         {
             <tr>
             <td>@item.Titulo</td>
+            <td>@item.Usuario.Nombres @item.Usuario.Apellidos</td>
             <td>@item.Descripcion</td>
-            <td>@item.Estado</td>
+            <td>@item.Categoria.categoria</td>
             </tr>
         }
         }
