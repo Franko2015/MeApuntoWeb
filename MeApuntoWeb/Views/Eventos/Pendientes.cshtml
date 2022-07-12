@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Evento>
+@{
+    ViewData["Title"] = "EVENTOS";
+    ViewData["Nav"] = "LISTADO DE EVENTOS PENDIENTES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/style2.css">
+<div class="container">
+
+<a asp-action="Create" class="btn btn-outline-primary col-2"><i class="bi bi-person-plus-fill"> Crear evento</i></a>
+<br>
+<br>
+  <table class="table table-hover table-bordered" style="color: black;">
+  
+    <thead>
+      <tr>
+        <th scope="col">Titulo</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            if (item.Estado.Equals("Bloqueado") || item.Estado.Equals("Aceptado"))
+            {
+          <tr>
+            <td>@item.Titulo</td>
+            <td>@item.Descripcion</td>
+            <td>@item.Estado</td>
+            <td><a asp-action="Details" asp-route-LugarId="@item.Id"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a>
+                <a asp-action="Delete" asp-route-LugarId="@item.Id"><i href="#" class="bi bi-trash2-fill btn"> Eliminar</i></a></td>
+          </tr>
+            }
+            }
+    </tbody>
+  </table>
+</div>
