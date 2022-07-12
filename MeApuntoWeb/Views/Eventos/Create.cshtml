@@ -6,25 +6,10 @@
 }
 <link rel="stylesheet" href="~/css/Usuario/crearEvento.css" />
 <link rel="stylesheet" href="~/css/nav.css">
-@if (User.Identity.IsAuthenticated)
-{
-    <a asp-action="Admin" asp-controller="Home">Volver</a>
-}else{
-            
-}
+
 <div id="main-container-evento">
       <form asp-action="Create" method="post">
-        @{
-            public static string getUserId(this ClaimsPrincipal user)
-            {
-                if (!user.Identity.IsAuthenticated)
-                    return null;
-
-                ClaimsPrincipal currentUser = user;
-                return currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-            }
-        }
-        <input type="text" asp-for="UsuarioId" value="@UserId"/>
+        <input type="text" asp-for="UsuarioId" value=""/>
 
         <label for="txtTitulo">Titulo del Evento</label>
         <input name="txtTitulo" asp-for="Titulo" type="text" class="form-control" placeholder="Titulo" autocomplete="off">

@@ -6,12 +6,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" href="~/css/General/datosRegistro.css" />
-@if (User.Identity.IsAuthenticated)
-{
-    <a asp-action="Admin" asp-controller="Home">Volver</a>
-}else{
-            
-}
         <div id="main-container-registro">
             <div id="form-container">
                 <form asp-action="CreateAdmin">

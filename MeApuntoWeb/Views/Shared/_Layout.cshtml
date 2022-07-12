@@ -21,26 +21,38 @@
     <link rel="icon" type="image/png" sizes="16x16" href="~/img/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="favicon_io/site.webmanifest">
     <title>Me apunto - @ViewData["Title"]</title>
+    
 </head>
     <body>
         <header id="main-header">
 <!--
 
     LOGO DEBE TENER UN ANCORD A INDEX EN TODAS LAS VISTAS
--->
-            <div class="header-img-titulo">
-                <a><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
-            </div>
-            @if (User.Identity.IsAuthenticated)
-        {
-            @User.Identity.Name
-        }else{
-            @ViewData["Nav"] 
+-->         @{
+                bool Administracion = false;
+                foreach(var claim in User.Claims)
+                {
+                    if(claim.Value == "1" || claim.Value == "2")
+                    {
+                        Administracion = true;
+                    }
+                }
+                @if (Administracion == true)
+            {
+                <div class="header-img-titulo">
+                    <a asp-action="Admin" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
+                </div>
+            }else{
+                <div class="header-img-titulo">
+                    <a asp-action="Index" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
+                </div>
+            }
+            @ViewData["Nav"]
         }
         <div id="main-header-buttons">
 
-                <a asp-action="Index" asp-controller="Home"><button id="button-administracion">Administración</button></a>
-                <a asp-action="Login" asp-controller="Auth"><button><i class="material-icons">person</i></button></a>
+            <a asp-action="Login" asp-controller="Auth"><button><i class="material-icons">person</i></button></a>
+
             @if (User.Identity.IsAuthenticated)
             {
                 <a asp-action="Logout" asp-controller="Auth"><button><i class="material-icons">notifications</i></button></a>
