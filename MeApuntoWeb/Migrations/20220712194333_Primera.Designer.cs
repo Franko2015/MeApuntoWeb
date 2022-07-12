@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeApuntoWeb.Migrations
 {
     [DbContext(typeof(EventosDbContext))]
-    [Migration("20220711065638_Primera")]
+    [Migration("20220712194333_Primera")]
     partial class Primera
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

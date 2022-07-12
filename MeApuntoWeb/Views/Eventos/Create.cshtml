@@ -8,14 +8,14 @@
 <link rel="stylesheet" href="/css/Usuario/crearEvento.css" />
 
 
-
 <div id="main-container-evento">
     <div id="form-container" style="margin-top:30px">
         <form asp-action="Create" method="post">
 
-            <input type="text" asp-for="UsuarioId" value="@User.Identity.Name" hidden/>
+            <input type="text" asp-for="UsuarioId" value="" hidden/>
 
             <label for="txtTitulo">Título del Evento</label>
+            
             <input name="txtTitulo" asp-for="Titulo" type="text" class="form-control" placeholder="Titulo" autocomplete="off">
             <br />
             <div class="row">

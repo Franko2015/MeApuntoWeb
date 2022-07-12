@@ -82,8 +82,8 @@ namespace MeApuntoWeb.Controllers
                 e.Descripcion = evento.Descripcion;
                 e.CategoriaId = evento.CategoriaId;
                 e.Fecha_evento = Convert.ToDateTime(evento.Fecha_evento.Date.ToString("dd/MM/yyyy"));
-                e.Hora_inicio = Convert.ToDateTime(evento.Hora_inicio.Date.ToString("H:mm"));
-                e.Hora_termino = Convert.ToDateTime(evento.Hora_termino.Date.ToString("H:mm"));
+                e.Hora_inicio = Convert.ToDateTime(evento.Hora_inicio.ToString("H:mm"));
+                e.Hora_termino = Convert.ToDateTime(evento.Hora_termino.ToString("H:mm"));
                 e.Direccion = evento.Comuna +" - "+ evento.Direccion +" #"+ evento.Numero;
                 e.UsuarioId = evento.UsuarioId;
 
