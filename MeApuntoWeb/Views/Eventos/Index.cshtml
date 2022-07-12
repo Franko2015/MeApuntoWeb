@@ -17,20 +17,21 @@
         <th scope="col">Titulo</th>
         <th scope="col">Descripción</th>
         <th scope="col">Estado</th>
-        <th scope="col">Accion</th>
       </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-      <tr>
-        <td>@item.Titulo</td>
-        <td>@item.Descripcion</td>
-        <td>@item.Estado</td>
-        <td><a asp-action="Details" asp-route-LugarId="@item.Id"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a>
-            <a asp-action="Delete" asp-route-LugarId="@item.Id"><i href="#" class="bi bi-trash2-fill btn"> Eliminar</i></a></td>
-      </tr>
+        if (item.Estado.Equals("Bloqueado") || item.Estado.Equals("Aceptado"))
+        {
+            <tr>
+            <td>@item.Titulo</td>
+            <td>@item.Descripcion</td>
+            <td>@item.Estado</td>
+            </tr>
         }
+        }
+     
     </tbody>
   </table>
 </div>

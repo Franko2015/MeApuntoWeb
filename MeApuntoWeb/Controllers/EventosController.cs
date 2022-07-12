@@ -69,9 +69,9 @@ namespace MeApuntoWeb.Controllers
                 e.Estado = "Pendiente";
                 e.Descripcion = evento.Descripcion;
                 e.CategoriaId = evento.CategoriaId;
-                e.Fecha_evento = evento.Fecha_evento;
-                e.Hora_inicio = evento.Hora_inicio;
-                e.Hora_termino = evento.Hora_termino;
+                e.Fecha_evento = Convert.ToDateTime(evento.Fecha_evento.ToString("dd/MM/yyyy"));
+                e.Hora_inicio = Convert.ToDateTime(evento.Hora_inicio.ToString("hh:mm"));
+                e.Hora_termino = Convert.ToDateTime(evento.Hora_termino.ToString("hh:mm"));
                 e.Direccion = evento.Comuna +" - "+ evento.Direccion +" #"+ evento.Numero;
                 e.UsuarioId = evento.UsuarioId;
 

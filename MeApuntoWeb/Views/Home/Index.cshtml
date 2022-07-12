@@ -84,7 +84,7 @@ CARRUSEL PAARA eveNTOS PREMIUM
                         
                         <div class="container">
                             <div class="row">
-                                <!--Card-->
+                                <!-- CARD DE EVENTOS -->
                                 @foreach (var item in Model)
                                 {
                                 <div class="col-12 col-md-6">
@@ -108,6 +108,8 @@ CARRUSEL PAARA eveNTOS PREMIUM
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- MODAL DE EVENTOS -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
@@ -133,15 +135,15 @@ CARRUSEL PAARA eveNTOS PREMIUM
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-4"><strong>Fecha</strong></div>
-                                                            <div class="col-8">@item.Fecha_evento</div>
+                                                            <div class="col-8">@item.Fecha_evento.ToString("dd/MM/yyyy")</div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-4"><strong>Hora inicio</strong></div>
-                                                            <div class="col-8">@item.Hora_inicio</div>
+                                                            <div class="col-8">@item.Hora_inicio.ToShortTimeString()</div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-4"><strong>Hora término</strong></div>
-                                                            <div class="col-8">@item.Hora_termino</div>
+                                                            <div class="col-8">@item.Hora_termino.ToShortTimeString()</div>
                                                         </div>
                                                     </div>
                                                 </div>
