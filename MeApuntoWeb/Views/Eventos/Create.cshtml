@@ -9,8 +9,8 @@
 
 
 
-<div id="main-container-evento" class="d-flex aling-items-center">
-    <div id="form-container">
+<div id="main-container-evento">
+    <div id="form-container" style="margin-top:30px">
         <form asp-action="Create" method="post">
 
             <input type="text" asp-for="UsuarioId" value="@User.Identity.Name" hidden/>
