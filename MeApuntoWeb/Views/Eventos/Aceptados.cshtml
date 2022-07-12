@@ -24,15 +24,15 @@
     <tbody>
         @foreach (var item in Model)
             {
-            if (item.Estado.Equals("Pendiente"))
+            if (item.Estado.Equals("Aceptado"))
             {
           <tr>
             <td>@item.Titulo</td>
             <td>@item.Usuario.Nombres @item.Usuario.Apellidos</td>
             <td>@item.Descripcion</td>
             <td>@item.Categoria.categoria</td>
-            <td><a asp-action="Aceptar" asp-route-Id="@item.Id"><i class="bi bi-file-earmark-text-fill btn">Aceptar</i></a>
-                <a asp-action="Bloquear" asp-route-Id="@item.Id"><i href="#" class="bi bi-trash2-fill btn">Bloquear</i></a></td>
+            <td><a asp-action="Details" asp-route-LugarId="@item.Id"><i class="bi bi-file-earmark-text-fill btn"> Ver Detalle</i></a>
+                <a asp-action="Delete" asp-route-LugarId="@item.Id"><i href="#" class="bi bi-trash2-fill btn"> Eliminar</i></a></td>
           </tr>
             }
             }
