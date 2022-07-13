@@ -39,15 +39,17 @@
                         Administracion = true;
                     }
                 }
-                @if (Administracion == true)
+                        @if (Administracion == true)
             {
-                <div class="header-img-titulo">
-                    <a asp-action="Admin" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
-                </div>
+                <!-- En caso de loguear como admin o soporte -->
+            <div class="header-img-titulo">
+                <a asp-action="Admin" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
+            </div>
             }else{
-                <div class="header-img-titulo">
-                    <a asp-action="Index" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
-                </div>
+                <!-- En caso contrario de loguear como admin o soporte -->
+            <div class="header-img-titulo">
+                <a asp-action="Index" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
+            </div>
             }
             <center><h3>@ViewData["Nav"]</h3></center>
         }
@@ -56,12 +58,24 @@
 
             @if (User.Identity.IsAuthenticated)
             {
+                <!-- Mensaje de bienvenida -->
+                <script type="text/javascript">
+                    window.onload = function () {
+                        alert("Hola! Bienvenido/a a Me Apunto @User.Identity.Name!");
+                    }
+                </script>
+
+                <!-- Botón para ingresar al perfil del usuario -->
                 <a asp-action="Perfil" asp-controller="Auth"><button><i class="material-icons">person</i></button></a>
 
+                <!-- Botón para revisar las notificaciones del usuario -->
                 <a><button><i class="material-icons">notifications</i></button></a>
 
-                <a asp-action="Login" asp-controller="Auth"><button><i class="material-symbols-outlined">logout</i></button></a>
+                <!-- Botón para cerrar la sesión -->
+                <a asp-action="Logout" asp-controller="Auth"><button><i class="material-symbols-outlined">logout</i></button></a>
+
             }else{
+                <!-- Botón para ingresar como un usuario con cuenta -->
                 <a asp-action="Login" asp-controller="Auth"><button><i class="material-icons">person</i></button></a>
 
             }

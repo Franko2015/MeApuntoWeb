@@ -161,12 +161,32 @@ namespace MeApuntoWeb.Controllers
         [Authorize(Roles = "1, 2")]
         public async Task<IActionResult> Bloquear(int Id)
         {
+            var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
+
             var bloquear = _context.tblEvento.FirstOrDefault(u => u.Id == Id);
             if (bloquear == null) return NotFound();
+
             bloquear.Estado = "Bloqueado";
-            _context.Update(bloquear);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+
+            if (bloquear.Estado.Equals("Bloqueado").ToString().Count() == 6)
+            {
+                user.EstadoCuenta = "BLOQUEADA";
+
+                _context.Update(user);
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                _context.Update(bloquear);
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
         }
+
     }
 }

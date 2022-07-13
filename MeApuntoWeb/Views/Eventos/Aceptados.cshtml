@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Evento>
+@{
+    ViewData["Title"] = "EVENTOS";
+    ViewData["Nav"] = "LISTADO DE EVENTOS PENDIENTES";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <br />
+<a asp-action="Create" class="btn btn-outline-primary col-2"><i class="bi bi-person-plus-fill"> Crear evento</i></a>
+<br>
+<br>
+<div class="table-responsive">
+  <table class="table table-responsive-sm" >
+  
+    <thead>
+      <tr>
+        <th scope="col">Titulo</th>
+        <th scope="col">Descripción</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+                @{
+                        for (var i = 0; i < Model.Count(); i++)
+                        {
+                            var item = Model.ToArray()[i];
+
+                            if (item.Estado.Equals("Bloqueado") || item.Estado.Equals("Aceptado"))
+                            {
+                                <tr>
+                                    <td>@item.Titulo</td>
+                                    <td>@item.Descripcion</td>
+                                    <td><button style="border:none" type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="bi bi-file-earmark-text-fill btn">Ver detalles</i></button></td>
+                                </tr>
+                            }
+                            <!--Modal-->
+                            <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">@item.Titulo</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-4"><strong>Creador</strong></div>
+                                                <div class="col-8">@item.Usuario.Nombres @item.Usuario.Apellidos</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"><strong>Categoría</strong></div>
+                                                <div class="col-8">@item.Categoria.categoria</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"><strong>Dirección</strong></div>
+                                                <div class="col-8">@item.Direccion</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"><strong>Fecha</strong></div>
+                                                <div class="col-8">@item.Fecha_evento.ToString("dd/MM/yyyy")</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"><strong>Hora inicio</strong></div>
+                                                <div class="col-8">@item.Hora_inicio.ToString("H:mm")</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"><strong>Hora término</strong></div>
+                                                <div class="col-8">@item.Hora_termino.ToString("H:mm")</div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            i++;
+                        }
+                }
+    </tbody>
+  </table>
+  </div>
+</div>
