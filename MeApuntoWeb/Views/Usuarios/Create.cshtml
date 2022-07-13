@@ -1,14 +1,31 @@
 ﻿@model UsuarioRegistroViewModel
-
 @{
-    ViewData["Title"] = "CREAR USUARIO";
-    ViewData["Nav"] = "NUEVO USUARIO";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Registrar usuario";
+    Layout = null;
 }
-<link rel="stylesheet" href="~/css/General/datosRegistro.css" />
-        <div id="main-container-registro">
-            <div id="form-container">
-                <form asp-action="Create" method="post">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/General/iniciarSesion.css" />
+    <title>@ViewData["Title"]</title>
+</head>
+
+<body id="body-iniciar-sesion" style="height: 100vh;" class="d-flex align-items-center">
+    <br />
+    <div id="main-container-sesion">
+        <div id="form-container">
+            <form asp-action="Create" method="post">
+
+                <!-- Botón para volver -->
+                <div class="d-flex justify-content-center" style="width: 100%;">
+                    <a asp-action="Index" asp-controller="Home"><img src="~/img/Logo.png" style="width: 150px; margin-bottom: 30px;"/></a>
+                </div>
+
+                <center><h3>Nuevo usuario</h3></center>
 
                     <input asp-for="Nombres" type="text" class="form-control" placeholder="Nombre" autocomplete="off" required>
 
@@ -22,14 +39,17 @@
 
                     <input asp-for="Organizacion" type="text" class="form-control" placeholder="Organización" autocomplete="off">
 
-                    <input asp-for="Telefono" type="number" class="form-control" placeholder="Telefono: 12345678" autocomplete="off" required maxlength="8">
+                    <input asp-for="Telefono" type="number" max="99999999" class="form-control" placeholder="Telefono: 12345678" autocomplete="off" required>
 
                     <input asp-for="NombreUsuario" type="text" class="form-control" placeholder="Nombre de Usuario" autocomplete="off" required>
 
-                    <input asp-for="Contrasena" pattern="" type="password" class="form-control" placeholder="Contraseña" autocomplete="off" required>
+                    <input asp-for="Contrasena" type="password" class="form-control" placeholder="Contraseña" autocomplete="off" required>
 
                     <input type="submit" class="btn btn-outline-primary" value="Registrar usuario">
                 </form>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            </div>
         </div>
+    </div>
+</body>
+
+</html>

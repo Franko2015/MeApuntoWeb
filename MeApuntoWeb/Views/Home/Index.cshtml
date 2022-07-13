@@ -22,7 +22,7 @@
                 </div>
             
                 <div>
-                    <button id="ver-eventos-button">Mis Eventos</button>
+                    <a asp-action="MisEventos" asp-controller="Eventos"><button id="ver-eventos-button">Mis Eventos</button></a>
                 </div>
 
                 <div>
@@ -72,10 +72,8 @@
                       </div>
                 </div>
             </div>
- <!--
-ESTO ES NUEVO:
-CARRUSEL PAARA eveNTOS PREMIUM
- -->
+
+         <!-- CARRUSEL PAARA EVENTOS PREMIUM -->
  <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
                 <div class="carousel-inner px-5">
                     @for(var i = 0 ; i < Model.Count() ; i++)
@@ -85,29 +83,32 @@ CARRUSEL PAARA eveNTOS PREMIUM
                             <div class="row">
                                  @{
                                     var item = Model.ToArray()[i];
-                                   }
-                                <!--Card-->
-                                <div class="col-12 col-md-6">
-                                    <div class="div-card2">
-                                        <div class="div-card-image2">
-                                            <div class="img-logo-card">
-                                                <img src="~/img/logo/P.png" width="40px"/>
+                                    if (item.Estado == "Aceptado")
+                                    {
+                                    <!--Card-->
+                                    <div class="col-12 col-md-6">
+                                        <div class="div-card2">
+                                            <div class="div-card-image2">
+                                                <div class="img-logo-card">
+                                                    <img src="~/img/logo/P.png" width="40px"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="div-card-content2">
-                                            <div class="div-card-titulo2">
-                                                <h3>@item.Titulo</h3>
-                                            </div>
-                                            <div class="div-card-description2">@item.Titulo
-                                            </div>
-                                            <div class="div-card-buttons2">
-                                                <button type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#modal-@item.Id">+info</button>
-                                                <button>MeApunto</button>
+                                            <div class="div-card-content2">
+                                                <div class="div-card-titulo2">
+                                                    <h3>@item.Titulo</h3>
+                                                </div>
+                                                <div class="div-card-description2">@item.Titulo
+                                                </div>
+                                                <div class="div-card-buttons2">
+                                                    <button type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#modal-@item.Id">+info</button>
+                                                    <button>MeApunto</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    }
+                                }
 
                                 <!-- MODAL DE EVENTOS -->
                                 <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -115,7 +116,7 @@ CARRUSEL PAARA eveNTOS PREMIUM
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 style="color:black; width: 100%; text-transform: uppercase;" class="modal-title "
-                                                    id="exampleModalLabel">Titulo</h4>
+                                                    id="exampleModalLabel">@item.Titulo</h4>
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>

@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "INCIO" ;
-    ViewData["Nav"] = "ADMINISTRACIÓN";
+    ViewData["Nav"] = User.Identity.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
     bool soporte = false;
     foreach(var claim in User.Claims)

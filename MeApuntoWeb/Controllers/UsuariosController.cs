@@ -73,7 +73,7 @@ namespace MeApuntoWeb.Controllers
                 User.Edad = Uvm.Edad.ToUpper();
                 User.Telefono = Uvm.Telefono;
                 User.NombreUsuario = Uvm.NombreUsuario;
-                User.Organizacion = "Me Apunto";
+                User.Organizacion = "ME APUNTO";
                 User.EstadoCuenta = "ACTIVA";
                 User.Tipo_usuarioId = 1;
                 CreatePasswordHash(Uvm.Contrasena, out byte[] passwordHash, out byte[] passworSalt);
@@ -106,7 +106,7 @@ namespace MeApuntoWeb.Controllers
                 User.Edad = Uvm.Edad.ToUpper();
                 User.Telefono = Uvm.Telefono;
                 User.NombreUsuario = Uvm.NombreUsuario;
-                User.Organizacion = "Me Apunto";
+                User.Organizacion = "ME APUNTO";
                 User.EstadoCuenta = "ACTIVA";
                 User.Tipo_usuarioId = 2;
                 CreatePasswordHash(Uvm.Contrasena, out byte[] passwordHash, out byte[] passworSalt);
@@ -139,7 +139,7 @@ namespace MeApuntoWeb.Controllers
                 User.Edad = Uvm.Edad;
                 User.Telefono = "9 "+Uvm.Telefono;
                 User.NombreUsuario = Uvm.NombreUsuario;
-                User.Organizacion = Uvm.Organizacion.ToUpper();
+                User.Organizacion = Uvm.Organizacion;
                 User.EstadoCuenta = "ACTIVA";
                 User.Tipo_usuarioId = 3;
                 CreatePasswordHash(Uvm.Contrasena, out byte[] passwordHash, out byte[] passworSalt);
@@ -147,7 +147,7 @@ namespace MeApuntoWeb.Controllers
                 User.PasswordSalt = passworSalt;
                 _context.Add(User);
                 await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Home"); ;
+                return RedirectToAction("Index", "Home"); ;
 
             }
             else

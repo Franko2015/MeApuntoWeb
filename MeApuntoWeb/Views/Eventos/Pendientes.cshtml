@@ -38,4 +38,78 @@
             }
     </tbody>
   </table>
+
+
+
+  <!--Prueba-->
+  <table class="table table-hover table-bordered" style="color: black;">
+  
+    <thead>
+      <tr>
+        <th scope="col">Titulo</th>
+        <th scope="col">Descripción</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        @{
+        for (var i = 0; i < Model.Count(); i++)
+        {
+            var items = Model.ToArray()[i];
+
+            if (items.Estado.Equals("Pendiente"))
+            {
+                <tr>
+                    <td>@items.Titulo</td>
+                    <td>@items.Descripcion</td>
+                    <td><button style="border:none" type="button" data-bs-toggle="modal" data-bs-target="#modal-@items.Id"><i class="bi bi-file-earmark-text-fill btn">Ver detalles</i></button>
+                    <a asp-action="Aceptar" asp-route-Id="@items.Id"><i class="bi bi-file-earmark-text-fill btn">Aceptar</i></a>
+                        <a asp-action="Bloquear" asp-route-Id="@items.Id"><i href="#" class="bi bi-trash2-fill btn">Bloquear</i></a></td>
+                </tr>
+            }
+            <!--Modal-->
+            <div class="modal fade" id="modal-@items.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">@items.Titulo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-4"><strong>Creador</strong></div>
+                                <div class="col-8">@items.Usuario.Nombres @items.Usuario.Apellidos</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"><strong>Categoría</strong></div>
+                                <div class="col-8">@items.Categoria.categoria</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"><strong>Dirección</strong></div>
+                                <div class="col-8">@items.Direccion</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"><strong>Fecha</strong></div>
+                                <div class="col-8">@items.Fecha_evento.ToString("dd/MM/yyyy")</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"><strong>Hora inicio</strong></div>
+                                <div class="col-8">@items.Hora_inicio.ToString("H:mm")</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"><strong>Hora término</strong></div>
+                                <div class="col-8">@items.Hora_termino.ToString("H:mm")</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            i++;
+        }
+    }
+    </tbody>
+  </table>
 </div>

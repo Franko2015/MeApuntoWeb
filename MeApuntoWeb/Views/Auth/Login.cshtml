@@ -19,17 +19,20 @@
     <div id="main-container-sesion">
         <div id="form-container">
             <form asp-action="Login">
+
+                <!-- Botón para volver -->
                 <div class="d-flex justify-content-center" style="width: 100%;">
-                    <a href="index.html"><img src="~/img/Logo.png" style="width: 150px; margin-bottom: 30px;"/></a>
+                    <a asp-action="Index" asp-controller="Home"><img src="~/img/Logo.png" style="width: 150px; margin-bottom: 30px;"/></a>
                 </div>
+
                 <h1 style="text-transform: uppercase; color: #444;">Iniciar sesión</h1>
                 <br>
                 <label>Usuario</label>
-                <input asp-for="Username" type="text" class="form-control" placeholder="ingrese nombre de usuario" autocomplete="off">
+                <input asp-for="Username" type="text" class="form-control" placeholder="Ingrese nombre de usuario" autocomplete="off">
                 <span asp-validation-for="Username" class="text-danger"></span>
                 <br>
                 <label>Contraseña</label>
-                <input asp-for="Password" type="password" class="form-control" placeholder="ingrese su contraseña" autocomplete="off">
+                <input asp-for="Password" type="password" class="form-control" placeholder="Ingrese su contraseña" autocomplete="off">
                 <span asp-validation-for="Password" class="text-danger"></span>
                 <br>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>

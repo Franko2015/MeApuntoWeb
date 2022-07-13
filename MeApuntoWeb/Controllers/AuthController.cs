@@ -96,39 +96,38 @@ namespace MeApuntoWeb.Controllers
             }
 
             //Login usuario Administrador, Soporte o User
-                var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username);// admin/soporte/user
-                if (user == null)
+            var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == lvm.Username);// admin/soporte/user
+            if (user == null)
+            {
+                ModelState.AddModelError(String.Empty, "Nombre de usuario incorrecto");
+                return View(lvm);
+            }
+            else
+            {
+                if (!VerifyPasswordHash(lvm.Password, user.PasswordHash, user.PasswordSalt)) //admin/soporte/user
                 {
-                    ModelState.AddModelError(String.Empty, "Nombre de usuario incorrecto");
+                    ModelState.AddModelError(String.Empty, "Contraseña de usuario incorrecta");
                     return View(lvm);
                 }
                 else
                 {
-                    if (!VerifyPasswordHash(lvm.Password, user.PasswordHash, user.PasswordSalt)) //admin/soporte/user
-                    {
-                        ModelState.AddModelError(String.Empty, "Contraseña de usuario incorrecta");
-                        return View(lvm);
-                    }
-                    else
-                    {
 
-                        var claims = new List<Claim>{
-                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                        new Claim(ClaimTypes.Name, user.NombreUsuario),
-                        new Claim(ClaimTypes.Role , user.Tipo_usuarioId.ToString())
-                        };
+                    var claims = new List<Claim>{
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Name, user.NombreUsuario),
+                    new Claim(ClaimTypes.Role , user.Tipo_usuarioId.ToString())
+                    };
 
-                        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        var principal = new ClaimsPrincipal(identity);
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(identity);
 
-                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                            principal,
-                            new AuthenticationProperties { IsPersistent = true });
-                        return RedirectToAction("Index", "Home");
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                        principal,
+                        new AuthenticationProperties { IsPersistent = true });
+                    return RedirectToAction("Index", "Home");
 
-                    }
                 }
-                
+            }        
         }
 
         public IActionResult Perfil()
@@ -136,6 +135,7 @@ namespace MeApuntoWeb.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
+
                 PerfilViewModel pvm = new PerfilViewModel()
                 {
                     Usuario = user

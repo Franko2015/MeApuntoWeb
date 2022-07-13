@@ -58,9 +58,6 @@ namespace MeApuntoWeb.Controllers
                 await _context.SaveChangesAsync();
             }
 
-
-
-
             //Carga de eventos
             var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario);
 

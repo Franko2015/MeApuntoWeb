@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MeApuntoWeb.Models;
 using MeApuntoWeb.ViewModels;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MeApuntoWeb.Controllers
 {
@@ -39,6 +40,34 @@ namespace MeApuntoWeb.Controllers
             return View(await eventosDbContext.ToListAsync());
         }
 
+        public IActionResult MisEventos()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
+                var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario);
+
+                return View(eventosDbContext.ToListAsync());
+
+                Evento evento = new Evento()
+                {
+                    Usuario = user
+                };
+
+                return View(evento);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+
+
+
+
+
+
+
         // GET: Eventos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -66,15 +95,15 @@ namespace MeApuntoWeb.Controllers
             return View();
         }
 
-        // POST: Eventos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(EventoViewModel evento)
         {
             if (ModelState.IsValid)
             {
+                var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
+
                 Evento e = new Evento();
 
                 e.Titulo = evento.Titulo;
@@ -82,10 +111,10 @@ namespace MeApuntoWeb.Controllers
                 e.Descripcion = evento.Descripcion;
                 e.CategoriaId = evento.CategoriaId;
                 e.Fecha_evento = Convert.ToDateTime(evento.Fecha_evento.Date.ToString("dd/MM/yyyy"));
-                e.Hora_inicio = Convert.ToDateTime(evento.Hora_inicio.ToString("H:mm"));
-                e.Hora_termino = Convert.ToDateTime(evento.Hora_termino.ToString("H:mm"));
+                e.Hora_inicio = Convert.ToDateTime(evento.Hora_inicio.ToString("HH:mm"));
+                e.Hora_termino = Convert.ToDateTime(evento.Hora_termino.ToString("HH:mm"));
                 e.Direccion = evento.Comuna +" - "+ evento.Direccion +" #"+ evento.Numero;
-                e.UsuarioId = evento.UsuarioId;
+                e.UsuarioId = user.Id;
 
                 _context.Add(e);
                 await _context.SaveChangesAsync();
@@ -96,6 +125,7 @@ namespace MeApuntoWeb.Controllers
             return View(evento);
         }
 
+        [Authorize(Roles = "3, 4")]
         // GET: Eventos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -114,55 +144,29 @@ namespace MeApuntoWeb.Controllers
             return View(evento);
         }
 
-        public IActionResult Aceptar(int Id)
+
+
+        [Authorize(Roles = "1, 2")]
+        public async Task<IActionResult> Aceptar(int Id)
         {
-            var L = _context.tblEvento.FirstOrDefault(e => e.Id == Id);
-            if (L == null) return RedirectToAction(nameof(Index));
-
-            return View(L);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Aceptar(Evento evento)
-        {
-            if (evento == null) return RedirectToAction(nameof(Index));
-
-            evento.Estado = "Aceptado";
-            
-            _context.Update(evento);
+            var bloquear = _context.tblEvento.FirstOrDefault(u => u.Id == Id);
+            if (bloquear == null) return NotFound();
+            bloquear.Estado = "Aceptado";
+            _context.Update(bloquear);
             await _context.SaveChangesAsync();
-
             return RedirectToAction(nameof(Index));
         }
 
 
-
-        //Bloquear evento
-        public IActionResult Bloquear(int Id)
+        [Authorize(Roles = "1, 2")]
+        public async Task<IActionResult> Bloquear(int Id)
         {
-            var L = _context.tblEvento.FirstOrDefault(e => e.Id == Id);
-            if (L == null) return RedirectToAction(nameof(Index));
-
-            return View(L);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Bloquear(Evento evento)
-        {
-            if (evento == null) return RedirectToAction(nameof(Index));
-
-            evento.Estado = "Bloqueado";
-
-            _context.Update(evento);
+            var bloquear = _context.tblEvento.FirstOrDefault(u => u.Id == Id);
+            if (bloquear == null) return NotFound();
+            bloquear.Estado = "Bloqueado";
+            _context.Update(bloquear);
             await _context.SaveChangesAsync();
-
             return RedirectToAction(nameof(Index));
-        }
-
-
-        private bool EventoExists(int id)
-        {
-          return (_context.tblEvento?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
