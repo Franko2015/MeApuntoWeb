@@ -58,13 +58,6 @@
 
             @if (User.Identity.IsAuthenticated)
             {
-                <!-- Mensaje de bienvenida -->
-                <script type="text/javascript">
-                    window.onload = function () {
-                        alert("Hola! Bienvenido/a a Me Apunto @User.Identity.Name!");
-                    }
-                </script>
-
                 <!-- Botón para ingresar al perfil del usuario -->
                 <a asp-action="Perfil" asp-controller="Auth"><button><i class="material-icons">person</i></button></a>
 

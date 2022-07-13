@@ -39,7 +39,6 @@ body::before {
     border-radius: 0.5em;
     -webkit-box-shadow: -10px 0px 13px -7px #3d3d42, 10px 0px 13px -7px #3d3d42, 0px -1px 15px 5px rgba(0,0,0,0);
     box-shadow: -10px 0px 13px -7px #3d3d42, 10px 0px 13px -7px #3d3d42, 0px -1px 15px 5px rgba(0,0,0,0);
-    ;
 }
 #form-container form{
     display: flex;
@@ -82,4 +81,19 @@ button.btn.btn-outline-primary:hover {
     background-color: rgb(116, 0, 107);
     border-color: rgb(116, 0, 107);
     color: #eee;
+}
+#container {
+    text-align: left;
+    height: 100%;
+    width: 150vh;
+    min-width: 60vh;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 0.5em;
+    -webkit-box-shadow: -10px 0px 13px -7px #3d3d42, 10px 0px 13px -7px #3d3d42, 0px -1px 15px 5px rgba(0,0,0,0);
+    box-shadow: -10px 0px 13px -7px #3d3d42, 10px 0px 13px -7px #3d3d42, 0px -1px 15px 5px rgba(0,0,0,0);
 }

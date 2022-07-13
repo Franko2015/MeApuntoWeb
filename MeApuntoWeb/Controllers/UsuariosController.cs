@@ -50,6 +50,11 @@ namespace MeApuntoWeb.Controllers
             return View();
         }
 
+        public IActionResult TerminosYCondiciones()
+        {
+            return View();
+        }
+
         [Authorize(Roles = "2")]
         public IActionResult CreateSoporte()
         {

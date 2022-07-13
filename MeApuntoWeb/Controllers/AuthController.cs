@@ -124,8 +124,11 @@ namespace MeApuntoWeb.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                         principal,
                         new AuthenticationProperties { IsPersistent = true });
-                    return RedirectToAction("Index", "Home");
 
+
+
+                    TempData["Mensaje"] = "Hola! Bienvenido/a a Me Apunto @User.Identity.Name!";
+                    return RedirectToAction("Index", "Home");
                 }
             }        
         }

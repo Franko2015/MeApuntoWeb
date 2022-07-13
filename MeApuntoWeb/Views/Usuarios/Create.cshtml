@@ -25,8 +25,6 @@
                     <a asp-action="Index" asp-controller="Home"><img src="~/img/Logo.png" style="width: 150px; margin-bottom: 30px;"/></a>
                 </div>
 
-                <center><h3>Nuevo usuario</h3></center>
-
                     <input asp-for="Nombres" type="text" class="form-control" placeholder="Nombre" autocomplete="off" required>
 
                     <input asp-for="Apellidos" type="text" class="form-control" placeholder="Apellido" autocomplete="off" required>
@@ -44,7 +42,7 @@
                     <input asp-for="NombreUsuario" type="text" class="form-control" placeholder="Nombre de Usuario" autocomplete="off" required>
 
                     <input asp-for="Contrasena" type="password" class="form-control" placeholder="Contraseña" autocomplete="off" required>
-
+                    <a asp-action="TerminosYCondiciones">Terminos y condiciones</a>
                     <input type="submit" class="btn btn-outline-primary" value="Registrar usuario">
                 </form>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
