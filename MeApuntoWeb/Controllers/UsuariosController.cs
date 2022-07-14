@@ -161,14 +161,108 @@ namespace MeApuntoWeb.Controllers
             }
         }
 
-        public async Task<IActionResult> Delete(int Id)
+        [Authorize(Roles = "1, 2")]
+        public async Task<IActionResult> BloquearUsuario(int Id)
         {
-            var u = _context.tblUsuario.FirstOrDefault(u => u.Id == Id);
-            if (u == null) return NotFound();
-            _context.Remove(u);
+
+            var bloquear = _context.tblUsuario.FirstOrDefault(u => u.Id == Id);
+
+            if (bloquear == null) return NotFound();
+
+            bloquear.EstadoCuenta = "BLOQUEADA";
+
+            _context.Update(bloquear);
+
             await _context.SaveChangesAsync();
-            return RedirectToAction("Admin","Home");
+            return RedirectToAction(nameof(Index));
+
         }
+
+        [Authorize(Roles = "1, 2")]
+        public async Task<IActionResult> BloquearAdmin(int Id)
+        {
+
+            var bloquear = _context.tblUsuario.FirstOrDefault(u => u.Id == Id);
+
+            if (bloquear == null) return NotFound();
+
+            bloquear.EstadoCuenta = "BLOQUEADA";
+
+            _context.Update(bloquear);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        [Authorize(Roles = "2")]
+        public async Task<IActionResult> BloquearSoporte(int Id)
+        {
+
+            var bloquear = _context.tblUsuario.FirstOrDefault(u => u.Id == Id);
+
+            if (bloquear == null) return NotFound();
+
+            bloquear.EstadoCuenta = "BLOQUEADA";
+
+            _context.Update(bloquear);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        [Authorize(Roles = "1, 2")]
+        public async Task<IActionResult> ActivarUsuario(int Id)
+        {
+
+            var bloquear = _context.tblUsuario.FirstOrDefault(u => u.Id == Id);
+
+            if (bloquear == null) return NotFound();
+
+            bloquear.EstadoCuenta = "ACTIVA";
+
+            _context.Update(bloquear);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        [Authorize(Roles = "1, 2")]
+        public async Task<IActionResult> ActivarAdmin(int Id)
+        {
+
+            var activar = _context.tblUsuario.FirstOrDefault(u => u.Id == Id);
+
+            if (activar == null) return NotFound();
+
+            activar.EstadoCuenta = "ACTIVA";
+
+            _context.Update(activar);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        [Authorize(Roles = "2")]
+        public async Task<IActionResult> ActivarSoporte(int Id)
+        {
+
+            var activar = _context.tblUsuario.FirstOrDefault(u => u.Id == Id);
+
+            if (activar == null) return NotFound();
+
+            activar.EstadoCuenta = "ACTIVA";
+
+            _context.Update(activar);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+        }
+
 
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
