@@ -54,23 +54,48 @@
             <center><h3>@ViewData["Nav"]</h3></center>
         }
         <div id="main-header-buttons">
-                
+            
+             
 
             @if (User.Identity.IsAuthenticated)
             {
+                //<button id="button-administracion">Administración</button>
                 <!-- Botón para ingresar al perfil del usuario -->
-                <a asp-action="Perfil" asp-controller="Auth"><button><i class="material-icons">person</i></button></a>
+               
 
-                <!-- Botón para revisar las notificaciones del usuario -->
-                <a><button><i class="material-icons">notifications</i></button></a>
+                <div class="dropdown-center">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="material-icons">person</i> 
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenu2">
+                        <li><a asp-action="Perfil" asp-controller="Auth"><button class="dropdown-item" type="button">Perfil</button></a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item boton" type="button"><strong>PREMIUM</strong></button></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a  class="dropdown-item" asp-action="Logout" asp-controller="Auth"><button class="dropdown-item boton-cerrar-sesión" type="button"><i class='material-icons'>logout</i>Cerrar sesión</button></a></li>
+                    </ul>
+                </div>
+
+            <!-- Botón para revisar las notificaciones del usuario -->
+                <div class="dropdown-center">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="material-icons">notifications</i> 
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenu2">
+                    <li><button class="dropdown-item" type="button"></button></li>
+                    <li><hr class="dropdown-divider"></li>
+                </ul>
+            </div>                
+                //<a><button><i class="material-icons">notifications</i></button></a>
 
                 <!-- Botón para cerrar la sesión -->
                 <a asp-action="Logout" asp-controller="Auth"><button><i class="material-symbols-outlined">logout</i></button></a>
 
             }else{
                 <!-- Botón para ingresar como un usuario con cuenta -->
-                <a asp-action="Login" asp-controller="Auth"><button><i class="material-icons">person</i></button></a>
-
+                 <a id="boton-nav" asp-action="Login" asp-controller="Auth"><i class="material-icons">person</i></a>
             }
         </div>
     </header>
