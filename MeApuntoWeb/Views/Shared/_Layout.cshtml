@@ -69,10 +69,11 @@
                     <i class="material-icons">person</i> 
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenu2">
-                        <li><a asp-action="Perfil" asp-controller="Auth"><button class="dropdown-item" type="button">Perfil</button></a></li>
+                        <li><a class="dropdown-item" asp-action="Perfil" asp-controller="Auth"><button class="dropdown-item" type="button">Perfil</button></a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><button class="dropdown-item boton" type="button"><strong>PREMIUM</strong></button></li>
                         <li><hr class="dropdown-divider"></li>
+             <!-- Botón para cerrar la sesión -->
                         <li><a  class="dropdown-item" asp-action="Logout" asp-controller="Auth"><button class="dropdown-item boton-cerrar-sesión" type="button"><i class='material-icons'>logout</i>Cerrar sesión</button></a></li>
                     </ul>
                 </div>
@@ -90,8 +91,8 @@
             </div>                
                 //<a><button><i class="material-icons">notifications</i></button></a>
 
-                <!-- Botón para cerrar la sesión -->
-                <a asp-action="Logout" asp-controller="Auth"><button><i class="material-symbols-outlined">logout</i></button></a>
+            
+                
 
             }else{
                 <!-- Botón para ingresar como un usuario con cuenta -->
