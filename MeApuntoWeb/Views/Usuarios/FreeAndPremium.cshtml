@@ -32,11 +32,11 @@
                                     <td>@item.Rut</td>
                                     @if (item.EstadoCuenta.Equals("ACTIVA"))
                                     {
-                                        <td style="color:green">@item.Estado</td>
+                                        <td style="color:green">@item.EstadoCuenta</td>
                                     }
                                     else
                                     {
-                                        <td style="color:red">@item.Estado</td>
+                                        <td style="color:red">@item.EstadoCuenta</td>
                                     }
                                     <td><button style="border:none" type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="bi bi-file-earmark-text-fill btn">Ver detalles</i></button></td>
                                 </tr>
