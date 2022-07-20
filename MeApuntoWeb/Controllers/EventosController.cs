@@ -64,10 +64,6 @@ namespace MeApuntoWeb.Controllers
 
 
 
-
-
-
-
         // GET: Eventos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -95,7 +91,7 @@ namespace MeApuntoWeb.Controllers
             return View();
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(EventoViewModel evento)
@@ -113,7 +109,7 @@ namespace MeApuntoWeb.Controllers
                 e.Fecha_evento = Convert.ToDateTime(evento.Fecha_evento.Date.ToString("dd/MM/yyyy"));
                 e.Hora_inicio = Convert.ToDateTime(evento.Hora_inicio.ToString("HH:mm"));
                 e.Hora_termino = Convert.ToDateTime(evento.Hora_termino.ToString("HH:mm"));
-                e.Direccion = evento.Comuna +" - "+ evento.Direccion +" #"+ evento.Numero;
+                e.Direccion = evento.Comuna + " - " + evento.Direccion + " #" + evento.Numero;
                 e.UsuarioId = user.Id;
 
                 _context.Add(e);
