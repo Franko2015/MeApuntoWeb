@@ -24,7 +24,7 @@ namespace MeApuntoWeb.Controllers
         // GET: Eventos
         public async Task<IActionResult> Index()
         {
-            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario);
+            var eventosDbContext = (_context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario)).Where(evento => evento.Estado == "Aceptado");
             return View(await eventosDbContext.ToListAsync());
         }
         // GET: Eventos
