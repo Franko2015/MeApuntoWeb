@@ -20,64 +20,63 @@
       </tr>
     </thead>
     <tbody>
-                @{
-                        for (var i = 0; i < Model.Count(); i++)
-                        {
-                            var item = Model.ToArray()[i];
+        @{
+            for (var i = 0; i < Model.Count(); i++)
+            {
+                var item = Model.ToArray()[i];
 
-                            if (item.Estado.Equals("Bloqueado") || item.Estado.Equals("Aceptado"))
-                            {
-                                <tr>
-                                    <td>@item.Titulo</td>
-                                    <td>@item.Descripcion</td>
-                                    <td><button style="border:none; background-color: transparent;" type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="bi bi-file-earmark-text-fill btn">Ver detalles</i></button>
-                        <a asp-action="Aceptar" asp-route-Id="@item.Id"><i class="bi bi-file-earmark-text-fill btn">Aceptar</i></a>
+                if (item.Estado == "Pendiente")
+                {
+                    <tr>
+                        <td>@item.Titulo</td>
+                        <td>@item.Descripcion</td>
+                        <td><button style="border:none; background-color: transparent;" type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="bi bi-file-earmark-text-fill btn">Ver detalles</i></button>
+                            <a asp-action="Aceptar" asp-route-Id="@item.Id"><i class="bi bi-file-earmark-text-fill btn">Aceptar</i></a>
                             <a asp-action="Bloquear" asp-route-Id="@item.Id"><i href="#" class="bi bi-trash2-fill btn">Bloquear</i></a></td>
-                                </tr>
-                            }
-                            <!--Modal-->
-                            <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">@item.Titulo</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-4"><strong>Creador</strong></div>
-                                                <div class="col-8">@item.Usuario.Nombres @item.Usuario.Apellidos</div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-4"><strong>Categoría</strong></div>
-                                                <div class="col-8">@item.Categoria.categoria</div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-4"><strong>Dirección</strong></div>
-                                                <div class="col-8">@item.Direccion</div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-4"><strong>Fecha</strong></div>
-                                                <div class="col-8">@item.Fecha_evento.ToString("dd/MM/yyyy")</div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-4"><strong>Hora inicio</strong></div>
-                                                <div class="col-8">@item.Hora_inicio.ToString("H:mm")</div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-4"><strong>Hora término</strong></div>
-                                                <div class="col-8">@item.Hora_termino.ToString("H:mm")</div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                        </div>
-                                    </div>
+                    </tr>
+                <!--Modal-->
+                <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">@item.Titulo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-4"><strong>Creador</strong></div>
+                                    <div class="col-8">@item.Usuario.Nombres @item.Usuario.Apellidos</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><strong>Categoría</strong></div>
+                                    <div class="col-8">@item.Categoria.categoria</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><strong>Dirección</strong></div>
+                                    <div class="col-8">@item.Direccion</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><strong>Fecha</strong></div>
+                                    <div class="col-8">@item.Fecha_evento.ToString("dd/MM/yyyy")</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><strong>Hora inicio</strong></div>
+                                    <div class="col-8">@item.Hora_inicio.ToString("H:mm")</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><strong>Hora término</strong></div>
+                                    <div class="col-8">@item.Hora_termino.ToString("H:mm")</div>
                                 </div>
                             </div>
-                            i++;
-                        }
-                }
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
     </tbody>
   </table>
   </div>

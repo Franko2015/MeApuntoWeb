@@ -59,7 +59,7 @@ namespace MeApuntoWeb.Controllers
             }
 
             //Carga de eventos
-            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario);
+            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario).Where(evento => evento.Estado == "Aceptado").OrderBy(evento => evento.Fecha_evento);
 
             return View(await eventosDbContext.ToListAsync());
         }

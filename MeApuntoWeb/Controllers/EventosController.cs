@@ -24,39 +24,27 @@ namespace MeApuntoWeb.Controllers
         // GET: Eventos
         public async Task<IActionResult> Index()
         {
-            var eventosDbContext = (_context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario)).Where(evento => evento.Estado == "Aceptado");
+            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario);
             return View(await eventosDbContext.ToListAsync());
         }
         // GET: Eventos
         public async Task<IActionResult> Pendientes()
         {
-            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario);
+            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario).Where(evento => evento.Estado == "Pendiente");
             return View(await eventosDbContext.ToListAsync());
         }
         // GET: Eventos
         public async Task<IActionResult> Aceptados()
         {
-            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario);
+            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario).Where(evento => evento.Estado == "Aceptado");
             return View(await eventosDbContext.ToListAsync());
         }
 
-        public IActionResult MisEventos()
+        public async Task<IActionResult> MisEventos()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
-                var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario);
+            var eventosDbContext = _context.tblEvento.Where(u => u.Usuario.NombreUsuario == User.Identity.Name).Include(e => e.Categoria).Include(e => e.Usuario).OrderByDescending(a => a.Estado);
+            return View(await eventosDbContext.ToListAsync());
 
-                return View(eventosDbContext.ToListAsync());
-
-                Evento evento = new Evento()
-                {
-                    Usuario = user
-                };
-
-                return View(evento);
-            }
-            return RedirectToAction("Index", "Home");
         }
 
 
@@ -114,7 +102,7 @@ namespace MeApuntoWeb.Controllers
 
                 _context.Add(e);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Pendientes));
+                return RedirectToAction("Index","Home");
             }
             ViewData["CategoriaId"] = new SelectList(_context.tblCategoria, "Id", "categoria");
             ViewData["UsuarioId"] = new SelectList(_context.tblUsuario, "Id", "Nombres", "Apellidos");
@@ -142,7 +130,6 @@ namespace MeApuntoWeb.Controllers
 
 
 
-        [Authorize(Roles = "1, 2")]
         public async Task<IActionResult> Aceptar(int Id)
         {
             var bloquear = _context.tblEvento.FirstOrDefault(u => u.Id == Id);
@@ -150,7 +137,7 @@ namespace MeApuntoWeb.Controllers
             bloquear.Estado = "Aceptado";
             _context.Update(bloquear);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Admin","Home");
         }
 
 
@@ -165,7 +152,7 @@ namespace MeApuntoWeb.Controllers
             bloquear.Estado = "Bloqueado";
 
 
-            if (bloquear.Estado.Equals("Bloqueado").ToString().Count() == 6)
+            if (bloquear.Estado.Equals("Bloqueado").ToString().Count() > 5)
             {
                 user.EstadoCuenta = "BLOQUEADA";
 
@@ -173,14 +160,14 @@ namespace MeApuntoWeb.Controllers
 
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Admin","Home");
             }
             else
             {
                 _context.Update(bloquear);
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Admin","Home");
             }
         }
 
