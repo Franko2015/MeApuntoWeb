@@ -7,10 +7,10 @@ using System.Security.Cryptography;
 
 namespace MeApuntoWeb.Controllers
 {
-    
+
     public class HomeController : Controller
     {
-        
+
         private readonly EventosDbContext _context;
         public HomeController(EventosDbContext context)
         {
@@ -24,7 +24,7 @@ namespace MeApuntoWeb.Controllers
             //Administrador
             var tipo = _context.tblTipo.ToList();
             Tipo_Usuario? TA = new Tipo_Usuario();
-            if (tipo.Count<1)
+            if (tipo.Count < 1)
             {
                 TA.Tipo = "Administrador";
                 _context.Add(TA);
@@ -61,7 +61,14 @@ namespace MeApuntoWeb.Controllers
             //Carga de eventos
             var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario).Where(evento => evento.Estado == "Aceptado").OrderBy(evento => evento.Fecha_evento);
             return View(await eventosDbContext.ToListAsync());
+         
+
         }
+
+
+
+
+
 
         public async Task<IActionResult> OrderCategoria()
         {

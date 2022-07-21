@@ -63,6 +63,8 @@
     flex-direction: column;
     align-items: center;
     box-shadow: -2px 0px 2px 1px lightgrey;
+    position: fixed;
+   
 }
 
 #main-menu-wrapper {
