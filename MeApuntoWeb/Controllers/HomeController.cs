@@ -63,6 +63,25 @@ namespace MeApuntoWeb.Controllers
             return View(await eventosDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> OrderCategoria()
+        {
+            var eventosDbContext = _context.tblEvento.OrderBy(e => e.Categoria.categoria);
+
+            await eventosDbContext.ToListAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> OrderLugar()
+        {
+            var eventosDbContext = _context.tblEvento.OrderBy(e => e.Direccion);
+
+            await eventosDbContext.ToListAsync();
+
+            return RedirectToAction(nameof(Index));
+
+        }
+
         [Authorize(Roles = "1, 2")]
         public IActionResult Admin()
         {
