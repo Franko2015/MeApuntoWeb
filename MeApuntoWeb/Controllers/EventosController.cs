@@ -49,9 +49,6 @@ namespace MeApuntoWeb.Controllers
 
 
 
-
-
-
         // GET: Eventos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -94,19 +91,13 @@ namespace MeApuntoWeb.Controllers
                 e.Estado = "Pendiente";
                 e.Descripcion = evento.Descripcion;
                 e.CategoriaId = evento.CategoriaId;
-                /*e.FechaCreacion = DateTime.Now.ToString("dd/MM/yyyy");*/
+                e.FechaCreacion = DateTime.Now;
                 e.Fecha_evento = Convert.ToDateTime(evento.Fecha_evento.Date.ToString("dd/MM/yyyy"));
                 e.Hora_inicio = Convert.ToDateTime(evento.Hora_inicio.ToString("HH:mm"));
                 e.Hora_termino = Convert.ToDateTime(evento.Hora_termino.ToString("HH:mm"));
                 e.Direccion = evento.Comuna + " - " + evento.Direccion + " #" + evento.Numero;
                 e.UsuarioId = user.Id;
 
-                Notificaciones n = new Notificaciones();
-                n.Notificacion = "Su evento ha sido creado";
-                n.UsuarioReceptor = user.Id;
-                n.UsuarioRemitente = 1;
-
-                _context.Add(n);
                 _context.Add(e);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index","Home");
@@ -115,6 +106,7 @@ namespace MeApuntoWeb.Controllers
             ViewData["UsuarioId"] = new SelectList(_context.tblUsuario, "Id", "Nombres", "Apellidos");
             return View(RedirectToAction(nameof(MisEventos)));
         }
+
 
         [Authorize(Roles = "3, 4")]
         // GET: Eventos/Edit/5
@@ -145,11 +137,6 @@ namespace MeApuntoWeb.Controllers
             _context.Update(bloquear);
             await _context.SaveChangesAsync();
             return RedirectToAction("Admin","Home");
-
-            Notificaciones n = new Notificaciones();
-            n.Notificacion = "Su evento ha sido aceptado";
-            n.UsuarioReceptor = bloquear.UsuarioId;
-            n.UsuarioRemitente = 1;
         }
 
 
@@ -170,23 +157,12 @@ namespace MeApuntoWeb.Controllers
 
                 _context.Update(user);
 
-                Notificaciones n = new Notificaciones();
-                n.Notificacion = "Su evento ha sido bloqueado";
-                n.UsuarioReceptor = bloquear.UsuarioId;
-                n.UsuarioRemitente = user.Id;
-
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Admin","Home");
             }
             else
             {
-
-                Notificaciones n = new Notificaciones();
-                n.Notificacion = "Su evento ha sido creado";
-                n.UsuarioReceptor = bloquear.UsuarioId;
-                n.UsuarioRemitente = user.Id;
-
                 _context.Update(bloquear);
 
                 await _context.SaveChangesAsync();

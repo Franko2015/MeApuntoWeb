@@ -89,6 +89,24 @@ namespace MeApuntoWeb.Controllers
 
         }
 
+        public IActionResult MeApunto(int id)
+        {
+
+            var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
+            AsistenciaEventos ae = new AsistenciaEventos();
+
+            ae.EventoId = id;
+            ae.UsuarioId = user.Id;
+            _context.Add(ae);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+
+        }
+
+
+
+
+
         [Authorize(Roles = "1, 2")]
         public IActionResult Admin()
         {
