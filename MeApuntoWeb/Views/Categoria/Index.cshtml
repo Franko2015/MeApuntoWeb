@@ -20,10 +20,11 @@
           {
             <tr>
             <td>@item.categoria</td>
-            <td></td>
+            <td><a asp-action="Delete" asp-route-Id="@item.Id"><i class="bi bi-trash2-fill btn">Borrar</i></a>
+                <a asp-action="Edit" asp-route-Id="@item.Id"><i class="bi bi-edit2-fill btn">Editar</i></a>
+            </td>
             </tr>
           }
-      
     </tbody>
   </table>
 </div>

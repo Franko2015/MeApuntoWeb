@@ -263,7 +263,21 @@ namespace MeApuntoWeb.Controllers
 
         }
 
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null || _context.tblUsuario == null)
+            {
+                return NotFound();
+            }
 
+            var evento = await _context.tblUsuario.FindAsync(id);
+            if (evento == null)
+            {
+                return NotFound();
+            }
+            ViewData["TipoId"] = new SelectList(_context.tblUsuario, "Id", "Tipo", evento.Tipo_Usuario);
+            return View(evento);
+        }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {

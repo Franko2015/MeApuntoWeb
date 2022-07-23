@@ -11,6 +11,7 @@ namespace MeApuntoWeb.ViewModels
         public string Telefono { get; set; }
         public string Correo { get; set; }
         public string Edad { get; set; }
+        public DateTime FechaNacimiento { get; set; }
         public string Organizacion { get; set; }
         public string EstadoCuenta { get; set; }
         public string NombreUsuario { get; set; }

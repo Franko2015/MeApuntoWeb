@@ -22,6 +22,27 @@ namespace MeApuntoWeb.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("MeApuntoWeb.Models.AsistenciaEventos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("EventoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventoId");
+
+                    b.ToTable("tblAsistenciaEventos");
+                });
+
             modelBuilder.Entity("MeApuntoWeb.Models.Categoria", b =>
                 {
                     b.Property<int>("Id")
@@ -58,6 +79,9 @@ namespace MeApuntoWeb.Migrations
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("Fecha_evento")
                         .HasColumnType("datetime2");
 
@@ -80,6 +104,34 @@ namespace MeApuntoWeb.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("tblEvento");
+                });
+
+            modelBuilder.Entity("MeApuntoWeb.Models.Notificaciones", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Notificacion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioReceptor")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioRemitente")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("tblNotificaciones");
                 });
 
             modelBuilder.Entity("MeApuntoWeb.Models.Tipo_Usuario", b =>
@@ -118,6 +170,9 @@ namespace MeApuntoWeb.Migrations
                     b.Property<string>("EstadoCuenta")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("FechaNacimiento")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("NombreUsuario")
                         .HasColumnType("nvarchar(max)");
 
@@ -149,6 +204,17 @@ namespace MeApuntoWeb.Migrations
                     b.ToTable("tblUsuario");
                 });
 
+            modelBuilder.Entity("MeApuntoWeb.Models.AsistenciaEventos", b =>
+                {
+                    b.HasOne("MeApuntoWeb.Models.Evento", "Evento")
+                        .WithMany()
+                        .HasForeignKey("EventoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Evento");
+                });
+
             modelBuilder.Entity("MeApuntoWeb.Models.Evento", b =>
                 {
                     b.HasOne("MeApuntoWeb.Models.Categoria", "Categoria")
@@ -164,6 +230,17 @@ namespace MeApuntoWeb.Migrations
                         .IsRequired();
 
                     b.Navigation("Categoria");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("MeApuntoWeb.Models.Notificaciones", b =>
+                {
+                    b.HasOne("MeApuntoWeb.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Usuario");
                 });

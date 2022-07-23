@@ -118,17 +118,19 @@ namespace MeApuntoWeb.Controllers
                     new Claim(ClaimTypes.Role , user.Tipo_usuarioId.ToString())
                     };
 
-                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var principal = new ClaimsPrincipal(identity);
+                    
+                    if (user.EstadoCuenta == "ACTIVA")
+                    {
+                        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new ClaimsPrincipal(identity);
 
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                        principal,
-                        new AuthenticationProperties { IsPersistent = true });
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                            principal,
+                            new AuthenticationProperties { IsPersistent = true });
 
-
-
-                    TempData["Mensaje"] = "Hola! Bienvenido/a a Me Apunto @User.Identity.Name!";
-                    return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Home");
+                    }
+                    return RedirectToAction(nameof(LogOut));
                 }
             }        
         }

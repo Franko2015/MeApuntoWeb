@@ -23,7 +23,7 @@
             @Model.Usuario.Telefono
         </li>
         <li class="list-group-item">
-            <a class="btn btn-outline-danger d-block">Cambiar Password</a>
+            <a asp-action="Edit" asp-route-id="@Model.Usuario.Id" asp-controller="Usuarios" class="btn btn-outline-danger d-block">Editar Perfil</a>
         </li>
         </ul>
     </div>

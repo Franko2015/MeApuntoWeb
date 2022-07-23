@@ -46,6 +46,7 @@ namespace MeApuntoWeb.Migrations
                     Rut = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Telefono = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Edad = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Organizacion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EstadoCuenta = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -73,6 +74,7 @@ namespace MeApuntoWeb.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Titulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Fecha_evento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Hora_inicio = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Hora_termino = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -98,6 +100,53 @@ namespace MeApuntoWeb.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "tblNotificaciones",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Notificacion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UsuarioReceptor = table.Column<int>(type: "int", nullable: false),
+                    UsuarioRemitente = table.Column<int>(type: "int", nullable: false),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tblNotificaciones", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_tblNotificaciones_tblUsuario_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "tblUsuario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tblAsistenciaEventos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    EventoId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tblAsistenciaEventos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_tblAsistenciaEventos_tblEvento_EventoId",
+                        column: x => x.EventoId,
+                        principalTable: "tblEvento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tblAsistenciaEventos_EventoId",
+                table: "tblAsistenciaEventos",
+                column: "EventoId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_tblEvento_CategoriaId",
                 table: "tblEvento",
@@ -109,6 +158,11 @@ namespace MeApuntoWeb.Migrations
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_tblNotificaciones_UsuarioId",
+                table: "tblNotificaciones",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_tblUsuario_Tipo_usuarioId",
                 table: "tblUsuario",
                 column: "Tipo_usuarioId");
@@ -116,6 +170,12 @@ namespace MeApuntoWeb.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "tblAsistenciaEventos");
+
+            migrationBuilder.DropTable(
+                name: "tblNotificaciones");
+
             migrationBuilder.DropTable(
                 name: "tblEvento");
 

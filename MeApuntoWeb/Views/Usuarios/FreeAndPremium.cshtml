@@ -38,7 +38,9 @@
                                     {
                                         <td style="color:red">@item.EstadoCuenta</td>
                                     }
-                                    <td><button style="border:none" type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="bi bi-file-earmark-text-fill btn">Ver detalles</i></button></td>
+                                    <td><button style="border:none" type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="bi bi-file-earmark-text-fill btn">Ver detalles</i></button>
+                                        <a asp-action="Notificaciones"><button style="border:none" type="button"><i class="bi bi-file-earmark-text-fill btn">Enviar notificación</i></button></a>
+                                    </td>
                                 </tr>
                             <!--Modal-->
                             <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
