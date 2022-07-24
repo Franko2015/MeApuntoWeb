@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeApuntoWeb.Migrations
 {
     [DbContext(typeof(EventosDbContext))]
-    [Migration("20220723005100_Primera")]
-    partial class Primera
+    [Migration("20220724155708_Ultima")]
+    partial class Ultima
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -120,9 +120,6 @@ namespace MeApuntoWeb.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UsuarioReceptor")
                         .HasColumnType("int");
 
@@ -130,8 +127,6 @@ namespace MeApuntoWeb.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
 
                     b.ToTable("tblNotificaciones");
                 });
@@ -232,17 +227,6 @@ namespace MeApuntoWeb.Migrations
                         .IsRequired();
 
                     b.Navigation("Categoria");
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("MeApuntoWeb.Models.Notificaciones", b =>
-                {
-                    b.HasOne("MeApuntoWeb.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Usuario");
                 });

@@ -17,25 +17,29 @@ namespace MeApuntoWeb.Controllers
         {
             _context = context;
         }
+        [Authorize(Roles = "1,2")]
         public IActionResult FreeAndPremium()
         {
             var users = _context.tblUsuario
                 .Include(e => e.Tipo_Usuario)
-                .ToList();
+                .ToList().Where(e => e.Tipo_usuarioId == 3 || e.Tipo_usuarioId == 4);
             return View(users);
         }
+        [Authorize(Roles = "1,2")]
         public IActionResult Administración()
         {
             var users = _context.tblUsuario
                 .Include(e => e.Tipo_Usuario)
-                .ToList();
+                .ToList().Where(e => e.Tipo_usuarioId == 1);
             return View(users);
         }
+
+        [Authorize(Roles = "2")]
         public IActionResult Soporte()
         {
             var users = _context.tblUsuario
                 .Include(e => e.Tipo_Usuario)
-                .ToList();
+                .ToList().Where(e => e.Tipo_usuarioId == 2);
             return View(users);
         }
 
@@ -46,11 +50,6 @@ namespace MeApuntoWeb.Controllers
 
         [Authorize(Roles = "1,2")]
         public IActionResult CreateAdmin()
-        {
-            return View();
-        }
-
-        public IActionResult TerminosYCondiciones()
         {
             return View();
         }
@@ -94,6 +93,7 @@ namespace MeApuntoWeb.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
+
         [HttpPost]
         [Authorize(Roles = "2")]
         public async Task<IActionResult> CreateSoporte(UsuarioRegistroViewModel Uvm)
@@ -129,7 +129,6 @@ namespace MeApuntoWeb.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "1,2,3,4")]
         public async Task<IActionResult> Create(UsuarioRegistroViewModel Uvm)
         {
             var usuario = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == Uvm.NombreUsuario || u.Rut == Uvm.Rut || (u.Nombres == Uvm.Nombres && u.Apellidos == Uvm.Apellidos));
@@ -164,7 +163,6 @@ namespace MeApuntoWeb.Controllers
         [Authorize(Roles = "1, 2")]
         public async Task<IActionResult> BloquearUsuario(int Id)
         {
-
             var bloquear = _context.tblUsuario.FirstOrDefault(u => u.Id == Id);
 
             if (bloquear == null) return NotFound();
@@ -174,7 +172,7 @@ namespace MeApuntoWeb.Controllers
             _context.Update(bloquear);
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(FreeAndPremium));
 
         }
 
@@ -191,7 +189,7 @@ namespace MeApuntoWeb.Controllers
             _context.Update(bloquear);
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Administración));
 
         }
 
@@ -208,7 +206,7 @@ namespace MeApuntoWeb.Controllers
             _context.Update(bloquear);
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Soporte));
 
         }
 
@@ -225,11 +223,11 @@ namespace MeApuntoWeb.Controllers
             _context.Update(bloquear);
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(FreeAndPremium));
 
         }
 
-        [Authorize(Roles = "1, 2")]
+        [Authorize(Roles = "2")]
         public async Task<IActionResult> ActivarAdmin(int Id)
         {
 
@@ -242,7 +240,7 @@ namespace MeApuntoWeb.Controllers
             _context.Update(activar);
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Administración));
 
         }
 
@@ -259,7 +257,7 @@ namespace MeApuntoWeb.Controllers
             _context.Update(activar);
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Soporte));
 
         }
 

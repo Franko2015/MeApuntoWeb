@@ -5,66 +5,87 @@
     ViewData["Nav"] = "USUARIOS";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/css/estilos.css" rel="stylesheet"/>
 <div class="container">
-
-<a asp-action="CreateSoporte" class="btn btn-primary col-2 "><i class="bi bi-person-plus-fill"> &nbsp; Crear usuario</i></a>
+    <br />
+<a asp-action="CreateSoporte" class="btn btn-outline-primary col-2"><i class="bi bi-person-plus-fill">Añadir usuario de soporte</i></a>
 <br>
 <br>
-  <table class="table">
+<div class="table-responsive">
+  <table class="table table-responsive-sm" >
+  
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombres)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rut)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Correo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefono)
-            </th>
-            <td></td>
-        </tr>
+      <tr>
+        <th scope="col">Nombre de usuario</th>
+        <th scope="col">Rut</th>
+        <th scope="col">Estado</th>
+        <th scope="col"></th>
+      </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-                    if (item.Tipo_usuarioId == 2)
-                    {
-            <tr>
-                <td>
-                    @item.Id
-                </td>
-                <td>
-                    @item.Nombres @item.Apellidos
-                </td>
-                <td>
-                    @item.Rut
-                </td>
-                <td>
-                    @item.NombreUsuario
-                </td>
-                <td>
-                    @item.Correo
-                </td>
-                <td>
-                    @item.Telefono
-                </td>
-                <td>
-                    <a asp-action="Bloquear" asp-route-Id="@item.Id"><i href="#" class="bi bi-trash2-fill btn"> Bloquear</i></a>
-                </td>
-            </tr>
-                    }
+                @{
+                        for (var i = 0; i < Model.Count(); i++)
+                        {
+                            var item = Model.ToArray()[i];
+
+                                <tr>
+                                    <td>@item.NombreUsuario</td>
+                                    <td>@item.Rut</td>
+                                    @if (item.EstadoCuenta.Equals("ACTIVA"))
+                                    {
+                                        <td style="color:green">@item.EstadoCuenta</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="color:red">@item.EstadoCuenta</td>
+                                    }
+                                    <td>
+                                    <!-- Bloquear o activar cuenta de los usuarios -->
+                                    @if (item.EstadoCuenta.Equals("ACTIVA"))
+                                    {
+                                        <button style="border:none" type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="bi bi-file-earmark-text-fill btn">Ver detalles</i></button>
+                                        <a asp-action="BloquearSoporte" asp-route-Id="@item.Id"><i class="bi bi-trash2-fill btn">Bloquear</i></a>
+                                    }else{
+                                        <button style="border:none" type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="bi bi-file-earmark-text-fill btn">Ver detalles</i></button>
+                                        <a asp-action="ActivarSoporte" asp-route-Id="@item.Id"><i class="bi bi-check-lg btn">Activar</i></a>
+                                    }
+                                    </td>
+                                </tr>
+                            <!--Modal-->
+                            <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">@item.Nombres @item.Apellidos</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-4"><strong>Correo</strong></div>
+                                                <div class="col-8">@item.Correo</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"><strong>Edad</strong></div>
+                                                <div class="col-8">@item.Edad</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"><strong>Nombre de usuario</strong></div>
+                                                <div class="col-8">@item.NombreUsuario</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4"><strong>Organización</strong></div>
+                                                <div class="col-8">@item.Organizacion</div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            i++;
+                        }
                 }
     </tbody>
-</table>
+  </table>
+  </div>
 </div>

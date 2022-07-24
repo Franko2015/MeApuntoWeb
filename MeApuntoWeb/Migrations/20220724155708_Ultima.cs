@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MeApuntoWeb.Migrations
 {
-    public partial class Primera : Migration
+    public partial class Ultima : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,6 +20,21 @@ namespace MeApuntoWeb.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tblCategoria", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tblNotificaciones",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Notificacion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UsuarioReceptor = table.Column<int>(type: "int", nullable: false),
+                    UsuarioRemitente = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tblNotificaciones", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -101,28 +116,6 @@ namespace MeApuntoWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tblNotificaciones",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Notificacion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UsuarioReceptor = table.Column<int>(type: "int", nullable: false),
-                    UsuarioRemitente = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblNotificaciones", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_tblNotificaciones_tblUsuario_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "tblUsuario",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "tblAsistenciaEventos",
                 columns: table => new
                 {
@@ -155,11 +148,6 @@ namespace MeApuntoWeb.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_tblEvento_UsuarioId",
                 table: "tblEvento",
-                column: "UsuarioId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tblNotificaciones_UsuarioId",
-                table: "tblNotificaciones",
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(

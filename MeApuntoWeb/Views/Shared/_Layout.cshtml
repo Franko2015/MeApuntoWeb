@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -43,19 +44,19 @@
                     }
                 }
 
-            @if (Administracion == true)
+                @if (Administracion == true)
             {
-                <!-- En caso de loguear como admin o soporte -->
-            <div class="header-img-titulo">
-                <a asp-action="Admin" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
-            </div>
+                    <!-- En caso de loguear como admin o soporte -->
+                <div class="header-img-titulo">
+                    <a asp-action="Admin" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
+                </div>
             }else{
-                <!-- En caso contrario de loguear como admin o soporte -->
-            <div class="header-img-titulo">
-                <a asp-action="Index" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
-            </div>
+                    <!-- En caso contrario de loguear como admin o soporte -->
+                <div class="header-img-titulo">
+                    <a asp-action="Index" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
+                </div>
             }
-            <center><h3>@ViewData["Nav"]</h3></center>
+                <center><h3>@ViewData["Nav"]</h3></center>
         }
         <div id="main-header-buttons">
             
@@ -65,7 +66,6 @@
             {
                 //<button id="button-administracion">Administración</button>
                 <!-- Botón para ingresar al perfil del usuario -->
-               
 
                 <div class="dropdown-center">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -74,10 +74,12 @@
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenu2">
                         <li><a class="dropdown-item boton" asp-action="Perfil" asp-controller="Auth">Perfil</a></li>
                         <li><hr class="dropdown-divider"></li>
+                        <!-- Cambiar cuenta a premium -->
                         <li><a asp-action="Premium" asp-controller="" class="dropdown-item boton">PREMIUM</a></li>
                         @if (Administracion == true)
                         {
                         <li><hr class="dropdown-divider"></li>
+                        <!-- Ingresar como usuario siendo administrador -->
                         <li><a class="dropdown-item boton" asp-action="Index" asp-controller="Home">Vista usuario</a></li>
                         }
                         <li><hr class="dropdown-divider"></li>
@@ -93,15 +95,10 @@
                     <i class="material-icons">notifications</i> 
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenu2">
-                    <li><button class="dropdown-item" type="button"></button></li>
+                    <li><button class="dropdown-item" type="button">Notificacion</button></li>
                     <li><hr class="dropdown-divider"></li>
-
                 </ul>
-            </div>                
-                //<a><button><i class="material-icons">notifications</i></button></a>
-
-            
-                
+            </div>
 
             }else{
                 <!-- Botón para ingresar como un usuario con cuenta -->

@@ -7,7 +7,7 @@
 }
 <div class="container">
     <br />
-<a asp-action="Create" class="btn btn-outline-primary col-2"><i class="bi bi-person-plus-fill"> Crear evento</i></a>
+<a asp-action="Create" class="btn btn-outline-primary col-2"><i class="bi bi-person-plus-fill">Añadir usuario</i></a>
 <br>
 <br>
 <div class="table-responsive">
@@ -38,8 +38,16 @@
                                     {
                                         <td style="color:red">@item.EstadoCuenta</td>
                                     }
-                                    <td><button style="border:none" type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="bi bi-file-earmark-text-fill btn">Ver detalles</i></button>
-                                        <a asp-action="Notificaciones"><button style="border:none" type="button"><i class="bi bi-file-earmark-text-fill btn">Enviar notificación</i></button></a>
+                                    <td>
+                                    <!-- Bloquear o activar cuenta de los usuarios -->
+                                    @if (item.EstadoCuenta.Equals("ACTIVA"))
+                                    {
+                                        <button style="border:none" type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="bi bi-file-earmark-text-fill btn">Ver detalles</i></button>
+                                        <a asp-action="BloquearUsuario" asp-route-Id="@item.Id"><i class="bi bi-trash2-fill btn">Bloquear</i></a>
+                                    }else{
+                                        <button style="border:none" type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="bi bi-file-earmark-text-fill btn">Ver detalles</i></button>
+                                        <a asp-action="ActivarUsuario" asp-route-Id="@item.Id"><i class="bi bi-check-lg btn">Activar</i></a>
+                                    }
                                     </td>
                                 </tr>
                             <!--Modal-->

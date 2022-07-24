@@ -129,6 +129,44 @@ namespace MeApuntoWeb.Controllers
 
 
 
+        [Authorize(Roles = "1,2")]
+        public IActionResult NotificarBloqueado(int Id)
+        {
+            var notificar = _context.tblNotificaciones.FirstOrDefault(u => u.UsuarioReceptor == Id);
+            var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
+
+            if (notificar == null) return NotFound();
+
+            notificar.UsuarioReceptor = Id;
+            notificar.Notificacion = "SU EVENTO HA SIDO BLOQUEADO. CONSULTE A LA ADMINISTRACIÓN PARA MÁS INFORMACIÓN";
+            notificar.UsuarioRemitente = user.Id;
+
+            _context.Update(notificar);
+
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "1,2")]
+        public IActionResult NotificarAceptado(int Id)
+        {
+            var notificar = _context.tblNotificaciones.FirstOrDefault(u => u.UsuarioReceptor == Id);
+            var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
+
+            if (notificar == null) return NotFound();
+
+            notificar.UsuarioReceptor = Id;
+            notificar.Notificacion = "SU EVENTO HA SIDO BLOQUEADO. CONSULTE A LA ADMINISTRACIÓN PARA MÁS INFORMACIÓN";
+            notificar.UsuarioRemitente = user.Id;
+
+            _context.Update(notificar);
+
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
         public async Task<IActionResult> Aceptar(int Id)
         {
             var bloquear = _context.tblEvento.FirstOrDefault(u => u.Id == Id);
@@ -136,7 +174,7 @@ namespace MeApuntoWeb.Controllers
             bloquear.Estado = "Aceptado";
             _context.Update(bloquear);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Admin","Home");
+            return RedirectToAction(nameof(Index));
         }
 
 
