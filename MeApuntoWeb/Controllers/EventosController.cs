@@ -138,7 +138,7 @@ namespace MeApuntoWeb.Controllers
             if (notificar == null) return NotFound();
 
             notificar.UsuarioReceptor = Id;
-            notificar.Notificacion = "SU EVENTO HA SIDO BLOQUEADO. CONSULTE A LA ADMINISTRACIÓN PARA MÁS INFORMACIÓN";
+            notificar.Notificacion = "SU EVENTO HA SIDO ACEPTADO.";
             notificar.UsuarioRemitente = user.Id;
 
             _context.Update(notificar);
