@@ -78,7 +78,7 @@
                             <div class="row">
                                 @{
                                     var item = Model.ToArray()[i];
-                                    if(item.Usuario.Tipo_usuarioId == 4 || item.Usuario.Tipo_usuarioId == 2 || item.Usuario.Tipo_usuarioId == 1)
+                                    if(item.Usuario.Tipo_usuarioId == 4)
                                     {
                                                             <!-- CARD DE EVENTOS -->
                                                             <!--Card-->
@@ -164,7 +164,7 @@
                                 @if (i<Model.Count())
                                 {
                                     item = Model.ToArray()[i];
-                                    if(item.Usuario.Tipo_usuarioId == 4)
+                                    if(item.Usuario.Tipo_usuarioId == 4 )
                                     {
                                 <div class="col-12 col-md-6">
                                     <div class="div-card2" style="background-image: url('/img/Cat/@(@item.Categoria.categoria).png');">
@@ -180,7 +180,7 @@
                                             <div class="div-card-description2">@item.Descripcion
                                             </div>
                                             <div class="div-card-buttons2">
-                                                <a type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="material-icons">info</i></a>
+                                                <button type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id">+info</button>
                                                 <a asp-action="MeApunto" asp-route-Id="@item.Id"><button>MeApunto</button></a>
                                             </div>
                                         </div>
@@ -258,14 +258,11 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-            </div>
-            </div>
 
             <div class="grid">
             @foreach (var item2 in Model)
             {
-                if (item2.Usuario.Tipo_usuarioId == 3)
-                {
+               
                 <div class="columna">
                     <div class="div-card2" style="background-image: url('/img/Cat/@(@item2.Categoria.categoria).png'); width: 100%">
                     <div class="div-card-image2"></div>    
@@ -275,13 +272,13 @@
                             </div>
                             <div class="div-card-description2">@item2.Descripcion</div>
                             <div class="div-card-buttons2">
-                                <a type="button" data-bs-toggle="modal" data-bs-target="#modal-@item2.Id"><i class="material-icons">info</i></a>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#modal-@item2.Id">+info</button>
                                 <button>MeApunto</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                }
+                
                 <div class="modal fade" id="modal-@item2.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
@@ -335,6 +332,8 @@
                 </div>
             </div>
             }
+            </div>
+            </div>
             </div>
                 
             
