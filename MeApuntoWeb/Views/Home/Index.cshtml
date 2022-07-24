@@ -36,27 +36,65 @@
             <div id="main-organizar">
                 <div id="main-filtrar">
                     <div class="container mt-5">
-                        <select class="selectpicker" multiple title="Categoría">
-                            <option value="1">Familiar</option>
-                            <option value="2">Deporte</option>
-                            <option value="3">Three</option>
-                            <option value="4">Four</option>
+                        <select class="selectpicker" multiple title="Categoría" onchange="updateFiltroCategoria(this); filtrar()">
+                            <option value="+18">+18</option>
+                            <option value="Arte">Arte</option>
+                            <option value="Deportes">Deportes</option>
+                            <option value="Familiar">Familiar</option>
+                            <option value="Infantil">Infantil</option>
+                            <option value="Música">Música</option>
+                            <option value="Stand-Up">Stand-Up</option>
+                            <option value="Comunidad">Comunidad</option>   
                         </select>
                     </div>
                     <div class="container mt-5">
-                        <select class="selectpicker" multiple title="Comuna">
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            <option value="4">Four</option>
+                        <select class="selectpicker" multiple title="Comuna" onchange="updateFiltroComuna(this); filtrar()">
+                            <option value="CAUQUENES">Cauquenes</option>
+                            <option value="CHANCO">Chanco</option>
+                            <option value="COLBÚN">Colbún</option>
+                            <option value="CONSTITUCIÓN">Constitución</option>
+                            <option value="CUREPTO">Curepto</option>
+                            <option value="CURICÓ">Curicó</option>
+                            <option value="EMPEDRADO">Empedrado</option>
+                            <option value="HUALAÑÉ">Hualañé</option>
+                            <option value="LICANTÉN">Licanten</option>
+                            <option value="LINARES">Linares</option>
+                            <option value="LONGAVÍ">Longaví</option>
+                            <option value="MAULE">Maule</option>
+                            <option value="MOLINA">Molina</option>
+                            <option value="PARRAL">Parral</option>
+                            <option value="PELARCO">Pelarco</option>
+                            <option value="PELLUHUE">Pelluhue</option>
+                            <option value="PENCAHUE">Pencahue</option>
+                            <option value="RAUCO">Rauco</option>
+                            <option value="RETIRO">Retiro</option>
+                            <option value="RÍO CLARO">Río Claro</option>
+                            <option value="ROMERAL">Romeral</option>
+                            <option value="SAGRADA FAMILIA">Sagrada Familia</option>
+                            <option value="SAN CLEMENTE">San Clemente</option>
+                            <option value="SAN JAVIER">San Javier</option>
+                            <option value="SAN RAFAEL">San Rafael</option>
+                            <option value="TALCA">Talca</option>
+                            <option value="TENO">Teno</option>
+                            <option value="VICHUQUÉN">Vichuquén</option>
+                            <option value="VILLA ALEGRE">Villa Alegre</option>
+                            <option value="YERBAS BUENAS">Yerbas Buenas</option>
                         </select>
                     </div>
                     <div class="container mt-5">
-                        <select class="selectpicker" multiple title="Fecha">
-                            <option value="1">mes</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            <option value="4">Four</option>
+                        <select class="selectpicker" multiple title="Mes" onchange="updateFiltroMes(this); filtrar()">
+                            <option value="1">Enero</option>
+                            <option value="2">Febrero</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Mayo</option>
+                            <option value="6">Junio</option>
+                            <option value="7">Julio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
                         </select>
                     </div>
                     <div class="container mt-5">
@@ -64,6 +102,7 @@
                             <option value="1">MeApunto</option>
                         </select>
                     </div>
+                    <!--
                     <div class="container mt-5">
                         <select class="selectpicker" multiple title="Nombre" onchange="filtrarPorNombre(this)">
                             @foreach(var item in Model)
@@ -72,6 +111,7 @@
                             }
                         </select>
                     </div>
+                    -->
                 </div>
                 <div id="main-ordenar">
                     <div class="dropdown">
@@ -97,82 +137,82 @@
                                     var item = Model.ToArray()[i];
                                     if(item.Usuario.Tipo_usuarioId == 4)
                                     {
-                                                            <!-- CARD DE EVENTOS -->
-                                                            <!--Card-->
-                                                            <div class="col-12 col-md-6">
-                                                                <div class="div-card2" style="background-image: url('/img/Cat/@(@item.Categoria.categoria).png');">
-                                                                    <div class="div-card-image2">
-                                                                        <div class="img-logo-card">
-                                                                            <img src="~/img/logo/P.png" width="40px"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="div-card-content2">
-                                                                        <div class="div-card-titulo2">
-                                                                            <h3>@item.Titulo</h3>
-                                                                        </div>
-                                                                        <div class="div-card-description2">@item.Descripcion
-                                                                        </div>
-                                                                        <div class="div-card-buttons2">
-                                                                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="material-icons">info</i></a>
-                                                                            <a asp-action="MeApunto" asp-route-Id="@item.Id"><button>MeApunto</button></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                    <!-- CARD DE EVENTOS -->
+                                    <!--Card-->
+                                    <div class="col-12 col-md-6">
+                                        <div class="div-card2" style="background-image: url('/img/Cat/@(@item.Categoria.categoria).png');">
+                                            <div class="div-card-image2">
+                                                <div class="img-logo-card">
+                                                    <img src="~/img/logo/P.png" width="40px"/>
+                                                </div>
+                                            </div>
+                                            <div class="div-card-content2">
+                                                <div class="div-card-titulo2">
+                                                    <h3>@item.Titulo</h3>
+                                                </div>
+                                                <div class="div-card-description2">@item.Descripcion
+                                                </div>
+                                                <div class="div-card-buttons2">
+                                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="material-icons">info</i></a>
+                                                    <a asp-action="MeApunto" asp-route-Id="@item.Id"><button>MeApunto</button></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                                            <!-- MODAL DE EVENTOS -->
-                                                            <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h4 style="color:black; width: 100%; text-transform: uppercase;" class="modal-title "
-                                                                                id="exampleModalLabel">@item.Titulo</h4>
-                                                                            <button type="button" class="btn-close"
-                                                                                data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body" style="padding: 0px;">                                                               
-                                                                            <div class="row" style="padding: 0.5em; padding-bottom: 3em">
-                                                                                <div class="col col-md-6">
-                                                                                    <img src="/img/Cat/@(@item.Categoria.categoria).png" style="width: 100%;"/>
-                                                                                </div>
-                                                                                <div class="col col-md-6">
-                                                                                    <div class="row">
-                                                                                        <div class="col-4"><strong>Categoría</strong></div>
-                                                                                        <div class="col-8">@item.Categoria.categoria</div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-4"><strong>Dirección</strong></div>
-                                                                                        <div class="col-8">@item.Direccion</div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-4"><strong>Fecha</strong></div>
-                                                                                        <div class="col-8">@item.Fecha_evento.ToString("dd/MM/yyyy")</div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-4"><strong>Hora inicio</strong></div>
-                                                                                        <div class="col-8">@item.Hora_inicio.ToString("HH:mm")</div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-4"><strong>Hora término</strong></div>
-                                                                                        <div class="col-8">@item.Hora_termino.ToString("HH:mm")</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div style="background-color:lightgray; padding: 20px;">
-                                                                                <div class="row d-flex justify-content-center">
-                                                                                    <a asp-action="MeApunto" asp-route-Id="@item.Id"><button class="btn btn-primary" style="background-color:rgb(126, 10, 117); border-color: rgb(126, 10, 117); width:fit-content; transform: translateY(-85%); z-index: 9999;">
-                                                                                        <img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width: 10em;"/></button></a>
-                                                                                </div>
-                                                                                <div class="d-flex justify-content-center" style="margin-top: -2em ;">
-                                                                                    <p style="text-transform: uppercase;">
-                                                                                        @item.Descripcion
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                    <!-- MODAL DE EVENTOS -->
+                                    <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 style="color:black; width: 100%; text-transform: uppercase;" class="modal-title "
+                                                    id="exampleModalLabel">@item.Titulo</h4>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body" style="padding: 0px;">                                                               
+                                                <div class="row" style="padding: 0.5em; padding-bottom: 3em">
+                                                    <div class="col col-md-6">
+                                                        <img src="/img/Cat/@(@item.Categoria.categoria).png" style="width: 100%;"/>
+                                                    </div>
+                                                    <div class="col col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-4"><strong>Categoría</strong></div>
+                                                            <div class="col-8">@item.Categoria.categoria</div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-4"><strong>Dirección</strong></div>
+                                                            <div class="col-8">@item.Direccion</div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-4"><strong>Fecha</strong></div>
+                                                            <div class="col-8">@item.Fecha_evento.ToString("dd/MM/yyyy")</div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-4"><strong>Hora inicio</strong></div>
+                                                            <div class="col-8">@item.Hora_inicio.ToString("HH:mm")</div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-4"><strong>Hora término</strong></div>
+                                                            <div class="col-8">@item.Hora_termino.ToString("HH:mm")</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="background-color:lightgray; padding: 20px;">
+                                                    <div class="row d-flex justify-content-center">
+                                                        <a asp-action="MeApunto" asp-route-Id="@item.Id"><button class="btn btn-primary" style="background-color:rgb(126, 10, 117); border-color: rgb(126, 10, 117); width:fit-content; transform: translateY(-85%); z-index: 9999;">
+                                                            <img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width: 10em;"/></button></a>
+                                                    </div>
+                                                    <div class="d-flex justify-content-center" style="margin-top: -2em ;">
+                                                        <p style="text-transform: uppercase;">
+                                                            @item.Descripcion
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                 }}
                                 <!--Card-->
                                  @{
@@ -498,46 +538,61 @@
 
     @foreach (var item in Model)
     {
-        @:eventosArray.push({ "Id": "@item.Id", "Titulo": "@item.Titulo", "Descripcion": "@item.Descripcion", "Fecha_evento": "@item.Fecha_evento", "Hora_inicio": "@item.Hora_inicio", "Hora_termino": "@item.Hora_termino", "Direccion": "@item.Direccion", "Estado": "@item.Estado", "Categoria": "@item.Categoria.categoria" });
+        @:eventosArray.push({ "Id": "@item.Id", "Titulo": "@item.Titulo", "Descripcion": "@item.Descripcion", "Fecha_evento": "@item.Fecha_evento", "Hora_inicio": "@item.Hora_inicio", "Hora_termino": "@item.Hora_termino", "Direccion": "@item.Direccion", "Estado": "@item.Estado", "Categoria": "@item.Categoria.categoria", "Mes": "@item.Fecha_evento".split('/')[1] });
     }
     console.dir(eventosArray);
 
-    var eventosFiltrados = [];
+var selectedCategorias = [];
+var selectedComunas = [];
+var selectedMeses = [];
 
+function updateFiltroCategoria(selectPicker) {
+    let options = [...selectPicker.options];
+    let selected = options.filter(o => o.selected);
+    let values = selected.map(o => o.value); //["cat1", "cat2", "cat3"]
+    selectedCategorias = values;
+}
+function updateFiltroComuna(selectPicker) {
+    let options = [...selectPicker.options];
+    let selected = options.filter(o => o.selected);
+    let values = selected.map(o => o.value); //["curico", "curepto", "talca"]
+    selectedComunas = values;
+}
+function updateFiltroMes(selectPicker) {
+    let options = [...selectPicker.options];
+    let selected = options.filter(o => o.selected);
+    let values = selected.map(o => o.value); //["enero", "debrero", "marzo"]
+    selectedMeses = values;
+}
 
-    function filtrarPorNombre(nombre) {
-        console.dir(nombre)
-        console.dir(nombre.options)
-        let options = [...nombre.options];
-        console.log(options);
-        let selected = options.filter(o => o.selected);
-        console.log(selected);
-        let values = selected.map(o => o.value);
-        console.log(values);
-        console.log("______________________________")
-        eventosFiltrados = eventosArray.filter(el => {
-            return !!values.find(findEl => findEl === el.Titulo);
-        });
-        console.dir(eventosFiltrados);
+// Aplica todos los filtros
+function filtrar() {
 
-        eventosNoSeleccionados = eventosArray.filter(el => {
-            return !values.find(findEl => findEl === el.Titulo);
-        });
+    // Eventos a mostrar
+    let eventosSeleccionados = eventosArray.filter(evento => {
+        return (selectedCategorias.length === 0 || selectedCategorias.find(cat => cat === evento.Categoria))
+            && (selectedComunas.length === 0 || selectedComunas.find(comuna => evento.Direccion.startsWith(comuna)))
+            &&  (selectedMeses.length === 0 || selectedMeses.find(mes => mes === evento.Mes));
+    });
 
-        ocultar(eventosFiltrados);
-        mostrar(eventosNoSeleccionados);
-    }
+    // Eventos a esconder => eventosArray - eventosSeleccionados
+    let eventosNoSeleccionados = eventosArray.filter(evento => {
+        return !eventosSeleccionados.find(eS => eS.Id === evento.Id);
+    });
 
-    function ocultar(eventosFiltrados) {
-        eventosFiltrados.forEach(evento => {
-            console.log(evento.Titulo);
+    // Mostrar u ocultarelse
+    mostrar(eventosSeleccionados);
+    ocultar(eventosNoSeleccionados);
+}
+
+    function mostrar(eventosSeleccionados) {
+        eventosSeleccionados.forEach(evento => {
             document.querySelector("#col-" + evento.Id).classList.remove("hidden");
         })
     }
 
-    function mostrar(eventosNoSeleccionados) {
+    function ocultar(eventosNoSeleccionados) {
         eventosNoSeleccionados.forEach(evento => {
-            console.log(evento.Titulo);
             document.querySelector("#col-" + evento.Id).classList.add("hidden");
         })
     }
