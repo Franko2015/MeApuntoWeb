@@ -130,7 +130,7 @@ namespace MeApuntoWeb.Controllers
 
 
         [Authorize(Roles = "1,2")]
-        public IActionResult NotificarBloqueado(int Id)
+        public async Task<IActionResult> NotificarBloqueado(int Id)
         {
             var notificar = _context.tblNotificaciones.FirstOrDefault(u => u.UsuarioReceptor == Id);
             var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
@@ -138,30 +138,29 @@ namespace MeApuntoWeb.Controllers
             if (notificar == null) return NotFound();
 
             notificar.UsuarioReceptor = Id;
-            notificar.Notificacion = "SU EVENTO HA SIDO ACEPTADO.";
+            notificar.Notificacion = "SU EVENTO HA SIDO BLOQUEADO. CONSULTE A LA ADMINISTRACIÓN PARA MÁS INFORMACIÓN.";
             notificar.UsuarioRemitente = user.Id;
 
             _context.Update(notificar);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         [Authorize(Roles = "1,2")]
-        public IActionResult NotificarAceptado(int Id)
+        public async Task<IActionResult> NotificarAceptado(int Id)
         {
-            var notificar = _context.tblNotificaciones.FirstOrDefault(u => u.UsuarioReceptor == Id);
             var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
 
-            if (notificar == null) return NotFound();
+            Notificaciones n = new Notificaciones();
 
-            notificar.UsuarioReceptor = Id;
-            notificar.Notificacion = "SU EVENTO HA SIDO BLOQUEADO. CONSULTE A LA ADMINISTRACIÓN PARA MÁS INFORMACIÓN";
-            notificar.UsuarioRemitente = user.Id;
+            n.UsuarioReceptor = Id;
+            n.Notificacion = "SU EVENTO HA SIDO ACEPTADO.";
+            n.UsuarioRemitente = user.Id;
 
-            _context.Update(notificar);
+            _context.Update(n);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
