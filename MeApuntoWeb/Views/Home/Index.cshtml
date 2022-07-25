@@ -11,12 +11,38 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
 <script src="~/js/index.js"></script>
+<div class="d-block d-md-none">
+    @if (User.Identity.IsAuthenticated)
+            {
+    <button class="btn"><i class="fa fa-bars" onClick="openAsideMenu()"></i></button>
+    <aside id="small-aside-menu" class="hidden">
+        
+            
+        
+        <div>
+            <button class="btn"><i class="fa fa-close" onClick="closeAsideMenu()"></i></button>
+            <div id="reportrange" lang="es" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%; font-size: 15px;">
+                <i class="fa fa-calendar"></i>&nbsp;
+                <span></span> <i class="fa fa-caret-down"></i>
+            </div>
+            
+            <div>
+                <a asp-action="MisEventos" asp-controller="Eventos"><button id="ver-eventos-button">Mis Eventos</button></a>
+            </div>
+
+            <div>
+                <a asp-action="Create" asp-controller="Eventos"><button id="crear-evento-button">Crear nuevo <br> evento <br><i class="material-icons">add</i></button></a> 
+            </div>
+        </div>
+    </aside>
+         }
+</div>
 <div id="main-container">
         <aside id="main-menu">
             <div id="main-menu-wrapper">
             @if (User.Identity.IsAuthenticated)
             {
-                <div id="reportrange" lang="es" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%; font-size: 15px;">
+                <div id="reportrange" lang="es" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width:100%; font-size: 15px;">
                     <i class="fa fa-calendar"></i>&nbsp;
                     <span></span> <i class="fa fa-caret-down"></i>
                 </div>
@@ -137,82 +163,82 @@
                                     var item = Model.ToArray()[i];
                                     if(item.Usuario.Tipo_usuarioId == 4)
                                     {
-                                    <!-- CARD DE EVENTOS -->
-                                    <!--Card-->
-                                    <div class="col-12 col-md-6">
-                                        <div class="div-card2" style="background-image: url('/img/Cat/@(@item.Categoria.categoria).png');">
-                                            <div class="div-card-image2">
-                                                <div class="img-logo-card">
-                                                    <img src="~/img/logo/P.png" width="40px"/>
+                                            <!-- CARD DE EVENTOS -->
+                                            <!--Card-->
+                                            <div class="col-12 col-md-6">
+                                                <div class="div-card2" style="background-image: url('/img/Cat/@(@item.Categoria.categoria).png');">
+                                                    <div class="div-card-image2">
+                                                        <div class="img-logo-card">
+                                                            <img src="~/img/logo/P.png" width="40px"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="div-card-content2">
+                                                        <div class="div-card-titulo2">
+                                                            <h3>@item.Titulo</h3>
+                                                        </div>
+                                                        <div class="div-card-description2">@item.Descripcion
+                                                        </div>
+                                                        <div class="div-card-buttons2">
+                                                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="material-icons">info</i></a>
+                                                            <a asp-action="MeApunto" asp-route-Id="@item.Id"><button>MeApunto</button></a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="div-card-content2">
-                                                <div class="div-card-titulo2">
-                                                    <h3>@item.Titulo</h3>
-                                                </div>
-                                                <div class="div-card-description2">@item.Descripcion
-                                                </div>
-                                                <div class="div-card-buttons2">
-                                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id"><i class="material-icons">info</i></a>
-                                                    <a asp-action="MeApunto" asp-route-Id="@item.Id"><button>MeApunto</button></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <!-- MODAL DE EVENTOS -->
-                                    <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 style="color:black; width: 100%; text-transform: uppercase;" class="modal-title "
-                                                    id="exampleModalLabel">@item.Titulo</h4>
-                                                <button type="button" class="btn-close"
-                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body" style="padding: 0px;">                                                               
-                                                <div class="row" style="padding: 0.5em; padding-bottom: 3em">
-                                                    <div class="col col-md-6">
-                                                        <img src="/img/Cat/@(@item.Categoria.categoria).png" style="width: 100%;"/>
+                                            <!-- MODAL DE EVENTOS -->
+                                            <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 style="color:black; width: 100%; text-transform: uppercase;" class="modal-title "
+                                                            id="exampleModalLabel">@item.Titulo</h4>
+                                                        <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                    <div class="col col-md-6">
-                                                        <div class="row">
-                                                            <div class="col-4"><strong>Categoría</strong></div>
-                                                            <div class="col-8">@item.Categoria.categoria</div>
+                                                    <div class="modal-body" style="padding: 0px;">                                                               
+                                                        <div class="row" style="padding: 0.5em; padding-bottom: 3em">
+                                                            <div class="col col-md-6">
+                                                                <img src="/img/Cat/@(@item.Categoria.categoria).png" style="width: 100%;"/>
+                                                            </div>
+                                                            <div class="col col-md-6">
+                                                                <div class="row">
+                                                                    <div class="col-4"><strong>Categoría</strong></div>
+                                                                    <div class="col-8">@item.Categoria.categoria</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4"><strong>Dirección</strong></div>
+                                                                    <div class="col-8">@item.Direccion</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4"><strong>Fecha</strong></div>
+                                                                    <div class="col-8">@item.Fecha_evento.ToString("dd/MM/yyyy")</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4"><strong>Hora inicio</strong></div>
+                                                                    <div class="col-8">@item.Hora_inicio.ToString("HH:mm")</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-4"><strong>Hora término</strong></div>
+                                                                    <div class="col-8">@item.Hora_termino.ToString("HH:mm")</div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-4"><strong>Dirección</strong></div>
-                                                            <div class="col-8">@item.Direccion</div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-4"><strong>Fecha</strong></div>
-                                                            <div class="col-8">@item.Fecha_evento.ToString("dd/MM/yyyy")</div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-4"><strong>Hora inicio</strong></div>
-                                                            <div class="col-8">@item.Hora_inicio.ToString("HH:mm")</div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-4"><strong>Hora término</strong></div>
-                                                            <div class="col-8">@item.Hora_termino.ToString("HH:mm")</div>
+                                                        <div style="background-color:lightgray; padding: 20px;">
+                                                            <div class="row d-flex justify-content-center">
+                                                                <a asp-action="MeApunto" asp-route-Id="@item.Id"><button class="btn btn-primary" style="background-color:rgb(126, 10, 117); border-color: rgb(126, 10, 117); width:fit-content; transform: translateY(-85%); z-index: 9999;">
+                                                                    <img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width: 10em;"/></button></a>
+                                                            </div>
+                                                            <div class="d-flex justify-content-center" style="margin-top: -2em ;">
+                                                                <p style="text-transform: uppercase;">
+                                                                    @item.Descripcion
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div style="background-color:lightgray; padding: 20px;">
-                                                    <div class="row d-flex justify-content-center">
-                                                        <a asp-action="MeApunto" asp-route-Id="@item.Id"><button class="btn btn-primary" style="background-color:rgb(126, 10, 117); border-color: rgb(126, 10, 117); width:fit-content; transform: translateY(-85%); z-index: 9999;">
-                                                            <img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width: 10em;"/></button></a>
-                                                    </div>
-                                                    <div class="d-flex justify-content-center" style="margin-top: -2em ;">
-                                                        <p style="text-transform: uppercase;">
-                                                            @item.Descripcion
-                                                        </p>
-                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        </div>
-                                    </div>
                                 }}
                                 <!--Card-->
                                  @{
@@ -597,4 +623,14 @@ function filtrar() {
         })
     }
 
+</script>
+
+<script>
+    // Abrir y cerrar menu lateral en pantalla pequeña
+function openAsideMenu() {
+    document.querySelector("#small-aside-menu").classList.remove("hidden");
+}
+function closeAsideMenu() {
+    document.querySelector("#small-aside-menu").classList.add("hidden");
+}
 </script>

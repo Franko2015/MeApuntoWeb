@@ -320,9 +320,9 @@
     justify-content: space-evenly;
 }
 
-    .td-botons button {
-        width: 30vw;
-    }
+.td-botons button {
+    width: 30vw;
+}
 
 .buttonagregar {
     display: flex;
@@ -331,4 +331,20 @@
 
 .hidden {
     display:none !important;
+}
+
+#small-aside-menu {
+    height:80vh;
+    background-color: lightgray;
+}
+#small-aside-menu > div {
+    height: 70vh;
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#small-aside-menu div button{
+    align-self:end
 }
