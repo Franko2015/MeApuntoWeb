@@ -1,1 +1,33 @@
-﻿
+﻿@model IEnumerable<NotificacionesViewModel>
+@{
+    ViewData["Title"] = "Registrar usuario";
+    Layout = null;
+}
+
+<br>
+        <br>
+        <div class="contenedor">
+     
+
+          <form asp-action="EnviarNotificacion" class="contenedor card shadow col-xs-12 col-sm-6 col-md-6 col-lg-4 p-5 d-flex justify-content" method="post" >
+
+
+            <div class="mb-2">
+                <select class="form-select">
+                    @foreach (var item in Model)
+                {
+                <option value="@item.Usuario.Id">@item.Usuario.Nombres @item.Usuario.Apellidos</option>
+                }
+                 </select>
+                </div>
+            <div class="mb-2">
+                <input type="text" class="form-control" aria-label="Text input with checkbox">
+              </div>
+        
+            <a href="#" class="center-content">
+                <input type="submit" class="btn btn-outline-primary" value="Enviar">
+            </a>
+        
+
+            </form>
+            </div>
