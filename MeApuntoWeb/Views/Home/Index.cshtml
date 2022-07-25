@@ -36,6 +36,79 @@
         </div>
     </aside>
          }
+<button class="btn"><i class="fa fa-filter" onClick="openFilterMenu()"></i></button>
+<aside id="small-filter-menu" class="hidden">
+<div>
+    <button class="btn"><i class="fa fa-close" onClick="closeFilterMenu()"></i></button>
+    <div class="col-12 col-md-2">
+        <select class="selectpicker" multiple title="Categoría" onchange="updateFiltroCategoria(this); filtrar()">
+            <option value="+18">+18</option>
+            <option value="Arte">Arte</option>
+            <option value="Deportes">Deportes</option>
+            <option value="Familiar">Familiar</option>
+            <option value="Infantil">Infantil</option>
+            <option value="Música">Música</option>
+            <option value="Stand-Up">Stand-Up</option>
+            <option value="Comunidad">Comunidad</option>   
+        </select>
+    </div>
+    <div class="col-12 col-md-2">
+        <select class="selectpicker" multiple title="Comuna" onchange="updateFiltroComuna(this); filtrar()">
+            <option value="CAUQUENES">Cauquenes</option>
+            <option value="CHANCO">Chanco</option>
+            <option value="COLBÚN">Colbún</option>
+            <option value="CONSTITUCIÓN">Constitución</option>
+            <option value="CUREPTO">Curepto</option>
+            <option value="CURICÓ">Curicó</option>
+            <option value="EMPEDRADO">Empedrado</option>
+            <option value="HUALAÑÉ">Hualañé</option>
+            <option value="LICANTÉN">Licanten</option>
+            <option value="LINARES">Linares</option>
+            <option value="LONGAVÍ">Longaví</option>
+            <option value="MAULE">Maule</option>
+            <option value="MOLINA">Molina</option>
+            <option value="PARRAL">Parral</option>
+            <option value="PELARCO">Pelarco</option>
+            <option value="PELLUHUE">Pelluhue</option>
+            <option value="PENCAHUE">Pencahue</option>
+            <option value="RAUCO">Rauco</option>
+            <option value="RETIRO">Retiro</option>
+            <option value="RÍO CLARO">Río Claro</option>
+            <option value="ROMERAL">Romeral</option>
+            <option value="SAGRADA FAMILIA">Sagrada Familia</option>
+            <option value="SAN CLEMENTE">San Clemente</option>
+            <option value="SAN JAVIER">San Javier</option>
+            <option value="SAN RAFAEL">San Rafael</option>
+            <option value="TALCA">Talca</option>
+            <option value="TENO">Teno</option>
+            <option value="VICHUQUÉN">Vichuquén</option>
+            <option value="VILLA ALEGRE">Villa Alegre</option>
+            <option value="YERBAS BUENAS">Yerbas Buenas</option>
+        </select>
+    </div>
+    <div class="col-12 col-md-2">
+        <select class="selectpicker" multiple title="Mes" onchange="updateFiltroMes(this); filtrar()">
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+        </select>
+    </div>
+    <div class="col-12 col-md-2">
+        <select class="selectpicker" multiple title="MeApunto">
+            <option value="1">MeApunto</option>
+        </select>
+    </div>
+</div>
+</aside>
 </div>
 <div id="main-container">
         <aside id="main-menu">
@@ -60,8 +133,8 @@
         </aside>
         <div id="main-content">
             <div id="main-organizar">
-                <div id="main-filtrar">
-                    <div class="container mt-5">
+                <div id="main-filtrar" class="d-none d-md-block">
+                    <div class="col-2">
                         <select class="selectpicker" multiple title="Categoría" onchange="updateFiltroCategoria(this); filtrar()">
                             <option value="+18">+18</option>
                             <option value="Arte">Arte</option>
@@ -73,7 +146,7 @@
                             <option value="Comunidad">Comunidad</option>   
                         </select>
                     </div>
-                    <div class="container mt-5">
+                    <div class="col-2">
                         <select class="selectpicker" multiple title="Comuna" onchange="updateFiltroComuna(this); filtrar()">
                             <option value="CAUQUENES">Cauquenes</option>
                             <option value="CHANCO">Chanco</option>
@@ -107,7 +180,7 @@
                             <option value="YERBAS BUENAS">Yerbas Buenas</option>
                         </select>
                     </div>
-                    <div class="container mt-5">
+                    <div class="col-2">
                         <select class="selectpicker" multiple title="Mes" onchange="updateFiltroMes(this); filtrar()">
                             <option value="1">Enero</option>
                             <option value="2">Febrero</option>
@@ -123,7 +196,7 @@
                             <option value="12">Diciembre</option>
                         </select>
                     </div>
-                    <div class="container mt-5">
+                    <div class="col-2">
                         <select class="selectpicker" multiple title="MeApunto">
                             <option value="1">MeApunto</option>
                         </select>
@@ -632,5 +705,14 @@ function openAsideMenu() {
 }
 function closeAsideMenu() {
     document.querySelector("#small-aside-menu").classList.add("hidden");
+}
+
+
+    // Abrir y cerrar menu de filtros en pantalla pequeña
+function openFilterMenu() {
+    document.querySelector("#small-filter-menu").classList.remove("hidden");
+}
+function closeFilterMenu() {
+    document.querySelector("#small-filter-menu").classList.add("hidden");
 }
 </script>
