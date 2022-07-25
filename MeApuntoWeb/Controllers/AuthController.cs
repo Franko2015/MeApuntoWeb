@@ -135,6 +135,20 @@ namespace MeApuntoWeb.Controllers
             }        
         }
 
+        public async Task<IActionResult> Premium()
+        {
+            var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
+
+            if (user == null) return NotFound();
+
+            user.Tipo_usuarioId = 4;
+
+            _context.Update(user);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index","Home");
+        }
+
         public IActionResult Perfil()
         {
             if (User.Identity.IsAuthenticated)

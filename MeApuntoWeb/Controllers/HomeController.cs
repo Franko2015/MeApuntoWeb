@@ -58,34 +58,11 @@ namespace MeApuntoWeb.Controllers
                 await _context.SaveChangesAsync();
             }
 
+
             //Carga de eventos
             var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario).Where(evento => evento.Estado == "Aceptado").OrderBy(evento => evento.Fecha_evento);
             return View(await eventosDbContext.ToListAsync());
          
-
-        }
-
-
-
-
-
-
-        public async Task<IActionResult> OrderCategoria()
-        {
-            var eventosDbContext = _context.tblEvento.OrderBy(e => e.Categoria.categoria);
-
-            await eventosDbContext.ToListAsync();
-
-            return RedirectToAction(nameof(Index));
-        }
-
-        public async Task<IActionResult> OrderLugar()
-        {
-            var eventosDbContext = _context.tblEvento.OrderBy(e => e.Direccion);
-
-            await eventosDbContext.ToListAsync();
-
-            return RedirectToAction(nameof(Index));
 
         }
 
@@ -103,6 +80,11 @@ namespace MeApuntoWeb.Controllers
 
         }
 
+        public async Task<IActionResult> OrderCategoria()
+        {
+            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario).Where(evento => evento.Estado == "Aceptado").OrderBy(evento => evento.Categoria.categoria);
+            return View(await eventosDbContext.ToListAsync());
+        }
 
 
 

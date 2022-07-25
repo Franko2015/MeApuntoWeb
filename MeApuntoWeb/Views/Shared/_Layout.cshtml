@@ -75,7 +75,7 @@
                             <li><a class="dropdown-item boton" asp-action="Perfil" asp-controller="Auth">Perfil</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <!-- Cambiar cuenta a premium -->
-                            <li><a asp-action="Premium" asp-controller="" class="dropdown-item boton">PREMIUM</a></li>
+                            <li><a asp-action="Premium" asp-controller="Auth" class="dropdown-item boton">PREMIUM</a></li>
                             @if (Administracion == true)
                             {
                             <li><hr class="dropdown-divider"></li>
@@ -92,7 +92,7 @@
                     <div class="dropdown-center">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="material-icons">notifications</i> 
+                        <i class="material-icons">notifications</i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenu2">
                         <li><button class="dropdown-item" type="button">Notificacion</button></li>

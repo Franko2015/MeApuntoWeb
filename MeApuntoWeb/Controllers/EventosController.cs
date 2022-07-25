@@ -47,6 +47,15 @@ namespace MeApuntoWeb.Controllers
 
         }
 
+        public async Task<IActionResult> OrdenarPorTitulo()
+        {
+            var eventosDbContext = _context.tblEvento.OrderByDescending(e => e.Titulo);
+
+            await eventosDbContext.ToListAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
 
 
         // GET: Eventos/Details/5
