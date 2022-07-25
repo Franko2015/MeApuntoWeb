@@ -68,7 +68,6 @@ namespace MeApuntoWeb.Controllers
 
         public IActionResult MeApunto(int id)
         {
-
             var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
             AsistenciaEventos ae = new AsistenciaEventos();
 
@@ -82,10 +81,21 @@ namespace MeApuntoWeb.Controllers
 
         public async Task<IActionResult> OrderCategoria()
         {
-            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario).Where(evento => evento.Estado == "Aceptado").OrderBy(evento => evento.Categoria.categoria);
-            return View(await eventosDbContext.ToListAsync());
+            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario).Where(evento => evento.Estado == "Aceptado").Where(evento => evento.Fecha_evento.CompareTo(DateTime.Now.AddDays(-1)) > 0).OrderBy(evento => evento.Categoria.categoria);
+
+            await eventosDbContext.ToListAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> OrderLugar()
+        {
+            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario).Where(evento => evento.Estado == "Aceptado").Where(evento => evento.Fecha_evento.CompareTo(DateTime.Now.AddDays(-1)) > 0).OrderBy(evento => evento.Direccion);
+
+            await eventosDbContext.ToListAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
 
 
 
