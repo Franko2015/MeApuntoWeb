@@ -30,9 +30,10 @@
         </aside>
 
 <div id="main-content">
-    <div class="my-event">
-        @foreach (var item in Model)
+    @foreach (var item in Model)
         {
+    <div class="my-event">
+        
             <div class="my-event-imagen">
                 <img src="~/img/Cat/@(item.Categoria.categoria).png" style="width: 150px; margin: 10px; padding: 0;"/>
             </div>
@@ -121,7 +122,8 @@
                     </div>
                 </div>
             </div>
-        }
+       
     </div>
+     }
 </div>
 </div>

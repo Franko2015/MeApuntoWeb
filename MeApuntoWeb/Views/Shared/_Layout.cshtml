@@ -45,60 +45,60 @@
                 }
 
                 @if (Administracion == true)
-            {
-                    <!-- En caso de loguear como admin o soporte -->
-                <div class="header-img-titulo">
-                    <a asp-action="Admin" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
-                </div>
-            }else{
-                    <!-- En caso contrario de loguear como admin o soporte -->
-                <div class="header-img-titulo">
-                    <a asp-action="Index" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
-                </div>
+                {
+                        <!-- En caso de loguear como admin o soporte -->
+                    <div class="header-img-titulo">
+                        <a asp-action="Admin" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
+                    </div>
+                }else{
+                        <!-- En caso contrario de loguear como admin o soporte -->
+                    <div class="header-img-titulo">
+                        <a asp-action="Index" asp-controller="Home"><img src="~/img/logo/Logo-MeApunto!-Puntero-Negro.png" style="width:6em;"/></a>
+                    </div>
+                }
+                    <center><h3 class="d-none d-md-block">@ViewData["Nav"]</h3></center>
             }
-                <center><h3>@ViewData["Nav"]</h3></center>
-        }
-        <div id="main-header-buttons">
+            <div id="main-header-buttons">
             
              
 
-            @if (User.Identity.IsAuthenticated)
-            {
-                //<button id="button-administracion">Administración</button>
-                <!-- Botón para ingresar al perfil del usuario -->
+                @if (User.Identity.IsAuthenticated)
+                {
+                    //<button id="button-administracion">Administración</button>
+                    <!-- Botón para ingresar al perfil del usuario -->
 
-                <div class="dropdown-center">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="material-icons">person</i> 
+                    <div class="dropdown-center">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="material-icons">person</i> 
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenu2">
+                            <li><a class="dropdown-item boton" asp-action="Perfil" asp-controller="Auth">Perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <!-- Cambiar cuenta a premium -->
+                            <li><a asp-action="Premium" asp-controller="" class="dropdown-item boton">PREMIUM</a></li>
+                            @if (Administracion == true)
+                            {
+                            <li><hr class="dropdown-divider"></li>
+                            <!-- Ingresar como usuario siendo administrador -->
+                            <li><a class="dropdown-item boton" asp-action="Index" asp-controller="Home">Vista usuario</a></li>
+                            }
+                            <li><hr class="dropdown-divider"></li>
+                            <!-- Botón para cerrar la sesión -->
+                            <li><a class="dropdown-item boton" asp-action="Logout" asp-controller="Auth">Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+
+                <!-- Botón para revisar las notificaciones del usuario -->
+                    <div class="dropdown-center">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="material-icons">notifications</i> 
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenu2">
-                        <li><a class="dropdown-item boton" asp-action="Perfil" asp-controller="Auth">Perfil</a></li>
+                        <li><button class="dropdown-item" type="button">Notificacion</button></li>
                         <li><hr class="dropdown-divider"></li>
-                        <!-- Cambiar cuenta a premium -->
-                        <li><a asp-action="Premium" asp-controller="" class="dropdown-item boton">PREMIUM</a></li>
-                        @if (Administracion == true)
-                        {
-                        <li><hr class="dropdown-divider"></li>
-                        <!-- Ingresar como usuario siendo administrador -->
-                        <li><a class="dropdown-item boton" asp-action="Index" asp-controller="Home">Vista usuario</a></li>
-                        }
-                        <li><hr class="dropdown-divider"></li>
-                        <!-- Botón para cerrar la sesión -->
-                        <li><a class="dropdown-item boton" asp-action="Logout" asp-controller="Auth">Cerrar sesión</a></li>
                     </ul>
                 </div>
-
-            <!-- Botón para revisar las notificaciones del usuario -->
-                <div class="dropdown-center">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="material-icons">notifications</i> 
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenu2">
-                    <li><button class="dropdown-item" type="button">Notificacion</button></li>
-                    <li><hr class="dropdown-divider"></li>
-                </ul>
-            </div>
 
             }else{
                 <!-- Botón para ingresar como un usuario con cuenta -->
@@ -106,7 +106,11 @@
             }
         </div>
     </header>
-            @RenderBody()
+    <div class="d-block d-md-none">
+        <br/>
+        <center><h3>@ViewData["Nav"]</h3></center>
+    </div>
+    @RenderBody()
     @await RenderSectionAsync("Scripts", required: false)
 
 
