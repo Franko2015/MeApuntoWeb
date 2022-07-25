@@ -353,3 +353,6 @@
 #small-aside-menu div button{
     align-self:end
 }
+.dropdown.bootstrap-select.show-tick {
+    width: 150px !important;
+}

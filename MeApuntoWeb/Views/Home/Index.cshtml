@@ -133,8 +133,8 @@
         </aside>
         <div id="main-content">
             <div id="main-organizar">
-                <div id="main-filtrar" class="d-none d-md-block">
-                    <div class="col-2">
+                <div id="main-filtrar" class="d-none d-md-flex row">
+                    <div class="col-3">
                         <select class="selectpicker" multiple title="Categoría" onchange="updateFiltroCategoria(this); filtrar()">
                             <option value="+18">+18</option>
                             <option value="Arte">Arte</option>
@@ -146,7 +146,7 @@
                             <option value="Comunidad">Comunidad</option>   
                         </select>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <select class="selectpicker" multiple title="Comuna" onchange="updateFiltroComuna(this); filtrar()">
                             <option value="CAUQUENES">Cauquenes</option>
                             <option value="CHANCO">Chanco</option>
@@ -180,7 +180,7 @@
                             <option value="YERBAS BUENAS">Yerbas Buenas</option>
                         </select>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <select class="selectpicker" multiple title="Mes" onchange="updateFiltroMes(this); filtrar()">
                             <option value="1">Enero</option>
                             <option value="2">Febrero</option>
@@ -196,7 +196,7 @@
                             <option value="12">Diciembre</option>
                         </select>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <select class="selectpicker" multiple title="MeApunto">
                             <option value="1">MeApunto</option>
                         </select>
