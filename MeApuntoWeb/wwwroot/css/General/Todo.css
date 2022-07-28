@@ -144,6 +144,18 @@
     transition: height 0.3s ease-in-out;
 }
 
+.img-logo-card {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.logo-meapunto{
+    
+}
+
 .div-card2 {
     border-radius: 0.5em;
     background-image: url("https://tvline.com/wp-content/uploads/2022/04/halo-1x03-makee.jpg?w=300");
@@ -210,6 +222,7 @@
     transition: height 0.3s ease-in-out;
 }
 
+
 .div-card2 .div-card-buttons2 button {
     border: 2px solid white;
     border-radius: 5px;
@@ -222,6 +235,10 @@
 }
 
     .div-card2 .div-card-buttons2 button:hover {
+        background-color: white;
+        color: black;
+    }
+.div-card2 .div-card-buttons2 .boton-card-apuntado {
         background-color: white;
         color: black;
     }
@@ -356,3 +373,12 @@
 .dropdown.bootstrap-select.show-tick {
     width: 150px !important;
 }
+.boton-modal-apuntado {
+    background-color: rgb(116, 0, 107);
+    border-color: rgb(116, 0, 107);
+    width: fit-content;
+    transform: translateY(-85%);
+    z-index: 9999;
+    box-shadow: inset 0px 0px 10px #212529;
+}
+

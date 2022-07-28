@@ -82,23 +82,51 @@ namespace MeApuntoWeb.Controllers
 
 
             //Carga de eventos
-            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario).Where(evento => evento.Estado == "Aceptado").Where(evento => evento.Fecha_evento.CompareTo(DateTime.Now.AddDays(-1)) > 0).OrderBy(evento => evento.Fecha_evento);
-            return View(await eventosDbContext.ToListAsync());
-         
+            var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario)
+                .Where(evento => evento.Estado == "Aceptado").Where(evento => evento.Fecha_evento
+                .CompareTo(DateTime.Now.AddDays(-1)) > 0)
+                .OrderBy(evento => evento.Fecha_evento);
 
+            var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
+
+            var idsEventosApuntados = new List<int>();
+            if (user != null)
+            {
+                var queryApuntados = _context.tblAsistenciaEventos.Where(asist => asist.UsuarioId == user.Id);
+                idsEventosApuntados = queryApuntados.Select(asist => asist.EventoId).ToList();
+            }
+            ViewData["eventosApuntados"] = idsEventosApuntados;
+
+            return View(await eventosDbContext.ToListAsync());
         }
 
         public IActionResult MeApunto(int id)
         {
             var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
-            AsistenciaEventos ae = new AsistenciaEventos();
 
+            if (_context.tblAsistenciaEventos.Any(asist => asist.EventoId == id && asist.UsuarioId == user.Id)) 
+                return RedirectToAction(nameof(Index));
+
+            AsistenciaEventos ae = new AsistenciaEventos();
             ae.EventoId = id;
             ae.UsuarioId = user.Id;
             _context.Add(ae);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
+        }
 
+        public IActionResult Desapunto(int id)
+        {
+            var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
+
+            if (!_context.tblAsistenciaEventos.Any(asist => asist.EventoId == id && asist.UsuarioId == user.Id))
+                return RedirectToAction(nameof(Index));
+
+            var asistencia = _context.tblAsistenciaEventos.FirstOrDefault(asist => asist.EventoId == id && asist.UsuarioId == user.Id);
+
+            _context.Remove(asistencia);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> OrderCategoria()
