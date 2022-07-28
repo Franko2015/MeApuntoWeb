@@ -141,14 +141,16 @@ namespace MeApuntoWeb.Controllers
         [Authorize(Roles = "1,2")]
         public async Task<IActionResult> NotificarBloqueado(int Id)
         {
-            var notificar = _context.tblNotificaciones.FirstOrDefault(u => u.UsuarioReceptor == Id);
+            var notificar = _context.tblUsuario.FirstOrDefault(u => u.Id == Id);
             var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
 
             if (notificar == null) return NotFound();
 
-            notificar.UsuarioReceptor = Id;
-            notificar.Notificacion = "SU EVENTO HA SIDO BLOQUEADO. CONSULTE A LA ADMINISTRACIÓN PARA MÁS INFORMACIÓN.";
-            notificar.UsuarioRemitente = user.Id;
+            Notificaciones n = new Notificaciones();
+
+            n.UsuarioReceptor = notificar.Id;
+            n.Notificacion = "SU EVENTO HA SIDO BLOQUEADO. CONSULTE A LA ADMINISTRACIÓN PARA MÁS INFORMACIÓN.";
+            n.UsuarioRemitente = user.Id;
 
             _context.Update(notificar);
 
@@ -159,11 +161,12 @@ namespace MeApuntoWeb.Controllers
         [Authorize(Roles = "1,2")]
         public async Task<IActionResult> NotificarAceptado(int Id)
         {
+            var notificar = _context.tblUsuario.FirstOrDefault(u => u.Id == Id);
             var user = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == User.Identity.Name);
 
             Notificaciones n = new Notificaciones();
 
-            n.UsuarioReceptor = Id;
+            n.UsuarioReceptor = notificar.Id;
             n.Notificacion = "SU EVENTO HA SIDO ACEPTADO.";
             n.UsuarioRemitente = user.Id;
 
@@ -173,7 +176,15 @@ namespace MeApuntoWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        [HttpGet]
+        public async Task<IActionResult> Delete(int Id)
+        {
+            var c = _context.tblEvento.FirstOrDefault(u => u.Id == Id);
+            if (c == null) return NotFound();
+            _context.Remove(c);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 
         public async Task<IActionResult> Aceptar(int Id)
         {
@@ -214,6 +225,9 @@ namespace MeApuntoWeb.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Admin","Home");
             }
+
+            
+
         }
 
     }

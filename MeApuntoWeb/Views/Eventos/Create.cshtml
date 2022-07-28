@@ -13,20 +13,20 @@
     <div class="card shadow col-xs-20 col-sm-12 col-md-6 col-lg-8   p-4"> 
         <form asp-action="Create" method="post">
             <label>Título del Evento</label>
-            <input asp-for="Titulo" type="text" class="form-control" placeholder="Titulo" autocomplete="off">
+            <input asp-for="Titulo" type="text" class="form-control" placeholder="Titulo" autocomplete="off" required>
          
             <div class="row">
                 <div class="col col-md-6">
                     <label>Fecha a realizarse</label>
-                    <input asp-for="Fecha_evento" type="date" class="form-control" placeholder="Fecha">
+                    <input asp-for="Fecha_evento" type="date" class="form-control" placeholder="Fecha" required>
                 </div>
                 <div class="col-12 col-md-3">
                     <label>Hora de Inicio</label>
-                    <input asp-for="Hora_inicio" type="time" class="form-control">
+                    <input asp-for="Hora_inicio" type="time" class="form-control" required>
                 </div>
                 <div class="col-12 col-md-3">
                     <label >Hora de Término</label>
-                    <input asp-for="Hora_termino" type="time" class="form-control">
+                    <input asp-for="Hora_termino" type="time" class="form-control" required>
                 </div>
             </div>
             <hr />
@@ -68,11 +68,11 @@
                 </div>
                 <div class="col-12 col-md-7">
                         <label for="Direccion">Dirección:</label>
-                        <input type="text" class="form-control" asp-for="Direccion" autocomplete="off">
+                        <input type="text" class="form-control" asp-for="Direccion" autocomplete="off" required>
                 </div>
                 <div class="col-12 col-md-2">
                     <label for="Numero">Número:</label>
-                    <input type="number" class="form-control" asp-for="Numero" autocomplete="off">
+                    <input type="number" class="form-control" value="0" asp-for="Numero" autocomplete="off" required>
                 </div>
             </div>
             <hr/>
@@ -85,12 +85,6 @@
             <label for="txtDescripcion">Descripción: </label>
             <textarea asp-for="Descripcion" class="form-control" rows="3" autocomplete="off"></textarea>
             
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Este evento es solo para mayores de 18 años 
-                </label>
-            </div>
                <br />
                 <div class="d-flex justify-content-center">
             <input type="submit" id="btn-crear-evento" class="btn btn-primary boton-form" value="Crear"/>

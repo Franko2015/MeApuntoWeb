@@ -59,22 +59,13 @@ namespace MeApuntoWeb.Controllers
 
 
         [HttpGet]
-        public IActionResult Delete(int idCategoria)
+        public async Task<IActionResult> Delete(int Id)
         {
-            var Categoria = _context.tblCategoria?.FirstOrDefault(c => c.Id == idCategoria);
-            if (Categoria == null) return NotFound();
-            else
-            {
-                return View(Categoria);
-            }
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Delete(Categoria c)
-        {
-                _context.Remove(c);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+            var c = _context.tblCategoria.FirstOrDefault(u => u.Id == Id);
+            if (c == null) return NotFound();
+            _context.Remove(c);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

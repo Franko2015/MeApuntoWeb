@@ -74,7 +74,9 @@ namespace MeApuntoWeb.Controllers
                 User.Rut = Uvm.Rut;
                 User.Apellidos = Uvm.Apellidos.ToUpper();
                 User.Correo = Uvm.Correo.ToUpper();
-                User.Edad = Uvm.Edad.ToUpper();
+                User.FechaNacimiento = Convert.ToDateTime(Uvm.FechaNacimiento.Date.ToString("dd/MM/yyyy"));
+                var edad = (Convert.ToInt16(Uvm.FechaNacimiento.Date.ToString("yyyy")) - DateTime.Now.Year) * -1;
+                User.Edad = edad.ToString();
                 User.Telefono = Uvm.Telefono;
                 User.NombreUsuario = Uvm.NombreUsuario;
                 User.Organizacion = "ME APUNTO";
@@ -108,7 +110,9 @@ namespace MeApuntoWeb.Controllers
                 User.Rut = Uvm.Rut;
                 User.Apellidos = Uvm.Apellidos.ToUpper();
                 User.Correo = Uvm.Correo.ToUpper();
-                User.Edad = Uvm.Edad.ToUpper();
+                User.FechaNacimiento = Convert.ToDateTime(Uvm.FechaNacimiento.Date.ToString("dd/MM/yyyy"));
+                var edad = (Convert.ToInt16(Uvm.FechaNacimiento.Date.ToString("yyyy")) - DateTime.Now.Year) * -1;
+                User.Edad = edad.ToString();
                 User.Telefono = Uvm.Telefono;
                 User.NombreUsuario = Uvm.NombreUsuario;
                 User.Organizacion = "ME APUNTO";
@@ -132,16 +136,19 @@ namespace MeApuntoWeb.Controllers
         public async Task<IActionResult> Create(UsuarioRegistroViewModel Uvm)
         {
             var usuario = _context.tblUsuario.FirstOrDefault(u => u.NombreUsuario == Uvm.NombreUsuario || u.Rut == Uvm.Rut || (u.Nombres == Uvm.Nombres && u.Apellidos == Uvm.Apellidos));
-            if (usuario == null) { 
-            Usuario? User = new Usuario();
+            if (usuario == null)
+            {
+                Usuario? User = new Usuario();
 
                 //Creando usuario nuevo
                 User.Nombres = Uvm.Nombres.ToUpper();
                 User.Rut = Uvm.Rut;
                 User.Apellidos = Uvm.Apellidos.ToUpper();
                 User.Correo = Uvm.Correo.ToUpper();
-                User.Edad = Uvm.Edad;
-                User.Telefono = "9 "+Uvm.Telefono;
+                User.FechaNacimiento = Convert.ToDateTime(Uvm.FechaNacimiento.Date.ToString("dd/MM/yyyy"));
+                var edad = (Convert.ToInt16(Uvm.FechaNacimiento.Date.ToString("yyyy")) - DateTime.Now.Year) * -1;
+                User.Edad = edad.ToString();
+                User.Telefono = "9 " + Uvm.Telefono;
                 User.NombreUsuario = Uvm.NombreUsuario;
                 User.Organizacion = Uvm.Organizacion;
                 User.EstadoCuenta = "ACTIVA";
@@ -261,20 +268,196 @@ namespace MeApuntoWeb.Controllers
 
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.tblUsuario == null)
+            var U = _context.tblUsuario.FirstOrDefault(u => u.Id == id);
+            if (U == null) return NotFound();
+            UsuarioRegistroViewModel Uvm = new UsuarioRegistroViewModel()
             {
-                return NotFound();
+                Nombres = U.Nombres,
+                Apellidos = U.Apellidos,
+                Correo = U.Correo,
+                Rut = U.Rut,
+                Tipo_usuarioId = U.Tipo_usuarioId,
+                NombreUsuario = U.NombreUsuario,
+                Organizacion = U.Organizacion,
+                Telefono = U.Telefono
+            };
+            return View(Uvm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(UsuarioRegistroViewModel Uvm)
+        {
+            if (ModelState.IsValid)
+            {
+                var Usuarios = _context.tblUsuario.Where(u => u.NombreUsuario == Uvm.NombreUsuario || u.Correo == Uvm.Correo || u.Rut == Uvm.Rut).ToList();
+                if (Usuarios.Count >= 1)
+                {
+                    var U = _context.tblUsuario.FirstOrDefault(u => u.Id == Uvm.Id);
+                    U.Nombres = Uvm.Nombres;
+                    U.Apellidos = Uvm.Apellidos;
+                    U.Correo = Uvm.Correo;
+                    U.Tipo_usuarioId = 3;
+                    U.NombreUsuario = Uvm.NombreUsuario;
+                    U.Organizacion = Uvm.Organizacion;
+                    U.Telefono = Uvm.Telefono;
+                    U.Rut = Uvm.Rut;
+                    U.Id = Uvm.Id;
+
+                    CreatePasswordHash(Uvm.Contrasena, out byte[] Hash, out byte[] Salt);
+
+                    U.PasswordSalt = Salt;
+                    U.PasswordHash = Hash;
+
+                    _context.Update(U);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    //Ya existe el mismo Username o Email
+                    ModelState.AddModelError(String.Empty, "Usuario ya tiene una cuenta creada. Nombre de usuario, correo o Rut ya están en uso");
+                    return View(Uvm);
+                }
+
+            }
+            else
+            {
+                return View(Uvm);
             }
 
-            var evento = await _context.tblUsuario.FindAsync(id);
-            if (evento == null)
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditPremium(UsuarioRegistroViewModel Uvm)
+        {
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                var Usuarios = _context.tblUsuario.Where(u => u.NombreUsuario == Uvm.NombreUsuario || u.Correo == Uvm.Correo || u.Rut == Uvm.Rut).ToList();
+                if (Usuarios.Count >= 1)
+                {
+                    var U = _context.tblUsuario.FirstOrDefault(u => u.Id == Uvm.Id);
+                    U.Nombres = Uvm.Nombres;
+                    U.Apellidos = Uvm.Apellidos;
+                    U.Correo = Uvm.Correo;
+                    U.Tipo_usuarioId = 4;
+                    U.NombreUsuario = Uvm.NombreUsuario;
+                    U.Organizacion = Uvm.Organizacion;
+                    U.Telefono = Uvm.Telefono;
+                    U.Rut = Uvm.Rut;
+                    U.Id = Uvm.Id;
+
+                    CreatePasswordHash(Uvm.Contrasena, out byte[] Hash, out byte[] Salt);
+
+                    U.PasswordSalt = Salt;
+                    U.PasswordHash = Hash;
+
+                    _context.Update(U);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    //Ya existe el mismo Username o Email
+                    ModelState.AddModelError(String.Empty, "Usuario ya tiene una cuenta creada. Nombre de usuario, correo o Rut ya están en uso");
+                    return View(Uvm);
+                }
+
             }
-            ViewData["TipoId"] = new SelectList(_context.tblUsuario, "Id", "Tipo", evento.Tipo_Usuario);
-            return View(evento);
+            else
+            {
+                return View(Uvm);
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditAdmin(UsuarioRegistroViewModel Uvm)
+        {
+            if (ModelState.IsValid)
+            {
+                var Usuarios = _context.tblUsuario.Where(u => u.NombreUsuario == Uvm.NombreUsuario || u.Correo == Uvm.Correo || u.Rut == Uvm.Rut).ToList();
+                if (Usuarios.Count >= 1)
+                {
+                    var U = _context.tblUsuario.FirstOrDefault(u => u.Id == Uvm.Id);
+                    U.Nombres = Uvm.Nombres;
+                    U.Apellidos = Uvm.Apellidos;
+                    U.Correo = Uvm.Correo;
+                    U.Tipo_usuarioId = 1;
+                    U.NombreUsuario = Uvm.NombreUsuario;
+                    U.Organizacion = Uvm.Organizacion;
+                    U.Telefono = Uvm.Telefono;
+                    U.Rut = Uvm.Rut;
+                    U.Id = Uvm.Id;
+
+                    CreatePasswordHash(Uvm.Contrasena, out byte[] Hash, out byte[] Salt);
+
+                    U.PasswordSalt = Salt;
+                    U.PasswordHash = Hash;
+
+                    _context.Update(U);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    //Ya existe el mismo Username o Email
+                    ModelState.AddModelError(String.Empty, "Usuario ya tiene una cuenta creada. Nombre de usuario, correo o Rut ya están en uso");
+                    return View(Uvm);
+                }
+
+            }
+            else
+            {
+                return View(Uvm);
+            }
+
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditSoporte(UsuarioRegistroViewModel Uvm)
+        {
+            if (ModelState.IsValid)
+            {
+                var Usuarios = _context.tblUsuario.Where(u => u.NombreUsuario == Uvm.NombreUsuario || u.Correo == Uvm.Correo || u.Rut == Uvm.Rut).ToList();
+                if (Usuarios.Count >= 1)
+                {
+                    var U = _context.tblUsuario.FirstOrDefault(u => u.Id == Uvm.Id);
+                    U.Nombres = Uvm.Nombres;
+                    U.Apellidos = Uvm.Apellidos;
+                    U.Correo = Uvm.Correo;
+                    U.Tipo_usuarioId = 2;
+                    U.NombreUsuario = Uvm.NombreUsuario;
+                    U.Organizacion = Uvm.Organizacion;
+                    U.Telefono = Uvm.Telefono;
+                    U.Rut = Uvm.Rut;
+                    U.Id = Uvm.Id;
+
+                    CreatePasswordHash(Uvm.Contrasena, out byte[] Hash, out byte[] Salt);
+
+                    U.PasswordSalt = Salt;
+                    U.PasswordHash = Hash;
+
+                    _context.Update(U);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    //Ya existe el mismo Username o Email
+                    ModelState.AddModelError(String.Empty, "Usuario ya tiene una cuenta creada. Nombre de usuario, correo o Rut ya están en uso");
+                    return View(Uvm);
+                }
+
+            }
+            else
+            {
+                return View(Uvm);
+            }
+
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

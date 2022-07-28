@@ -58,6 +58,28 @@ namespace MeApuntoWeb.Controllers
                 await _context.SaveChangesAsync();
             }
 
+            var usuario = _context.tblUsuario.ToList();
+            Usuario? US = new Usuario();
+            if (usuario.Count == 0)
+            {
+                //Creando usuario Soporte
+                US.Nombres = "soporte";
+                US.Apellidos = "soporte";
+                US.Rut = "";
+                US.Correo = "soporte@gmail.com";
+                US.Edad = "20";
+                US.Telefono = "";
+                US.NombreUsuario = "soporte";
+                US.Organizacion = "Me Apunto";
+                US.EstadoCuenta = "ACTIVA";
+                US.Tipo_usuarioId = 2;
+                CreatePasswordHash("soporte", out byte[] passwordHash, out byte[] passworSalt);
+                US.PasswordHash = passwordHash;
+                US.PasswordSalt = passworSalt;
+                _context.Add(US);
+                await _context.SaveChangesAsync();
+            }
+
 
             //Carga de eventos
             var eventosDbContext = _context.tblEvento.Include(e => e.Categoria).Include(e => e.Usuario).Where(evento => evento.Estado == "Aceptado").Where(evento => evento.Fecha_evento.CompareTo(DateTime.Now.AddDays(-1)) > 0).OrderBy(evento => evento.Fecha_evento);
@@ -110,8 +132,23 @@ namespace MeApuntoWeb.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-       
-    
 
+
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512(passwordSalt))
+            {
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return computedHash.SequenceEqual(passwordHash);
+            }
+        }
     }
 }

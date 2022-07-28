@@ -2,6 +2,23 @@
 @{
     ViewData["Title"] = "Registrar usuario";
     Layout = null;
+    bool Admin = false, Soporte = false, Premium = false, Free = false;
+    foreach(var claim in User.Claims)
+    {
+        if(claim.Value == "1")
+        {
+            Admin = true;
+        }else if (claim.Value == "2")
+        {
+            Soporte = true;
+        }else if (claim.Value == "3")
+        {
+            Free = true;
+        }else if (claim.Value == "4")
+        {
+            Premium = true;
+        }
+    }
 }
 <html>
 <head>
@@ -18,43 +35,39 @@
     <link rel="icon" type="image/png" sizes="16x16" href="~/img/favicon_io/favicon-16x16.png">
     <title>@ViewData["Title"]</title>
 </head>
+                         <!--<script src="~/js/index.js"></script>-->
 
 <body id="body-iniciar-sesion" style="height: 100vh;" class="d-flex align-items-center">
     <br />
     <div id="main-container-sesion">
         <div id="form-container">
-            <form asp-action="Create" method="post">
+                <form asp-action="Edit" method="post">
+                    <!-- Botón para volver -->
+                    <div class="d-flex justify-content-center" style="width: 100%;">
+                        <a asp-action="Index" asp-controller="Home"><img src="~/img/Logo.png" style="width: 150px; margin-bottom: 30px;"/></a>
+                    </div>
+                        <input type="hidden" value="@Model.Id" asp-for="Id"/>
 
-                <!-- Botón para volver -->
-                <div class="d-flex justify-content-center" style="width: 100%;">
-                    <a asp-action="Index" asp-controller="Home"><img src="~/img/Logo.png" style="width: 150px; margin-bottom: 30px;"/></a>
+                        <input asp-for="Nombres" type="text" class="form-control" placeholder="Nombre" autocomplete="off" required>
+
+                        <input asp-for="Apellidos" type="text" class="form-control" placeholder="Apellido" autocomplete="off" required>
+
+                        <input asp-for="Rut" type="text" oninput="checkRut(this)" id="rut" name="rut" class="form-control" placeholder="Rut" autocomplete="off" required>
+
+                        <input asp-for="Correo" type="email" class="form-control" placeholder="Email" autocomplete="off" required>
+
+                        <input asp-for="Organizacion" type="text" class="form-control" placeholder="Organización" autocomplete="off">
+
+                        <input asp-for="Telefono" type="number" max="99999999" class="form-control" placeholder="Telefono: 12345678" autocomplete="off" required>
+
+                        <input asp-for="NombreUsuario" type="text" class="form-control" placeholder="Nombre de Usuario" autocomplete="off" required>
+
+                        <input asp-for="Contrasena" type="password" class="form-control" placeholder="Contraseña" autocomplete="off" required>
+                            
+                        <button style="margin-botom: 10px; width: 100%;" type="submit" class="btn btn btn-outline-primary">Editar usuario</button>
+                    </form>
                 </div>
+            </div>
+        </body>
 
-                    <input asp-for="Nombres" type="text" class="form-control" placeholder="Nombre" autocomplete="off" required>
-
-                    <input asp-for="Apellidos" type="text" class="form-control" placeholder="Apellido" autocomplete="off" required>
-
-                    <input asp-for="Rut" type="text" class="form-control" placeholder="Rut" autocomplete="off" required>
-
-                    <input asp-for="FechaNacimiento"  type="date" class="form-control" autocomplete="off" required>
-
-                    <input asp-for="Edad"  type="text" class="form-control" placeholder="Edad" autocomplete="off" required>
-
-                    <input asp-for="Correo" type="email" class="form-control" placeholder="Email" autocomplete="off" required>
-
-                    <input asp-for="Organizacion" type="text" class="form-control" placeholder="Organización" autocomplete="off">
-
-                    <input asp-for="Telefono" type="number" max="99999999" class="form-control" placeholder="Telefono: 12345678" autocomplete="off" required>
-
-                    <input asp-for="NombreUsuario" type="text" class="form-control" placeholder="Nombre de Usuario" autocomplete="off" required>
-
-                    <input asp-for="Contrasena" type="password" class="form-control" placeholder="Contraseña" autocomplete="off" required>
-                    
-                    <input type="submit" class="btn btn-outline-primary" value="Registrar usuario">
-                </form>
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        </div>
-    </div>
-</body>
-
-</html>
+        </html>

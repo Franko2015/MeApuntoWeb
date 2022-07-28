@@ -31,11 +31,11 @@
                 <h1 style="text-transform: uppercase; color: #444;">Iniciar sesión</h1>
                 <br>
                 <label>Usuario</label>
-                <input asp-for="Username" type="text" class="form-control" placeholder="Ingrese nombre de usuario" autocomplete="off">
+                <input asp-for="Username" required type="text" class="form-control" placeholder="Ingrese nombre de usuario" autocomplete="off">
                 <span asp-validation-for="Username" class="text-danger"></span>
                 <br>
                 <label>Contraseña</label>
-                <input asp-for="Password" type="password" class="form-control" placeholder="Ingrese su contraseña" autocomplete="off">
+                <input asp-for="Password" required type="password" class="form-control" placeholder="Ingrese su contraseña" autocomplete="off">
                 <span asp-validation-for="Password" class="text-danger"></span>
                 <br>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
