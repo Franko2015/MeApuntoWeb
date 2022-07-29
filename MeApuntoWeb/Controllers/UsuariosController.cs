@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MeApuntoWeb.Models;
 using MeApuntoWeb.ViewModels;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MeApuntoWeb.Controllers
 {
@@ -87,8 +90,19 @@ namespace MeApuntoWeb.Controllers
                 User.PasswordSalt = passworSalt;
                 _context.Add(User);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Administración", "Usuarios"); ;
 
+                var claims = new List<Claim>{
+                    new Claim(ClaimTypes.NameIdentifier, Uvm.Id.ToString()),
+                    new Claim(ClaimTypes.Name, Uvm.NombreUsuario),
+                    new Claim(ClaimTypes.Role , Uvm.Tipo_usuarioId.ToString())
+                    };
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties { IsPersistent = true });
+
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -123,7 +137,20 @@ namespace MeApuntoWeb.Controllers
                 User.PasswordSalt = passworSalt;
                 _context.Add(User);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Soporte", "Usuarios"); ;
+
+
+                var claims = new List<Claim>{
+                    new Claim(ClaimTypes.NameIdentifier, Uvm.Id.ToString()),
+                    new Claim(ClaimTypes.Name, Uvm.NombreUsuario),
+                    new Claim(ClaimTypes.Role , Uvm.Tipo_usuarioId.ToString())
+                    };
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties { IsPersistent = true });
+
+                return RedirectToAction("Index", "Home");
 
             }
             else
@@ -158,7 +185,20 @@ namespace MeApuntoWeb.Controllers
                 User.PasswordSalt = passworSalt;
                 _context.Add(User);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home"); ;
+
+
+                var claims = new List<Claim>{
+                    new Claim(ClaimTypes.NameIdentifier, Uvm.Id.ToString()),
+                    new Claim(ClaimTypes.Name, Uvm.NombreUsuario),
+                    new Claim(ClaimTypes.Role , Uvm.Tipo_usuarioId.ToString())
+                    };
+
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(identity);
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties { IsPersistent = true });
+
+                    return RedirectToAction("Index", "Home");
 
             }
             else
