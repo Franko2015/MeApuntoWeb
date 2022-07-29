@@ -227,7 +227,10 @@
  <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
                 <div class="carousel-inner px-5">
                 @for(var i = 0 ; i < Model.Count() ; i++)
-                        {
+                {if (Model.ToArray()[i].Usuario.Tipo_usuarioId == 4)
+                    {
+                        
+                    
                     <div class="carousel-item @(i==0 ? "active" : "")">
                         <div class="container">
                             <div class="row">
@@ -235,48 +238,56 @@
                                     var item = Model.ToArray()[i];
                                     if(item.Usuario.Tipo_usuarioId == 4)
                                     {
-                                                        <!-- CARD DE EVENTOS -->
-                                                        <!--Card-->
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="div-card2" style="background-size: cover; background-image: url('/img/Cat/@(@item.Categoria.categoria).png');">
-                                                                <div class="div-card-image2">
-                                                                    <div class="img-logo-card">
-                                                                        <img src="~/img/logo/P.png" width="40px"/>
-                                                                    @if(idsEventosApuntados.Any(id => item.Id == id))
+                                                            <!-- CARD DE EVENTOS -->
+                                                            <!--Card-->
+                                                            <div class="col-12 col-md-6">
+                                                                <div class="div-card2" style="background-size: cover; background-image: url('/img/Cat/@(@item.Categoria.categoria).png');">
+                                                                    <div class="div-card-image2">
+                                                                        <div class="img-logo-card">
+                                                                            <img src="~/img/logo/P.png" width="40px"/>
+                                                                        @if(idsEventosApuntados.Any(id => item.Id == id))
                                                         {
-                                                                        <img src="~/img/logo/M.png" class="logo-meapunto" width="50px"/>
+                                                                            <img src="~/img/logo/M.png" class="logo-meapunto" width="50px"/>
                                                         }
-                                                                     
+                                                                         
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="div-card-content2">
-                                                                    <div class="div-card-titulo2">
-                                                                        <h3>@item.Titulo</h3>
-                                                                    </div>
-                                                                    <div class="div-card-description2">@item.Descripcion</div>
-                                                                    <div class="div-card-buttons2">
-                                                                         <button type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id">+info</button>
-                                                                    @if (User.Identity.IsAuthenticated)
+                                                                    <div class="div-card-content2">
+                                                                        <div class="div-card-titulo2">
+                                                                            <h3>@item.Titulo</h3>
+                                                                        </div>
+                                                                        <div class="div-card-description2">
+                                                                            Fecha: <strong>@item.Fecha_evento.ToString("dd/MM/yyyy"), @item.Hora_inicio.ToString("HH:mm")</strong><br/>
+                                                                            Dirección: <strong>@item.Direccion</strong><br/>
+                                                                            Categoría: <strong>@item.Categoria.categoria</strong>
+                                                                        </div>
+                                                                        <div class="div-card-buttons2">
+                                                                             <button type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id">+info</button>
+                                                                        @if (User.Identity.IsAuthenticated)
                                                             {
                                                                 if(idsEventosApuntados.Any(id => item.Id == id))
                                                                 {
-                                                                 <a asp-action="Desapunto" asp-route-Id="@item.Id"><button class="boton-card-apuntado">Apuntado</button></a>
+                                                                     <a asp-action="Desapunto" asp-route-Id="@item.Id"><button class="boton-card-apuntado">Apuntado</button></a>
                                                                 }
                                                                 else
                                                                 {
-                                                                                <a asp-action="MeApunto" asp-route-Id="@item.Id"><button>meApunto</button></a>
+                                                                                    <a asp-action="MeApunto" asp-route-Id="@item.Id"><button>meApunto</button></a>
                                                                 }
                                                         }
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <!-- MODAL DE EVENTOS -->
+                                                            <!-- MODAL DE EVENTOS -->
                                   }}
                                 <!--Card-->
-                                 @{
+                                @{
                                     i++;
+                                    while (  i < Model.Count() && Model.ToArray()[i].Usuario.Tipo_usuarioId != 4 )
+                                    {
+                                        i++;
+                                    }
                                 }
                                 @if (i<Model.Count())
                                 {
@@ -298,7 +309,10 @@
                                             <div class="div-card-titulo2">
                                                 <h3>@item.Titulo</h3>
                                             </div>
-                                            <div class="div-card-description2">@item.Descripcion
+                                            <div class="div-card-description2">
+                                                Fecha: <strong>@item.Fecha_evento.ToString("dd/MM/yyyy"), @item.Hora_inicio.ToString("HH:mm")</strong><br/>
+                                                Dirección: <strong>@item.Direccion</strong><br/>
+                                                Categoría: <strong>@item.Categoria.categoria</strong>
                                             </div>
                                             <div class="div-card-buttons2">
                                                 <button type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id">+info</button>
@@ -321,7 +335,7 @@
                             </div>
                         </div>
                     </div>
-                    }
+                    }}
                 </div>
 
 
@@ -359,7 +373,11 @@
                             <div class="div-card-titulo2">
                                 <h3>@item2.Titulo</h3>
                             </div>
-                            <div class="div-card-description2">@item2.Descripcion</div>
+                            <div class="div-card-description2">
+                                Fecha: <strong>@item2.Fecha_evento.ToString("dd/MM/yyyy"), @item2.Hora_inicio.ToString("HH:mm")</strong><br/>
+                                Dirección: <strong>@item2.Direccion</strong><br/>
+                                Categoría: <strong>@item2.Categoria.categoria</strong>
+                            </div>
                             <div class="div-card-buttons2">
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#modal-@item2.Id">+info</button>
                                 @if (User.Identity.IsAuthenticated)
