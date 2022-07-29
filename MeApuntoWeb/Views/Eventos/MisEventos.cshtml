@@ -30,6 +30,12 @@
         </aside>
 
 <div id="main-content">
+
+        @if (Model.Count() == 0)
+        {
+            <div class="alert alert-secondary" role="alert">Aún no has creado ningún evento :c </div>
+        }
+
     @foreach (var item in Model)
         {
     <div class="my-event">

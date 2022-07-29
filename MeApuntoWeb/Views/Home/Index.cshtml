@@ -42,13 +42,19 @@
     <div class="col-12 col-md-2">
         <select class="selectpicker" multiple title="Categoría" onchange="updateFiltroCategoria(this); filtrar()">
             <option value="+18">+18</option>
+            <option value="Actividades outdoor">Actividades outdoor</option>
             <option value="Arte">Arte</option>
+            <option value="Comunidad">Comunidad</option>
+            <option value="Concierto">Concierto</option>
+            <option value="Danza">Danza</option>
             <option value="Deportes">Deportes</option>
-            <option value="Familiar">Familiar</option>
             <option value="Infantil">Infantil</option>
             <option value="Música">Música</option>
-            <option value="Stand-Up">Stand-Up</option>
-            <option value="Comunidad">Comunidad</option>   
+            <option value="Party">Party</option>
+            <option value="Stand-up">Stand-up</option>
+            <option value="Todo Público">Todo Público</option>
+            <option value="Vida sana">Vida sana</option>
+               
         </select>
     </div>
     <div class="col-12 col-md-2">
@@ -102,7 +108,7 @@
         </select>
     </div>
     <div class="col-12 col-md-2">
-        <select class="selectpicker" multiple title="MeApunto">
+        <select class="selectpicker" multiple title="MeApunto" onchange="updateFiltroMeApunto(this); filtrar()">
             <option value="1">MeApunto</option>
         </select>
     </div>
@@ -196,7 +202,7 @@
                         </select>
                     </div>
                     <div class="col-3">
-                        <select class="selectpicker" multiple title="MeApunto">
+                        <select class="selectpicker" multiple title="MeApunto" onchange="updateFiltroMeApunto(this); filtrar()">
                             <option value="1">MeApunto</option>
                         </select>
                     </div>
@@ -211,7 +217,7 @@
                     </div>
                     -->
                 </div>
-                <div id="main-ordenar">
+                <!-- <div id="main-ordenar">
                     <div class="dropdown">
                         <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                           Ordenar por
@@ -221,7 +227,7 @@
                           <li><a  class="dropdown-item" asp-action="OrderLugar">Lugar</a></li>
                         </ul>
                       </div>
-                </div>
+                </div> -->
             </div>
          <!-- CARRUSEL PAARA EVENTOS PREMIUM -->
  <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
@@ -234,57 +240,56 @@
                     <div class="carousel-item @(i==0 ? "active" : "")">
                         <div class="container">
                             <div class="row">
-                                @{
+                                 @{
                                     var item = Model.ToArray()[i];
                                     if(item.Usuario.Tipo_usuarioId == 4)
                                     {
-                                                            <!-- CARD DE EVENTOS -->
-                                                            <!--Card-->
-                                                            <div class="col-12 col-md-6">
-                                                                <div class="div-card2" style="background-size: cover; background-image: url('/img/Cat/@(@item.Categoria.categoria).png');">
-                                                                    <div class="div-card-image2">
-                                                                        <div class="img-logo-card">
-                                                                            <img src="~/img/logo/P.png" width="40px"/>
-                                                                        @if(idsEventosApuntados.Any(id => item.Id == id))
+                                        <!-- CARD DE EVENTOS -->
+                                        <!--Card-->
+                                        <div class="col-12 col-md-6">
+                                            <div class="div-card2" style="background-size: cover; background-image: url('/img/Cat/@(@item.Categoria.categoria).png');">
+                                                <div class="div-card-image2">
+                                                    <div class="img-logo-card">
+                                                        <img src="~/img/logo/P.png" width="40px"/>
+                                                    @if(idsEventosApuntados.Any(id => item.Id == id))
+                                                    {
+                                                        <img src="~/img/logo/M.png" class="logo-meapunto" width="50px"/>
+                                                    }
+                                                                                                         
+                                                    </div>
+                                                </div>
+                                                <div class="div-card-content2">
+                                                    <div class="div-card-titulo2">
+                                                        <h3>@item.Titulo</h3>
+                                                    </div>
+                                                    <div class="div-card-description2">
+                                                        Fecha: <strong>@item.Fecha_evento.ToString("dd/MM/yyyy"), @item.Hora_inicio.ToString("HH:mm")</strong><br/>
+                                                        Dirección: <strong>@item.Direccion</strong><br/>
+                                                        Categoría: <strong>@item.Categoria.categoria</strong>
+                                                    </div>
+                                                    <div class="div-card-buttons2">
+                                                        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id">+info</button>
+                                                    @if (User.Identity.IsAuthenticated)
+                                                    {
+                                                        if(idsEventosApuntados.Any(id => item.Id == id))
                                                         {
-                                                                            <img src="~/img/logo/M.png" class="logo-meapunto" width="50px"/>
+                                                            <a asp-action="Desapunto" asp-route-Id="@item.Id"><button class="boton-card-apuntado">Apuntado</button></a>
                                                         }
-                                                                         
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="div-card-content2">
-                                                                        <div class="div-card-titulo2">
-                                                                            <h3>@item.Titulo</h3>
-                                                                        </div>
-                                                                        <div class="div-card-description2">
-                                                                            Fecha: <strong>@item.Fecha_evento.ToString("dd/MM/yyyy"), @item.Hora_inicio.ToString("HH:mm")</strong><br/>
-                                                                            Dirección: <strong>@item.Direccion</strong><br/>
-                                                                            Categoría: <strong>@item.Categoria.categoria</strong>
-                                                                        </div>
-                                                                        <div class="div-card-buttons2">
-                                                                             <button type="button" data-bs-toggle="modal" data-bs-target="#modal-@item.Id">+info</button>
-                                                                        @if (User.Identity.IsAuthenticated)
-                                                            {
-                                                                if(idsEventosApuntados.Any(id => item.Id == id))
-                                                                {
-                                                                     <a asp-action="Desapunto" asp-route-Id="@item.Id"><button class="boton-card-apuntado">Apuntado</button></a>
-                                                                }
-                                                                else
-                                                                {
-                                                                                    <a asp-action="MeApunto" asp-route-Id="@item.Id"><button>meApunto</button></a>
-                                                                }
+                                                        else
+                                                        {
+                                                            <a asp-action="MeApunto" asp-route-Id="@item.Id"><button>meApunto</button></a>
                                                         }
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                    }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                                            <!-- MODAL DE EVENTOS -->
-                                  }}
+                                   }}
                                 <!--Card-->
                                 @{
                                     i++;
-                                    while (  i < Model.Count() && Model.ToArray()[i].Usuario.Tipo_usuarioId != 4 )
+                                    while ( i < Model.Count() && Model.ToArray()[i].Usuario.Tipo_usuarioId != 4 )
                                     {
                                         i++;
                                     }
@@ -616,9 +621,18 @@
     }
     console.dir(eventosArray);
 
+var idsEventosApuntados = [];
+
+    @foreach (var id in idsEventosApuntados)
+    {
+        @:idsEventosApuntados.push(@id)
+    }
+
+
 var selectedCategorias = [];
 var selectedComunas = [];
 var selectedMeses = [];
+var selectedMeApunto = [];
 
 function updateFiltroCategoria(selectPicker) {
     let options = [...selectPicker.options];
@@ -639,14 +653,25 @@ function updateFiltroMes(selectPicker) {
     selectedMeses = values;
 }
 
+function updateFiltroMeApunto(selectPicker) {
+    let options = [...selectPicker.options];
+    let selected = options.filter(o => o.selected);
+    let values = selected.map(o => o.value); //[MeApunto]
+    selectedMeApunto = values;
+}
+
 // Aplica todos los filtros
 function filtrar() {
+
+    console.log("selectedMeApunto: ", selectedMeApunto);
+    console.log("idsEventosApuntados: ", idsEventosApuntados);
 
     // Eventos a mostrar
     let eventosSeleccionados = eventosArray.filter(evento => {
         return (selectedCategorias.length === 0 || selectedCategorias.find(cat => cat === evento.Categoria))
             && (selectedComunas.length === 0 || selectedComunas.find(comuna => evento.Direccion.startsWith(comuna)))
-            &&  (selectedMeses.length === 0 || selectedMeses.find(mes => mes === evento.Mes));
+            && (selectedMeses.length === 0 || selectedMeses.find(mes => mes === evento.Mes))
+            && (selectedMeApunto.length === 0 || idsEventosApuntados.find(id => id == evento.Id));
     });
 
     // Eventos a esconder => eventosArray - eventosSeleccionados
@@ -659,17 +684,17 @@ function filtrar() {
     ocultar(eventosNoSeleccionados);
 }
 
-    function mostrar(eventosSeleccionados) {
-        eventosSeleccionados.forEach(evento => {
-            document.querySelector("#col-" + evento.Id).classList.remove("hidden");
-        })
-    }
+function mostrar(eventosSeleccionados) {
+    eventosSeleccionados.forEach(evento => {
+        document.querySelector("#col-" + evento.Id).classList.remove("hidden");
+    })
+}
 
-    function ocultar(eventosNoSeleccionados) {
-        eventosNoSeleccionados.forEach(evento => {
-            document.querySelector("#col-" + evento.Id).classList.add("hidden");
-        })
-    }
+function ocultar(eventosNoSeleccionados) {
+    eventosNoSeleccionados.forEach(evento => {
+        document.querySelector("#col-" + evento.Id).classList.add("hidden");
+    })
+}
 
 </script>
 
